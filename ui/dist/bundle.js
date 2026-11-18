@@ -24004,22 +24004,20 @@ const useNodeValidation = () => {
     getFieldValidationState
   };
 };
+function graphSignatures(nodes, edges) {
+  const resultNodes = nodes.map((n) => [n.id, n.data?.nodeType, n.data?.currentInputs || {}]).sort((a, b) => a[0] < b[0] ? -1 : 1);
+  const layout = nodes.map((n) => [n.id, Math.round(n.position?.x || 0), Math.round(n.position?.y || 0)]).sort((a, b) => a[0] < b[0] ? -1 : 1);
+  const edgePart = edges.map((e) => [e.source, e.sourceHandle, e.target, e.targetHandle]).sort((a, b) => a.join("|") < b.join("|") ? -1 : 1);
+  const result = JSON.stringify([resultNodes, edgePart]);
+  return { result, full: JSON.stringify([result, layout]) };
+}
 const SETTLE_MS$1 = 800;
 const UNKNOWN_BASELINE = "\0";
-function signature(nodes, edges) {
-  const nodePart = nodes.map((n) => [
-    n.id,
-    n.data?.nodeType,
-    n.data?.currentInputs || {},
-    Math.round(n.position?.x || 0),
-    Math.round(n.position?.y || 0)
-  ]).sort((a, b) => a[0] < b[0] ? -1 : 1);
-  const edgePart = edges.map((e) => [e.source, e.sourceHandle, e.target, e.targetHandle]).sort((a, b) => a.join("|") < b.join("|") ? -1 : 1);
-  return JSON.stringify([nodePart, edgePart]);
-}
 function useWorkingGraph({ nodes, edges, reactFlowInstance, onProblem }) {
   const [isEdited, setIsEdited] = reactExports.useState(false);
+  const [isStale, setIsStale] = reactExports.useState(false);
   const baselineRef = reactExports.useRef(null);
+  const resultBaselineRef = reactExports.useRef(null);
   const pendingKindRef = reactExports.useRef("generated");
   const lastSentRef = reactExports.useRef(null);
   const latestRef = reactExports.useRef({ nodes, edges });
@@ -24039,24 +24037,29 @@ function useWorkingGraph({ nodes, edges, reactFlowInstance, onProblem }) {
   }, []);
   const markGenerated = reactExports.useCallback(() => {
     const { nodes: currentNodes, edges: currentEdges } = latestRef.current;
-    const current2 = signature(currentNodes, currentEdges);
-    baselineRef.current = current2;
-    lastSentRef.current = current2;
+    const { full, result } = graphSignatures(currentNodes, currentEdges);
+    baselineRef.current = full;
+    resultBaselineRef.current = result;
+    lastSentRef.current = full;
     setIsEdited(false);
+    setIsStale(false);
   }, []);
   const settle = reactExports.useCallback(() => {
     const { nodes: currentNodes, edges: currentEdges } = latestRef.current;
-    const current2 = signature(currentNodes, currentEdges);
+    const { full: current2, result } = graphSignatures(currentNodes, currentEdges);
     if (pendingKindRef.current) {
       const kind = pendingKindRef.current;
       pendingKindRef.current = null;
       baselineRef.current = kind === "working" ? UNKNOWN_BASELINE : current2;
+      resultBaselineRef.current = kind === "working" ? UNKNOWN_BASELINE : result;
       lastSentRef.current = current2;
       setIsEdited(kind === "working");
+      setIsStale(kind === "working");
       return;
     }
     const edited = current2 !== baselineRef.current;
     setIsEdited(edited);
+    setIsStale(result !== resultBaselineRef.current);
     if (current2 === lastSentRef.current) return;
     lastSentRef.current = current2;
     if (edited && currentNodes.length > 0 && reactFlowInstance) {
@@ -24089,7 +24092,7 @@ function useWorkingGraph({ nodes, edges, reactFlowInstance, onProblem }) {
       window.removeEventListener("pagehide", flush);
     };
   }, [settle]);
-  return { isEdited, expectLoad, markGenerated };
+  return { isEdited, isStale, expectLoad, markGenerated };
 }
 const POINT_NODE = "3D_POINT";
 function pointPosition(node) {
@@ -24129,7 +24132,7 @@ function useVisualizer({ nodes, edges, onStatus: onStatus2 }) {
   const warnedRef = reactExports.useRef(false);
   const hiddenForRef = reactExports.useRef(/* @__PURE__ */ new Set());
   const visualized = nodes.filter((n) => n.data?.visualize).map((n) => n.id);
-  const signature2 = visualized.length === 0 ? "" : JSON.stringify([
+  const signature = visualized.length === 0 ? "" : JSON.stringify([
     visualized,
     nodes.map((n) => [n.id, n.data?.nodeType, n.data?.currentInputs, n.data?.executionResult?.position]),
     edges.map((e) => [e.source, e.sourceHandle, e.target, e.targetHandle])
@@ -24175,7 +24178,7 @@ function useVisualizer({ nodes, edges, onStatus: onStatus2 }) {
         }
       }
     };
-    if (signature2 === "") {
+    if (signature === "") {
       hiddenForRef.current = /* @__PURE__ */ new Set();
       if (activeRef.current) {
         activeRef.current = false;
@@ -24186,7 +24189,7 @@ function useVisualizer({ nodes, edges, onStatus: onStatus2 }) {
     activeRef.current = true;
     const timer2 = setTimeout(refresh, SETTLE_MS);
     return () => clearTimeout(timer2);
-  }, [signature2]);
+  }, [signature]);
 }
 const useGraphOperations = ({
   reactFlowInstance,
@@ -25101,7 +25104,7 @@ function NoodleAppInner() {
   const reactFlowInstance = useReactFlow();
   useCanvasWheel(reactFlowInstance, FLOW_CONFIG.MIN_ZOOM, FLOW_CONFIG.MAX_ZOOM);
   reactExports.useEffect(() => onStatus(setStatusMessage), []);
-  const { isEdited, expectLoad, markGenerated } = useWorkingGraph({
+  const { isEdited, isStale, expectLoad, markGenerated } = useWorkingGraph({
     nodes,
     edges,
     reactFlowInstance,
@@ -25171,11 +25174,11 @@ function NoodleAppInner() {
   const lastValidationRef = reactExports.useRef(null);
   const validationResult = reactExports.useMemo(() => {
     const result = validateAllNodes(nodes);
-    const signature2 = JSON.stringify(result.fieldErrors);
-    if (lastValidationRef.current && lastValidationRef.current.signature === signature2) {
+    const signature = JSON.stringify(result.fieldErrors);
+    if (lastValidationRef.current && lastValidationRef.current.signature === signature) {
       return lastValidationRef.current.result;
     }
-    lastValidationRef.current = { signature: signature2, result };
+    lastValidationRef.current = { signature, result };
     return result;
   }, [nodes, validateAllNodes]);
   const validationMessage = reactExports.useMemo(() => {
@@ -25192,13 +25195,13 @@ function NoodleAppInner() {
     if (lastGenerate && !lastGenerate.ok) {
       return { state: "failed", title: lastGenerate.cancelled ? "Generate was cancelled" : "The last Generate failed", body: lastGenerate.text };
     }
-    if (isEdited) return { state: "stale", title: "Out of date", body: "The graph has changed since the last Generate." };
+    if (isStale) return { state: "stale", title: "Out of date", body: "The graph has changed since the last Generate." };
     return {
       state: "current",
       title: "Up to date",
       body: lastGenerate?.text || "The design matches the graph."
     };
-  }, [isGenerating, nodes.length, validationMessage, lastGenerate, isEdited]);
+  }, [isGenerating, nodes.length, validationMessage, lastGenerate, isStale]);
   const reinitializeReactFlow = reactExports.useCallback(() => {
     setReactFlowKey((prev) => prev + 1);
   }, []);

@@ -2,6 +2,8 @@
 
 Noodle is a node-based algorithmic modeling add-in for Autodesk Fusion. You build a graph of nodes in a palette inside Fusion, press **Generate**, and Noodle turns the graph into solid bodies in your design. If you have used Grasshopper or a similar visual programming tool, the workflow will feel familiar.
 
+![A rippled field of hundreds of boxes in Fusion, beside the Noodle graph that generated it](docs/images/noodle-hero.jpg)
+
 With the current set of 37 nodes you can:
 
 - **Create source geometry**: Box, Sphere, Cylinder, and Polygon primitives, or bring in an existing body with Body Instance.
@@ -73,7 +75,6 @@ For the full walkthrough, see [Getting started](docs/getting-started.md).
 - **Instance limits.** Grid arrays allow up to 100 per axis, Array on Path up to 10,000 instances, and a Materializer up to 10,000 bodies.
 - **No mirroring.** Scale factors must be greater than 0.
 - **Modifiers only drive effectors.** Random, Noise, and the other modifiers connect to an effector's Strength or to another modifier, not to other number inputs.
-- **Interpolize leaves a sketch behind.** It creates its sketch in the root component, outside the Base Feature.
 - **Generation is synchronous.** Fusion is busy while the graph runs. A progress dialog with a Cancel button appears when a Generate takes more than about a second. Cancelling leaves the geometry incomplete, so Generate again to rebuild it.
 
 ## License

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import FusionBridge from '../bridge/FusionBridge';
+import { graphSignatures } from '../utils/graphSignature.js';
 
 /**
  * Tracks whether the graph on the canvas differs from the one last generated,
@@ -17,20 +18,14 @@ import FusionBridge from '../bridge/FusionBridge';
 const SETTLE_MS = 800;           // Wait for edits (and multi-step loads) to settle
 const UNKNOWN_BASELINE = '\u0000'; // A working copy was loaded; the generated graph wasn't seen
 
-function signature(nodes, edges) {
-  const nodePart = nodes
-    .map(n => [n.id, n.data?.nodeType, n.data?.currentInputs || {},
-      Math.round(n.position?.x || 0), Math.round(n.position?.y || 0)])
-    .sort((a, b) => (a[0] < b[0] ? -1 : 1));
-  const edgePart = edges
-    .map(e => [e.source, e.sourceHandle, e.target, e.targetHandle])
-    .sort((a, b) => (a.join('|') < b.join('|') ? -1 : 1));
-  return JSON.stringify([nodePart, edgePart]);
-}
 
 export function useWorkingGraph({ nodes, edges, reactFlowInstance, onProblem }) {
+  // isEdited: anything changed since the last Generate, layout included (Revert, the
+  // working copy). isStale: the built result would differ (the Generate button).
   const [isEdited, setIsEdited] = useState(false);
+  const [isStale, setIsStale] = useState(false);
   const baselineRef = useRef(null);
+  const resultBaselineRef = useRef(null);
   const pendingKindRef = useRef('generated');
   const lastSentRef = useRef(null);
   const latestRef = useRef({ nodes, edges });
@@ -57,28 +52,33 @@ export function useWorkingGraph({ nodes, edges, reactFlowInstance, onProblem }) 
   // dropped its working copy at the same time (graph_handler.py).
   const markGenerated = useCallback(() => {
     const { nodes: currentNodes, edges: currentEdges } = latestRef.current;
-    const current = signature(currentNodes, currentEdges);
-    baselineRef.current = current;
-    lastSentRef.current = current;
+    const { full, result } = graphSignatures(currentNodes, currentEdges);
+    baselineRef.current = full;
+    resultBaselineRef.current = result;
+    lastSentRef.current = full;
     setIsEdited(false);
+    setIsStale(false);
   }, []);
 
   const settle = useCallback(() => {
     const { nodes: currentNodes, edges: currentEdges } = latestRef.current;
-    const current = signature(currentNodes, currentEdges);
+    const { full: current, result } = graphSignatures(currentNodes, currentEdges);
 
     // A graph was just loaded: record what it represents and send nothing.
     if (pendingKindRef.current) {
       const kind = pendingKindRef.current;
       pendingKindRef.current = null;
       baselineRef.current = kind === 'working' ? UNKNOWN_BASELINE : current;
+      resultBaselineRef.current = kind === 'working' ? UNKNOWN_BASELINE : result;
       lastSentRef.current = current;
       setIsEdited(kind === 'working');
+      setIsStale(kind === 'working');
       return;
     }
 
     const edited = current !== baselineRef.current;
     setIsEdited(edited);
+    setIsStale(result !== resultBaselineRef.current);
     if (current === lastSentRef.current) return;
     lastSentRef.current = current;
 
@@ -124,5 +124,5 @@ export function useWorkingGraph({ nodes, edges, reactFlowInstance, onProblem }) 
     };
   }, [settle]);
 
-  return { isEdited, expectLoad, markGenerated };
+  return { isEdited, isStale, expectLoad, markGenerated };
 }

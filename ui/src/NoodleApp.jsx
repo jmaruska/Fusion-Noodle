@@ -61,7 +61,7 @@ function NoodleAppInner() {
   useEffect(() => onStatus(setStatusMessage), []);
 
   // Tracks edits since the last Generate and keeps the add-in's working copy current
-  const { isEdited, expectLoad, markGenerated } = useWorkingGraph({
+  const { isEdited, isStale, expectLoad, markGenerated } = useWorkingGraph({
     nodes, edges, reactFlowInstance,
     onProblem: (text) => setStatusMessage({ level: 'warning', text })
   });
@@ -182,10 +182,10 @@ function NoodleAppInner() {
     if (lastGenerate && !lastGenerate.ok) {
       return { state: 'failed', title: lastGenerate.cancelled ? 'Generate was cancelled' : 'The last Generate failed', body: lastGenerate.text };
     }
-    if (isEdited) return { state: 'stale', title: 'Out of date', body: 'The graph has changed since the last Generate.' };
+    if (isStale) return { state: 'stale', title: 'Out of date', body: 'The graph has changed since the last Generate.' };
     return { state: 'current', title: 'Up to date',
              body: lastGenerate?.text || 'The design matches the graph.' };
-  }, [isGenerating, nodes.length, validationMessage, lastGenerate, isEdited]);
+  }, [isGenerating, nodes.length, validationMessage, lastGenerate, isStale]);
 
   // ========================================================================
   // UTILITY FUNCTIONS
