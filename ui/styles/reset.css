@@ -1,0 +1,129 @@
+/* Modern CSS Reset for Chromium */
+
+/* 1. Remove default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. Inherit fonts and color */
+html {
+  font-family: inherit;
+  color: inherit;
+  background: #222933;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Open Sans', system-ui, sans-serif;
+  color: #fff;
+  background: #222933;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  margin: 4px
+}
+
+/* 3. Remove outline except for keyboard navigation */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 4. Normalize buttons and inputs */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Button defaults live in ui.css (BUTTONS, Global). */
+
+/* 5. Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* 6. Normalize images */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 7. Remove anchor underline by default */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 8. Normalize table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* 9. Kill ToolTips */
+
+/* Suppress all tooltips globally */
+/* Disable browser tooltips by preventing ::before and ::after pseudo-elements */
+*[title]:hover::before,
+*[title]:hover::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+}
+
+/* Disable tooltip-like elements - but be very specific to avoid hiding nodes */
+.tooltip:not(.react-flow__node):not(.custom-node),
+[data-tooltip-id]:not(.react-flow__node):not(.custom-node) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Suppress React Flow node tooltips specifically */
+.react-flow__node,
+.react-flow__node *,
+.custom-node,
+.custom-node * {
+  pointer-events: auto !important;
+}
+
+.react-flow__node[title],
+.custom-node[title] {
+  position: relative;
+}
+
+.react-flow__node[title]:hover::before,
+.react-flow__node[title]:hover::after,
+.custom-node[title]:hover::before,
+.custom-node[title]:hover::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Force hide any persistent/phantom tooltips */
+body::before,
+body::after,
+html::before, 
+html::after,
+#root::before,
+#root::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+}
+
+/* Global tooltip killer - but exclude React Flow elements */
+[role="tooltip"]:not(.react-flow__node):not(.custom-node),
+.tooltip:not(.react-flow__node):not(.custom-node),
+[data-tooltip-id]:not(.react-flow__node):not(.custom-node) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+

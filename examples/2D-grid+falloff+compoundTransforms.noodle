@@ -1,0 +1,1248 @@
+{
+  "nodes": [
+    {
+      "id": "box",
+      "type": "custom",
+      "position": {
+        "x": 65.36976193770465,
+        "y": -90.10426645467399
+      },
+      "data": {
+        "label": "Box",
+        "nodeType": "cube_generator",
+        "nodeCategory": "geometry",
+        "wide": false,
+        "currentInputs": {
+          "width": 2,
+          "height": 2,
+          "depth": 2
+        },
+        "computedInputs": {},
+        "initiallyVisible": true,
+        "nodeInfo": {
+          "type": "cube_generator",
+          "name": "Box",
+          "category": "geometry",
+          "menu_category": "sources",
+          "description": "Create Box",
+          "wide": false,
+          "inputs": {
+            "width": {
+              "name": "width",
+              "type": "float",
+              "required": false,
+              "defaultValue": 2,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Size of the box along X, centered on the origin.",
+              "label": "Width",
+              "minValue": 0.001,
+              "unit": "length",
+              "default": 2
+            },
+            "height": {
+              "name": "height",
+              "type": "float",
+              "required": false,
+              "defaultValue": 2,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Size of the box along Y, centered on the origin.",
+              "label": "Height",
+              "minValue": 0.001,
+              "unit": "length",
+              "default": 2
+            },
+            "depth": {
+              "name": "depth",
+              "type": "float",
+              "required": false,
+              "defaultValue": 2,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Size of the box along Z, centered on the origin.",
+              "label": "Depth",
+              "minValue": 0.001,
+              "unit": "length",
+              "default": 2
+            }
+          },
+          "outputs": {
+            "geometry": {
+              "name": "geometry",
+              "type": "geometry",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Geometry"
+            }
+          }
+        }
+      },
+      "dragging": false
+    },
+    {
+      "id": "atomizer",
+      "type": "custom",
+      "position": {
+        "x": 320,
+        "y": 60
+      },
+      "data": {
+        "label": "Atomizer",
+        "nodeType": "Atomizer",
+        "nodeCategory": "collection",
+        "wide": false,
+        "currentInputs": {},
+        "computedInputs": {},
+        "initiallyVisible": true,
+        "nodeInfo": {
+          "type": "Atomizer",
+          "name": "Atomizer",
+          "category": "collection",
+          "menu_category": "collection",
+          "description": "Convert geometry into virtual collection instances",
+          "wide": false,
+          "inputs": {
+            "geometry": {
+              "name": "geometry",
+              "type": "geometry",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The geometry to turn into a collection that arrays can repeat.",
+              "label": "Geometry"
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Collection",
+              "label": "Collection"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "grid",
+      "type": "custom",
+      "position": {
+        "x": 580,
+        "y": 0
+      },
+      "data": {
+        "label": "Array 2D Grid",
+        "nodeType": "Array_2D_Grid",
+        "nodeCategory": "array",
+        "wide": true,
+        "currentInputs": {
+          "array_type": "hexagonal",
+          "count_x": 40,
+          "count_y": 50,
+          "spacing_x": 3,
+          "spacing_y": 2.5981,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          }
+        },
+        "computedInputs": {},
+        "initiallyVisible": true,
+        "nodeInfo": {
+          "type": "Array_2D_Grid",
+          "name": "Array 2D Grid",
+          "category": "array",
+          "menu_category": "array",
+          "description": "Create 2D grid array",
+          "wide": true,
+          "inputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The instances to repeat at every grid point.",
+              "label": "Collection"
+            },
+            "spacer_0": {
+              "name": "spacer_0",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 0"
+            },
+            "array_type": {
+              "name": "array_type",
+              "type": "enum",
+              "required": false,
+              "defaultValue": "grid",
+              "showInputField": true,
+              "showInputHandle": false,
+              "description": "Grid lines rows up, Staggered shifts every other row by half, Hexagonal packs rows tighter.",
+              "label": "Type",
+              "enumOptions": [
+                "grid",
+                "stagger",
+                "hexagonal"
+              ],
+              "enumLabels": {
+                "grid": "Grid",
+                "stagger": "Staggered",
+                "hexagonal": "Hexagonal"
+              },
+              "default": "grid"
+            },
+            "spacer_1": {
+              "name": "spacer_1",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 1"
+            },
+            "count_x": {
+              "name": "count_x",
+              "type": "integer",
+              "required": false,
+              "defaultValue": 3,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Number of instances along the grid's first axis.",
+              "label": "Count X",
+              "minValue": 1,
+              "maxValue": 100,
+              "default": 3
+            },
+            "count_y": {
+              "name": "count_y",
+              "type": "integer",
+              "required": false,
+              "defaultValue": 3,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Number of rows along the grid's second axis.",
+              "label": "Count Y",
+              "minValue": 1,
+              "maxValue": 100,
+              "default": 3
+            },
+            "spacing_x": {
+              "name": "spacing_x",
+              "type": "float",
+              "required": false,
+              "defaultValue": 5,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Distance between instances along the first axis; in Hexagonal, the distance across a cell's flats.",
+              "label": "Spacing X",
+              "minValue": 0.001,
+              "unit": "length",
+              "default": 5
+            },
+            "spacing_y": {
+              "name": "spacing_y",
+              "type": "float",
+              "required": false,
+              "defaultValue": 5,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Distance between rows. In Hexagonal it is linked to Spacing X (rows are \u221a3/2 of it apart).",
+              "label": "Spacing Y",
+              "minValue": 0.001,
+              "unit": "length",
+              "default": 5
+            },
+            "spacer_2": {
+              "name": "spacer_2",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 2"
+            },
+            "normal": {
+              "name": "normal",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The direction the grid's plane faces.",
+              "label": "Normal",
+              "default": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+              }
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Collection",
+              "label": "Collection"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "scale",
+      "type": "custom",
+      "position": {
+        "x": 581.1521328575392,
+        "y": 447.1220825470212
+      },
+      "data": {
+        "label": "Scale",
+        "nodeType": "Scale_Transform",
+        "nodeCategory": "transform",
+        "wide": false,
+        "currentInputs": {
+          "scale": 0.25
+        },
+        "computedInputs": {},
+        "initiallyVisible": true,
+        "nodeInfo": {
+          "type": "Scale_Transform",
+          "name": "Scale",
+          "category": "transform",
+          "menu_category": "transform",
+          "description": "Create scale transform",
+          "wide": false,
+          "inputs": {
+            "scale": {
+              "name": "scale",
+              "type": "float",
+              "required": true,
+              "defaultValue": 1,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Multiplies size equally in every direction; 1 leaves it unchanged.",
+              "label": "Scale Factor",
+              "minValue": 0.001,
+              "default": 1
+            },
+            "input_transform": {
+              "name": "input_transform",
+              "type": "transform",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "An earlier transform to build on; this scale is applied after it.",
+              "label": "Input Transform"
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "transform": {
+              "name": "transform",
+              "type": "transform",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Transform"
+            }
+          }
+        }
+      },
+      "dragging": false
+    },
+    {
+      "id": "falloff",
+      "type": "custom",
+      "position": {
+        "x": 921.210793807855,
+        "y": 361.6799143855563
+      },
+      "data": {
+        "label": "Falloff Effector",
+        "nodeType": "Falloff_Effector",
+        "nodeCategory": "effector",
+        "wide": true,
+        "currentInputs": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "radius": 100,
+          "inner_radius": 0,
+          "strength": 1,
+          "curve": "{\"degree\":3,\"points\":[[0,1],[0.07,1],[0.32,0.3],[0.6236530172413793,0],[1,0]],\"repeat\":6,\"repeat_style\":\"mirror\",\"decay\":1,\"invert\":false,\"lead\":\"start\",\"output\":{\"start\":1,\"end\":0}}",
+          "shape": "sphere",
+          "start": {
+            "x": -60,
+            "y": 0,
+            "z": 0
+          },
+          "end": {
+            "x": 60,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "computedInputs": {},
+        "initiallyVisible": true,
+        "nodeInfo": {
+          "type": "Falloff_Effector",
+          "name": "Falloff Effector",
+          "category": "effector",
+          "menu_category": "effector",
+          "description": "Apply spatial falloff effects to collections",
+          "wide": true,
+          "inputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The instances to transform.",
+              "label": "Collection"
+            },
+            "transform": {
+              "name": "transform",
+              "type": "transform",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The move, rotate, scale or aim to apply, weighted by the falloff at each instance.",
+              "label": "Transform"
+            },
+            "spacer_1": {
+              "name": "spacer_1",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 1"
+            },
+            "shape": {
+              "name": "shape",
+              "type": "enum",
+              "required": false,
+              "defaultValue": "sphere",
+              "showInputField": true,
+              "showInputHandle": false,
+              "description": "How position becomes strength: distance from a center, progress along a line, or distance from a box.",
+              "label": "Shape",
+              "enumOptions": [
+                "sphere",
+                "linear",
+                "box"
+              ],
+              "enumLabels": {
+                "sphere": "Sphere",
+                "linear": "Linear",
+                "box": "Box"
+              },
+              "default": "sphere"
+            },
+            "position": {
+              "name": "position",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The middle of the sphere or box.",
+              "label": "Center",
+              "unit": "length",
+              "visibleWhen": {
+                "port": "shape",
+                "values": [
+                  "sphere",
+                  "box"
+                ],
+                "default": "sphere"
+              },
+              "default": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "start": {
+              "name": "start",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Where the line begins; instances at or before it get the curve's start value.",
+              "label": "Start",
+              "unit": "length",
+              "visibleWhen": {
+                "port": "shape",
+                "values": [
+                  "linear"
+                ],
+                "default": "sphere"
+              },
+              "default": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "end": {
+              "name": "end",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 10,
+                "y": 0,
+                "z": 0
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Where the line ends; instances at or past it get the curve's end value.",
+              "label": "End",
+              "unit": "length",
+              "visibleWhen": {
+                "port": "shape",
+                "values": [
+                  "linear"
+                ],
+                "default": "sphere"
+              },
+              "default": {
+                "x": 10,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "radius": {
+              "name": "radius",
+              "type": "float",
+              "required": false,
+              "defaultValue": 10,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Distance from the center where the fade reaches the curve's end value.",
+              "label": "Radius",
+              "minValue": 0.001,
+              "unit": "length",
+              "visibleWhen": {
+                "port": "shape",
+                "values": [
+                  "sphere",
+                  "box"
+                ],
+                "default": "sphere"
+              },
+              "default": 10
+            },
+            "inner_radius": {
+              "name": "inner_radius",
+              "type": "float",
+              "required": false,
+              "defaultValue": 0,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Distance from the center where the fade begins; inside it the curve's start value holds.",
+              "label": "Inner Radius",
+              "minValue": 0,
+              "unit": "length",
+              "visibleWhen": {
+                "port": "shape",
+                "values": [
+                  "sphere",
+                  "box"
+                ],
+                "default": "sphere"
+              },
+              "default": 0
+            },
+            "scale": {
+              "name": "scale",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Stretches the field along its local axes.",
+              "label": "Scale",
+              "visibleWhen": {
+                "port": "shape",
+                "values": [
+                  "sphere",
+                  "box"
+                ],
+                "default": "sphere"
+              },
+              "default": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            },
+            "direction": {
+              "name": "direction",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 1,
+                "y": 0,
+                "z": 0
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The field's local X axis; Scale x stretches along it.",
+              "label": "X Axis",
+              "visibleWhen": {
+                "port": "shape",
+                "values": [
+                  "sphere",
+                  "box"
+                ],
+                "default": "sphere"
+              },
+              "default": {
+                "x": 1,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "up": {
+              "name": "up",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The field's local Y axis, squared up to the X Axis; Scale y stretches along it.",
+              "label": "Y Axis",
+              "visibleWhen": {
+                "port": "shape",
+                "values": [
+                  "sphere",
+                  "box"
+                ],
+                "default": "sphere"
+              },
+              "default": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+              }
+            },
+            "curve": {
+              "name": "curve",
+              "type": "string",
+              "required": false,
+              "defaultValue": "{\"degree\":3,\"points\":[[0.0,1.0],[0.2,1.0],[0.65,0.0],[1.0,0.0]],\"repeat\":1,\"repeat_style\":\"mirror\",\"decay\":0.0,\"invert\":false,\"lead\":\"start\",\"output\":{\"start\":1.0,\"end\":0.0}}",
+              "showInputField": false,
+              "showInputHandle": false,
+              "description": "How strength changes across the field; shape it in the curve editor.",
+              "label": "Curve",
+              "default": "{\"degree\":3,\"points\":[[0.0,1.0],[0.2,1.0],[0.65,0.0],[1.0,0.0]],\"repeat\":1,\"repeat_style\":\"mirror\",\"decay\":0.0,\"invert\":false,\"lead\":\"start\",\"output\":{\"start\":1.0,\"end\":0.0}}"
+            },
+            "spacer_3": {
+              "name": "spacer_3",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 3"
+            },
+            "strength": {
+              "name": "strength",
+              "type": "float",
+              "required": false,
+              "defaultValue": 1,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Multiplies the falloff's strength; negative pushes the other way. Connect a modifier to vary it.",
+              "label": "Strength",
+              "default": 1
+            }
+          },
+          "outputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Collection"
+            }
+          }
+        }
+      },
+      "dragging": false
+    },
+    {
+      "id": "materializer",
+      "type": "custom",
+      "position": {
+        "x": 1667.0601499498853,
+        "y": 1260.469867961758
+      },
+      "data": {
+        "label": "Materializer",
+        "nodeType": "Materializer",
+        "nodeCategory": "collection",
+        "wide": false,
+        "currentInputs": {},
+        "computedInputs": {},
+        "initiallyVisible": true,
+        "nodeInfo": {
+          "type": "Materializer",
+          "name": "Materializer",
+          "category": "collection",
+          "menu_category": "collection",
+          "description": "Convert collection instances into real geometry",
+          "wide": false,
+          "inputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The instances to build as real bodies in the design.",
+              "label": "Collection"
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "geometry": {
+              "name": "geometry",
+              "type": "geometry",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Geometry",
+              "label": "Geometry"
+            }
+          }
+        }
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_Uniform_Effector_1794855591671_38112",
+      "type": "custom",
+      "position": {
+        "x": 1260.315612484672,
+        "y": 1147.8534429742738
+      },
+      "data": {
+        "label": "Uniform Effector",
+        "nodeType": "Uniform_Effector",
+        "nodeCategory": "effector",
+        "nodeInfo": {
+          "type": "Uniform_Effector",
+          "name": "Uniform Effector",
+          "category": "effector",
+          "menu_category": "effector",
+          "description": "Apply transform uniformly to collection",
+          "wide": true,
+          "inputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The instances to transform.",
+              "label": "Collection"
+            },
+            "transform_spacer": {
+              "name": "transform_spacer",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Transform Spacer"
+            },
+            "transform": {
+              "name": "transform",
+              "type": "transform",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The move, rotate, scale or aim to apply to every instance.",
+              "label": "Transform"
+            },
+            "spacer_2": {
+              "name": "spacer_2",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 2"
+            },
+            "strength": {
+              "name": "strength",
+              "type": "float",
+              "required": false,
+              "defaultValue": 1,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "How much of the transform to apply; negative pushes the other way. Connect a modifier to vary it.",
+              "label": "Strength",
+              "default": 1
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Collection"
+            }
+          }
+        },
+        "wide": true,
+        "currentInputs": {
+          "strength": 1
+        },
+        "computedInputs": {},
+        "initiallyVisible": true
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_Aim_Transform_1794855599696_26445",
+      "type": "custom",
+      "position": {
+        "x": 904.4072148469977,
+        "y": 1222.9469123552979
+      },
+      "data": {
+        "label": "Aim",
+        "nodeType": "Aim_Transform",
+        "nodeCategory": "transform",
+        "nodeInfo": {
+          "type": "Aim_Transform",
+          "name": "Aim",
+          "category": "transform",
+          "menu_category": "transform",
+          "description": "Rotate instances so a local axis points toward a world-space position",
+          "wide": false,
+          "inputs": {
+            "spacer_1": {
+              "name": "spacer_1",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 1"
+            },
+            "position": {
+              "name": "position",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The point each instance turns to face.",
+              "label": "Position",
+              "unit": "length",
+              "default": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "spacer_2": {
+              "name": "spacer_2",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 2"
+            },
+            "normal": {
+              "name": "normal",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The instance's own axis that points at the target.",
+              "label": "Aim Vector",
+              "default": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+              }
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "transform": {
+              "name": "transform",
+              "type": "transform",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Transform"
+            }
+          }
+        },
+        "wide": false,
+        "currentInputs": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 200
+          },
+          "normal": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          }
+        },
+        "computedInputs": {},
+        "initiallyVisible": true
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_Move_Transform_1794899153578_50966",
+      "type": "custom",
+      "position": {
+        "x": 309.61969273586243,
+        "y": 408.0391109700827
+      },
+      "data": {
+        "label": "Move",
+        "nodeType": "Move_Transform",
+        "nodeCategory": "transform",
+        "nodeInfo": {
+          "type": "Move_Transform",
+          "name": "Move",
+          "category": "transform",
+          "menu_category": "transform",
+          "description": "Create translation transforms with chaining support",
+          "wide": false,
+          "inputs": {
+            "input_transform": {
+              "name": "input_transform",
+              "type": "transform",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "An earlier transform to build on; this move is applied after it.",
+              "label": "Input Transform"
+            },
+            "translation_spacer": {
+              "name": "translation_spacer",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Translation Spacer"
+            },
+            "x": {
+              "name": "x",
+              "type": "float",
+              "required": false,
+              "defaultValue": 0,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Distance to move along X.",
+              "label": "X",
+              "unit": "length",
+              "default": 0
+            },
+            "y": {
+              "name": "y",
+              "type": "float",
+              "required": false,
+              "defaultValue": 0,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Distance to move along Y.",
+              "label": "Y",
+              "unit": "length",
+              "default": 0
+            },
+            "z": {
+              "name": "z",
+              "type": "float",
+              "required": false,
+              "defaultValue": 0,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Distance to move along Z.",
+              "label": "Z",
+              "unit": "length",
+              "default": 0
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "transform": {
+              "name": "transform",
+              "type": "transform",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Transform"
+            }
+          }
+        },
+        "wide": false,
+        "currentInputs": {
+          "x": 0,
+          "y": 0,
+          "z": -3
+        },
+        "computedInputs": {},
+        "initiallyVisible": true
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "box-geometry-atomizer-geometry",
+      "source": "box",
+      "target": "atomizer",
+      "sourceHandle": "output-geometry",
+      "targetHandle": "input-geometry",
+      "type": "default",
+      "style": {
+        "stroke": "var(--noodle-color-geometry)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "atomizer-collection-grid-collection",
+      "source": "atomizer",
+      "target": "grid",
+      "sourceHandle": "output-collection",
+      "targetHandle": "input-collection",
+      "type": "default",
+      "style": {
+        "stroke": "var(--noodle-color-collection)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "type": "default",
+      "animated": false,
+      "style": {
+        "stroke": "var(--noodle-color-collection)",
+        "strokeWidth": 2
+      },
+      "source": "falloff",
+      "sourceHandle": "output-collection",
+      "target": "node_Uniform_Effector_1794855591671_38112",
+      "targetHandle": "input-collection",
+      "id": "xy-edge__falloffoutput-collection-node_Uniform_Effector_1794855591671_38112input-collection"
+    },
+    {
+      "type": "default",
+      "animated": false,
+      "style": {
+        "stroke": "var(--noodle-color-collection)",
+        "strokeWidth": 2
+      },
+      "source": "node_Uniform_Effector_1794855591671_38112",
+      "sourceHandle": "output-collection",
+      "target": "materializer",
+      "targetHandle": "input-collection",
+      "id": "xy-edge__node_Uniform_Effector_1794855591671_38112output-collection-materializerinput-collection"
+    },
+    {
+      "type": "default",
+      "animated": false,
+      "style": {
+        "stroke": "var(--noodle-color-transform)",
+        "strokeWidth": 2
+      },
+      "source": "node_Aim_Transform_1794855599696_26445",
+      "sourceHandle": "output-transform",
+      "target": "node_Uniform_Effector_1794855591671_38112",
+      "targetHandle": "input-transform",
+      "id": "xy-edge__node_Aim_Transform_1794855599696_26445output-transform-node_Uniform_Effector_1794855591671_38112input-transform"
+    },
+    {
+      "type": "default",
+      "animated": false,
+      "style": {
+        "stroke": "var(--noodle-color-collection)",
+        "strokeWidth": 2
+      },
+      "source": "grid",
+      "sourceHandle": "output-collection",
+      "target": "falloff",
+      "targetHandle": "input-collection",
+      "id": "xy-edge__gridoutput-collection-falloffinput-collection"
+    },
+    {
+      "type": "default",
+      "animated": false,
+      "style": {
+        "stroke": "var(--noodle-color-transform)",
+        "strokeWidth": 2
+      },
+      "source": "scale",
+      "sourceHandle": "output-transform",
+      "target": "falloff",
+      "targetHandle": "input-transform",
+      "id": "xy-edge__scaleoutput-transform-falloffinput-transform"
+    },
+    {
+      "type": "default",
+      "animated": false,
+      "style": {
+        "stroke": "var(--noodle-color-transform)",
+        "strokeWidth": 2
+      },
+      "source": "node_Move_Transform_1794899153578_50966",
+      "sourceHandle": "output-transform",
+      "target": "scale",
+      "targetHandle": "input-input_transform",
+      "id": "xy-edge__node_Move_Transform_1794899153578_50966output-transform-scaleinput-input_transform"
+    }
+  ],
+  "viewport": {
+    "x": 8.78557655852319,
+    "y": 203.80379484197906,
+    "zoom": 0.32452961143859566
+  },
+  "noodle": {
+    "format": 8,
+    "version": "0.1.0"
+  }
+}

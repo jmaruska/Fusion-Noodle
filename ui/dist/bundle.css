@@ -1,0 +1,3533 @@
+/* this gets exported as style.css and can be used for the default theming */
+/* these are the necessary styles for React/Svelte Flow, they get used by base.css and style.css */
+.react-flow {
+  direction: ltr;
+
+  --xy-edge-stroke-default: #b1b1b7;
+  --xy-edge-stroke-width-default: 1;
+  --xy-edge-stroke-selected-default: #555;
+
+  --xy-connectionline-stroke-default: #b1b1b7;
+  --xy-connectionline-stroke-width-default: 1;
+
+  --xy-attribution-background-color-default: rgba(255, 255, 255, 0.5);
+
+  --xy-minimap-background-color-default: #fff;
+  --xy-minimap-mask-background-color-default: rgba(240, 240, 240, 0.6);
+  --xy-minimap-mask-stroke-color-default: transparent;
+  --xy-minimap-mask-stroke-width-default: 1;
+  --xy-minimap-node-background-color-default: #e2e2e2;
+  --xy-minimap-node-stroke-color-default: transparent;
+  --xy-minimap-node-stroke-width-default: 2;
+
+  --xy-background-color-default: transparent;
+  --xy-background-pattern-dots-color-default: #91919a;
+  --xy-background-pattern-lines-color-default: #eee;
+  --xy-background-pattern-cross-color-default: #e2e2e2;
+  background-color: var(--xy-background-color, var(--xy-background-color-default));
+  --xy-node-color-default: inherit;
+  --xy-node-border-default: 1px solid #1a192b;
+  --xy-node-background-color-default: #fff;
+  --xy-node-group-background-color-default: rgba(240, 240, 240, 0.25);
+  --xy-node-boxshadow-hover-default: 0 1px 4px 1px rgba(0, 0, 0, 0.08);
+  --xy-node-boxshadow-selected-default: 0 0 0 0.5px #1a192b;
+  --xy-node-border-radius-default: 3px;
+
+  --xy-handle-background-color-default: #1a192b;
+  --xy-handle-border-color-default: #fff;
+
+  --xy-selection-background-color-default: rgba(0, 89, 220, 0.08);
+  --xy-selection-border-default: 1px dotted rgba(0, 89, 220, 0.8);
+
+  --xy-controls-button-background-color-default: #fefefe;
+  --xy-controls-button-background-color-hover-default: #f4f4f4;
+  --xy-controls-button-color-default: inherit;
+  --xy-controls-button-color-hover-default: inherit;
+  --xy-controls-button-border-color-default: #eee;
+  --xy-controls-box-shadow-default: 0 0 2px 1px rgba(0, 0, 0, 0.08);
+
+  --xy-edge-label-background-color-default: #ffffff;
+  --xy-edge-label-color-default: inherit;
+  --xy-resize-background-color-default: #3367d9;
+}
+.react-flow.dark {
+  --xy-edge-stroke-default: #3e3e3e;
+  --xy-edge-stroke-width-default: 1;
+  --xy-edge-stroke-selected-default: #727272;
+
+  --xy-connectionline-stroke-default: #b1b1b7;
+  --xy-connectionline-stroke-width-default: 1;
+
+  --xy-attribution-background-color-default: rgba(150, 150, 150, 0.25);
+
+  --xy-minimap-background-color-default: #141414;
+  --xy-minimap-mask-background-color-default: rgba(60, 60, 60, 0.6);
+  --xy-minimap-mask-stroke-color-default: transparent;
+  --xy-minimap-mask-stroke-width-default: 1;
+  --xy-minimap-node-background-color-default: #2b2b2b;
+  --xy-minimap-node-stroke-color-default: transparent;
+  --xy-minimap-node-stroke-width-default: 2;
+
+  --xy-background-color-default: #141414;
+  --xy-background-pattern-dots-color-default: #777;
+  --xy-background-pattern-lines-color-default: #777;
+  --xy-background-pattern-cross-color-default: #777;
+  --xy-node-color-default: #f8f8f8;
+  --xy-node-border-default: 1px solid #3c3c3c;
+  --xy-node-background-color-default: #1e1e1e;
+  --xy-node-group-background-color-default: rgba(240, 240, 240, 0.25);
+  --xy-node-boxshadow-hover-default: 0 1px 4px 1px rgba(255, 255, 255, 0.08);
+  --xy-node-boxshadow-selected-default: 0 0 0 0.5px #999;
+
+  --xy-handle-background-color-default: #bebebe;
+  --xy-handle-border-color-default: #1e1e1e;
+
+  --xy-selection-background-color-default: rgba(200, 200, 220, 0.08);
+  --xy-selection-border-default: 1px dotted rgba(200, 200, 220, 0.8);
+
+  --xy-controls-button-background-color-default: #2b2b2b;
+  --xy-controls-button-background-color-hover-default: #3e3e3e;
+  --xy-controls-button-color-default: #f8f8f8;
+  --xy-controls-button-color-hover-default: #fff;
+  --xy-controls-button-border-color-default: #5b5b5b;
+  --xy-controls-box-shadow-default: 0 0 2px 1px rgba(0, 0, 0, 0.08);
+
+  --xy-edge-label-background-color-default: #141414;
+  --xy-edge-label-color-default: #f8f8f8;
+}
+.react-flow__background {
+  background-color: var(--xy-background-color-props, var(--xy-background-color, var(--xy-background-color-default)));
+  pointer-events: none;
+  z-index: -1;
+}
+.react-flow__container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.react-flow__pane {
+  z-index: 1;
+}
+.react-flow__pane.draggable {
+    cursor: grab;
+  }
+.react-flow__pane.dragging {
+    cursor: grabbing;
+  }
+.react-flow__pane.selection {
+    cursor: pointer;
+  }
+.react-flow__viewport {
+  transform-origin: 0 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.react-flow__renderer {
+  z-index: 4;
+}
+.react-flow__selection {
+  z-index: 6;
+}
+.react-flow__nodesselection-rect:focus,
+.react-flow__nodesselection-rect:focus-visible {
+  outline: none;
+}
+.react-flow__edge-path {
+  stroke: var(--xy-edge-stroke, var(--xy-edge-stroke-default));
+  stroke-width: var(--xy-edge-stroke-width, var(--xy-edge-stroke-width-default));
+  fill: none;
+}
+.react-flow__connection-path {
+  stroke: var(--xy-connectionline-stroke, var(--xy-connectionline-stroke-default));
+  stroke-width: var(--xy-connectionline-stroke-width, var(--xy-connectionline-stroke-width-default));
+  fill: none;
+}
+.react-flow .react-flow__edges {
+  position: absolute;
+}
+.react-flow .react-flow__edges svg {
+    overflow: visible;
+    position: absolute;
+    pointer-events: none;
+  }
+.react-flow__edge {
+  pointer-events: visibleStroke;
+}
+.react-flow__edge.selectable {
+    cursor: pointer;
+  }
+.react-flow__edge.animated path {
+    stroke-dasharray: 5;
+    animation: dashdraw 0.5s linear infinite;
+  }
+.react-flow__edge.animated path.react-flow__edge-interaction {
+    stroke-dasharray: none;
+    animation: none;
+  }
+.react-flow__edge.inactive {
+    pointer-events: none;
+  }
+.react-flow__edge.selected,
+  .react-flow__edge:focus,
+  .react-flow__edge:focus-visible {
+    outline: none;
+  }
+.react-flow__edge.selected .react-flow__edge-path,
+  .react-flow__edge.selectable:focus .react-flow__edge-path,
+  .react-flow__edge.selectable:focus-visible .react-flow__edge-path {
+    stroke: var(--xy-edge-stroke-selected, var(--xy-edge-stroke-selected-default));
+  }
+.react-flow__edge-textwrapper {
+    pointer-events: all;
+  }
+.react-flow__edge .react-flow__edge-text {
+    pointer-events: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+  }
+/* Arrowhead marker styles - use CSS custom properties as default */
+.react-flow__arrowhead polyline {
+  stroke: var(--xy-edge-stroke, var(--xy-edge-stroke-default));
+}
+.react-flow__arrowhead polyline.arrowclosed {
+  fill: var(--xy-edge-stroke, var(--xy-edge-stroke-default));
+}
+.react-flow__connection {
+  pointer-events: none;
+}
+.react-flow__connection .animated {
+    stroke-dasharray: 5;
+    animation: dashdraw 0.5s linear infinite;
+  }
+svg.react-flow__connectionline {
+  z-index: 1001;
+  overflow: visible;
+  position: absolute;
+}
+.react-flow__nodes {
+  pointer-events: none;
+  transform-origin: 0 0;
+}
+.react-flow__node {
+  position: absolute;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  pointer-events: all;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  cursor: default;
+}
+.react-flow__node.selectable {
+    cursor: pointer;
+  }
+.react-flow__node.draggable {
+    cursor: grab;
+    pointer-events: all;
+  }
+.react-flow__node.draggable.dragging {
+      cursor: grabbing;
+    }
+.react-flow__nodesselection {
+  z-index: 3;
+  transform-origin: left top;
+  pointer-events: none;
+}
+.react-flow__nodesselection-rect {
+    position: absolute;
+    pointer-events: all;
+    cursor: grab;
+  }
+.react-flow__handle {
+  position: absolute;
+  pointer-events: none;
+  min-width: 5px;
+  min-height: 5px;
+  width: 6px;
+  height: 6px;
+  background-color: var(--xy-handle-background-color, var(--xy-handle-background-color-default));
+  border: 1px solid var(--xy-handle-border-color, var(--xy-handle-border-color-default));
+  border-radius: 100%;
+}
+.react-flow__handle.connectingfrom {
+    pointer-events: all;
+  }
+.react-flow__handle.connectionindicator {
+    pointer-events: all;
+    cursor: crosshair;
+  }
+.react-flow__handle-bottom {
+    top: auto;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+  }
+.react-flow__handle-top {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+.react-flow__handle-left {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+.react-flow__handle-right {
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+  }
+.react-flow__edgeupdater {
+  cursor: move;
+  pointer-events: all;
+}
+.react-flow__pane.selection .react-flow__panel {
+  pointer-events: none;
+}
+.react-flow__panel {
+  position: absolute;
+  z-index: 5;
+  margin: 15px;
+}
+.react-flow__panel.top {
+    top: 0;
+  }
+.react-flow__panel.bottom {
+    bottom: 0;
+  }
+.react-flow__panel.top.center, .react-flow__panel.bottom.center {
+      left: 50%;
+      transform: translateX(-15px) translateX(-50%);
+    }
+.react-flow__panel.left {
+    left: 0;
+  }
+.react-flow__panel.right {
+    right: 0;
+  }
+.react-flow__panel.left.center, .react-flow__panel.right.center {
+      top: 50%;
+      transform: translateY(-15px) translateY(-50%);
+    }
+.react-flow__attribution {
+  font-size: 10px;
+  background: var(--xy-attribution-background-color, var(--xy-attribution-background-color-default));
+  padding: 2px 3px;
+  margin: 0;
+}
+.react-flow__attribution a {
+    text-decoration: none;
+    color: #999;
+  }
+@keyframes dashdraw {
+  from {
+    stroke-dashoffset: 10;
+  }
+}
+.react-flow__edgelabel-renderer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  left: 0;
+  top: 0;
+}
+.react-flow__viewport-portal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.react-flow__minimap {
+  background: var(
+    --xy-minimap-background-color-props,
+    var(--xy-minimap-background-color, var(--xy-minimap-background-color-default))
+  );
+}
+.react-flow__minimap-svg {
+    display: block;
+  }
+.react-flow__minimap-mask {
+    fill: var(
+      --xy-minimap-mask-background-color-props,
+      var(--xy-minimap-mask-background-color, var(--xy-minimap-mask-background-color-default))
+    );
+    stroke: var(
+      --xy-minimap-mask-stroke-color-props,
+      var(--xy-minimap-mask-stroke-color, var(--xy-minimap-mask-stroke-color-default))
+    );
+    stroke-width: var(
+      --xy-minimap-mask-stroke-width-props,
+      var(--xy-minimap-mask-stroke-width, var(--xy-minimap-mask-stroke-width-default))
+    );
+  }
+.react-flow__minimap-node {
+    fill: var(
+      --xy-minimap-node-background-color-props,
+      var(--xy-minimap-node-background-color, var(--xy-minimap-node-background-color-default))
+    );
+    stroke: var(
+      --xy-minimap-node-stroke-color-props,
+      var(--xy-minimap-node-stroke-color, var(--xy-minimap-node-stroke-color-default))
+    );
+    stroke-width: var(
+      --xy-minimap-node-stroke-width-props,
+      var(--xy-minimap-node-stroke-width, var(--xy-minimap-node-stroke-width-default))
+    );
+  }
+.react-flow__background-pattern.dots {
+    fill: var(
+      --xy-background-pattern-color-props,
+      var(--xy-background-pattern-color, var(--xy-background-pattern-dots-color-default))
+    );
+  }
+.react-flow__background-pattern.lines {
+    stroke: var(
+      --xy-background-pattern-color-props,
+      var(--xy-background-pattern-color, var(--xy-background-pattern-lines-color-default))
+    );
+  }
+.react-flow__background-pattern.cross {
+    stroke: var(
+      --xy-background-pattern-color-props,
+      var(--xy-background-pattern-color, var(--xy-background-pattern-cross-color-default))
+    );
+  }
+.react-flow__controls {
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--xy-controls-box-shadow, var(--xy-controls-box-shadow-default));
+}
+.react-flow__controls.horizontal {
+    flex-direction: row;
+  }
+.react-flow__controls-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 26px;
+    width: 26px;
+    padding: 4px;
+    border: none;
+    background: var(--xy-controls-button-background-color, var(--xy-controls-button-background-color-default));
+    border-bottom: 1px solid
+      var(
+        --xy-controls-button-border-color-props,
+        var(--xy-controls-button-border-color, var(--xy-controls-button-border-color-default))
+      );
+    color: var(
+      --xy-controls-button-color-props,
+      var(--xy-controls-button-color, var(--xy-controls-button-color-default))
+    );
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+  }
+.react-flow__controls-button svg {
+      width: 100%;
+      max-width: 12px;
+      max-height: 12px;
+      fill: currentColor;
+    }
+.react-flow__edge.updating .react-flow__edge-path {
+      stroke: #777;
+    }
+.react-flow__edge-text {
+    font-size: 10px;
+  }
+.react-flow__node.selectable:focus,
+  .react-flow__node.selectable:focus-visible {
+    outline: none;
+  }
+.react-flow__node-input,
+.react-flow__node-default,
+.react-flow__node-output,
+.react-flow__node-group {
+  padding: 10px;
+  border-radius: var(--xy-node-border-radius, var(--xy-node-border-radius-default));
+  width: 150px;
+  font-size: 12px;
+  color: var(--xy-node-color, var(--xy-node-color-default));
+  text-align: center;
+  border: var(--xy-node-border, var(--xy-node-border-default));
+  background-color: var(--xy-node-background-color, var(--xy-node-background-color-default));
+}
+.react-flow__node-input.selectable:hover, .react-flow__node-default.selectable:hover, .react-flow__node-output.selectable:hover, .react-flow__node-group.selectable:hover {
+      box-shadow: var(--xy-node-boxshadow-hover, var(--xy-node-boxshadow-hover-default));
+    }
+.react-flow__node-input.selectable.selected,
+    .react-flow__node-input.selectable:focus,
+    .react-flow__node-input.selectable:focus-visible,
+    .react-flow__node-default.selectable.selected,
+    .react-flow__node-default.selectable:focus,
+    .react-flow__node-default.selectable:focus-visible,
+    .react-flow__node-output.selectable.selected,
+    .react-flow__node-output.selectable:focus,
+    .react-flow__node-output.selectable:focus-visible,
+    .react-flow__node-group.selectable.selected,
+    .react-flow__node-group.selectable:focus,
+    .react-flow__node-group.selectable:focus-visible {
+      box-shadow: var(--xy-node-boxshadow-selected, var(--xy-node-boxshadow-selected-default));
+    }
+.react-flow__node-group {
+  background-color: var(--xy-node-group-background-color, var(--xy-node-group-background-color-default));
+}
+.react-flow__nodesselection-rect,
+.react-flow__selection {
+  background: var(--xy-selection-background-color, var(--xy-selection-background-color-default));
+  border: var(--xy-selection-border, var(--xy-selection-border-default));
+}
+.react-flow__nodesselection-rect:focus,
+  .react-flow__nodesselection-rect:focus-visible,
+  .react-flow__selection:focus,
+  .react-flow__selection:focus-visible {
+    outline: none;
+  }
+.react-flow__controls-button:hover {
+      background: var(
+        --xy-controls-button-background-color-hover-props,
+        var(--xy-controls-button-background-color-hover, var(--xy-controls-button-background-color-hover-default))
+      );
+      color: var(
+        --xy-controls-button-color-hover-props,
+        var(--xy-controls-button-color-hover, var(--xy-controls-button-color-hover-default))
+      );
+    }
+.react-flow__controls-button:disabled {
+      pointer-events: none;
+    }
+.react-flow__controls-button:disabled svg {
+        fill-opacity: 0.4;
+      }
+.react-flow__controls-button:last-child {
+    border-bottom: none;
+  }
+.react-flow__controls.horizontal .react-flow__controls-button {
+    border-bottom: none;
+    border-right: 1px solid
+      var(
+        --xy-controls-button-border-color-props,
+        var(--xy-controls-button-border-color, var(--xy-controls-button-border-color-default))
+      );
+  }
+.react-flow__controls.horizontal .react-flow__controls-button:last-child {
+    border-right: none;
+  }
+.react-flow__resize-control {
+  position: absolute;
+}
+.react-flow__resize-control.left,
+.react-flow__resize-control.right {
+  cursor: ew-resize;
+}
+.react-flow__resize-control.top,
+.react-flow__resize-control.bottom {
+  cursor: ns-resize;
+}
+.react-flow__resize-control.top.left,
+.react-flow__resize-control.bottom.right {
+  cursor: nwse-resize;
+}
+.react-flow__resize-control.bottom.left,
+.react-flow__resize-control.top.right {
+  cursor: nesw-resize;
+}
+/* handle styles */
+.react-flow__resize-control.handle {
+  width: 5px;
+  height: 5px;
+  border: 1px solid #fff;
+  border-radius: 1px;
+  background-color: var(--xy-resize-background-color, var(--xy-resize-background-color-default));
+  translate: -50% -50%;
+}
+.react-flow__resize-control.handle.left {
+  left: 0;
+  top: 50%;
+}
+.react-flow__resize-control.handle.right {
+  left: 100%;
+  top: 50%;
+}
+.react-flow__resize-control.handle.top {
+  left: 50%;
+  top: 0;
+}
+.react-flow__resize-control.handle.bottom {
+  left: 50%;
+  top: 100%;
+}
+.react-flow__resize-control.handle.top.left {
+  left: 0;
+}
+.react-flow__resize-control.handle.bottom.left {
+  left: 0;
+}
+.react-flow__resize-control.handle.top.right {
+  left: 100%;
+}
+.react-flow__resize-control.handle.bottom.right {
+  left: 100%;
+}
+/* line styles */
+.react-flow__resize-control.line {
+  border-color: var(--xy-resize-background-color, var(--xy-resize-background-color-default));
+  border-width: 0;
+  border-style: solid;
+}
+.react-flow__resize-control.line.left,
+.react-flow__resize-control.line.right {
+  width: 1px;
+  transform: translate(-50%, 0);
+  top: 0;
+  height: 100%;
+}
+.react-flow__resize-control.line.left {
+  left: 0;
+  border-left-width: 1px;
+}
+.react-flow__resize-control.line.right {
+  left: 100%;
+  border-right-width: 1px;
+}
+.react-flow__resize-control.line.top,
+.react-flow__resize-control.line.bottom {
+  height: 1px;
+  transform: translate(0, -50%);
+  left: 0;
+  width: 100%;
+}
+.react-flow__resize-control.line.top {
+  top: 0;
+  border-top-width: 1px;
+}
+.react-flow__resize-control.line.bottom {
+  border-bottom-width: 1px;
+  top: 100%;
+}
+.react-flow__edge-textbg {
+  fill: var(--xy-edge-label-background-color, var(--xy-edge-label-background-color-default));
+}
+.react-flow__edge-text {
+  fill: var(--xy-edge-label-color, var(--xy-edge-label-color-default));
+}
+/* Modern CSS Reset for Chromium */
+
+/* 1. Remove default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. Inherit fonts and color */
+html {
+  font-family: inherit;
+  color: inherit;
+  background: #222933;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Open Sans', system-ui, sans-serif;
+  color: #fff;
+  background: #222933;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  margin: 4px
+}
+
+/* 3. Remove outline except for keyboard navigation */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 4. Normalize buttons and inputs */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Button defaults live in ui.css (BUTTONS, Global). */
+
+/* 5. Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* 6. Normalize images */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 7. Remove anchor underline by default */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 8. Normalize table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* 9. Kill ToolTips */
+
+/* Suppress all tooltips globally */
+/* Disable browser tooltips by preventing ::before and ::after pseudo-elements */
+*[title]:hover::before,
+*[title]:hover::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+}
+
+/* Disable tooltip-like elements - but be very specific to avoid hiding nodes */
+.tooltip:not(.react-flow__node):not(.custom-node),
+[data-tooltip-id]:not(.react-flow__node):not(.custom-node) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Suppress React Flow node tooltips specifically */
+.react-flow__node,
+.react-flow__node *,
+.custom-node,
+.custom-node * {
+  pointer-events: auto !important;
+}
+
+.react-flow__node[title],
+.custom-node[title] {
+  position: relative;
+}
+
+.react-flow__node[title]:hover::before,
+.react-flow__node[title]:hover::after,
+.custom-node[title]:hover::before,
+.custom-node[title]:hover::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Force hide any persistent/phantom tooltips */
+body::before,
+body::after,
+html::before, 
+html::after,
+#root::before,
+#root::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+}
+
+/* Global tooltip killer - but exclude React Flow elements */
+[role="tooltip"]:not(.react-flow__node):not(.custom-node),
+.tooltip:not(.react-flow__node):not(.custom-node),
+[data-tooltip-id]:not(.react-flow__node):not(.custom-node) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Theme variables: colors, gradients, shadows. */
+:root {
+  /* Autodesk Dark Blue Theme Variables */
+  --adsk-surface-darkBlue-100: #454f61;
+  --adsk-surface-darkBlue-200: #3b4453;
+  --adsk-surface-darkBlue-250: #2e3440;
+  --adsk-surface-darkBlue-300: #222933;
+  --adsk-surface-darkBlue-350: #1a1f25;
+
+  /* Autodesk Blue Primary */
+  --adsk-primary-autodeskBlue-400: #3198eb;
+  --adsk-primary-autodeskBlue-500: #0696d7;
+  --adsk-primary-autodeskBlue-600: #1858a8;
+
+  /* Autodesk Status Colors */
+  --adsk-status-error: #ec4a41;
+  --adsk-status-success: #87b340;
+
+  /* Error State Colors - for invalid inputs */
+  --noodle-error-border: #ec4a41;
+  --noodle-error-background: rgba(236, 74, 65, 0.1); /* Transparent red */
+  --noodle-error-text: rgba(236, 74, 65, 0.8); /* Faded red text */
+
+  /* Autodesk Typography */
+  --adsk-text-primary: #ffffff;
+  --adsk-text-secondary: #bcd3ee;
+  --adsk-text-tertiary: #8babdc;
+
+  --tertiary-slate-400: #a7bacf;
+  --adsk-fusion-highlight: #00aee4;
+
+  /* Noodle Node Colors */
+  /* ==================== DATA-TYPE COLORS ===================== */
+  --noodle-color-numbers: #faa21b;
+  --noodle-color-vector3: #ed8d16;
+  --noodle-color-geometry: #6a9728;
+  --noodle-color-transform: #8558c5;
+  --noodle-color-collection: #3198eb;
+  --noodle-color-array: #3198eb;
+  --noodle-color-curve: #32bcad;  /* Autodesk --secondary-turquoise-500 */
+
+  /* ==================== NODE CATEGORY COLORS ===================== */
+  --node-category-geometry: #6a9728;
+  --node-category-math: #faa21b;
+  --node-category-transform: #8558c5;
+  --node-category-effector: #5f3e8e;
+  --node-category-collection: #3198eb;
+  --node-category-array: #3198eb;
+  --node-category-sources: #c97c20;
+  --node-category-curves: #32bcad;
+  --node-category-modifiers: #c084fc;
+  --node-category-general: #bcd3ee;
+
+  /* ==================== WEAVE (Dark Blue, high density) =====================
+     Autodesk's Weave design system as Fusion ships it, for everything that isn't a
+     node: dialogs, menus, toolbar, status. Values come from Fusion's own
+     WeaveDarkBlueHighDensityTheme stylesheet and the open-source HIG theme data
+     (@weave-design/theme-data, darkBlueHighDensityTheme). Values only; no Autodesk
+     files are shipped. Nodes keep their own --adsk-* / --noodle-* tokens above. */
+  --weave-font: "Artifakt Element", ArtifaktElement, "Open Sans", system-ui, sans-serif;
+  --weave-font-size: 12px;          /* Body, labels, buttons, inputs */
+  --weave-font-size-caption: 11px;  /* Notes, hints */
+  --weave-font-size-title: 16px;    /* Dialog titles */
+  --weave-line-height: 16px;
+  --weave-weight-strong: 600;       /* Buttons, input values, titles (falls back to bold) */
+
+  --weave-surface-100: #454f61;     /* Dialogs, menus */
+  --weave-surface-200: #3b4453;     /* Panels */
+  --weave-surface-250: #2e3440;     /* Window */
+  --weave-surface-300: #222933;
+  --weave-surface-350: #1a1f25;     /* Wells: viewports, canvases */
+
+  --weave-text: #f5f5f5;
+  --weave-text-secondary: rgba(245, 245, 245, 0.7);
+  --weave-text-placeholder: rgba(245, 245, 245, 0.4);
+  --weave-disabled-opacity: 0.4;
+
+  --weave-border: rgba(188, 211, 238, 0.5);         /* Control outlines */
+  --weave-divider: rgba(188, 211, 238, 0.1);
+  --weave-divider-strong: rgba(188, 211, 238, 0.25);
+
+  --weave-accent: #38abdf;          /* Focus, selection, active underline */
+  --weave-primary: #0696d7;         /* Primary button */
+  --weave-on-primary: #ffffff;
+
+  --weave-input-background: rgba(34, 41, 51, 0.6);
+  --weave-input-line: rgba(188, 211, 238, 0.35);
+  --weave-input-line-hover: #bcd3ee;
+
+  --weave-ring-hover: 0 0 0 2px rgba(188, 211, 238, 0.15);
+  --weave-ring-focus: 0 0 0 2px rgba(56, 171, 223, 0.35);
+  --weave-ring-pressed: 0 0 0 4px rgba(188, 211, 238, 0.25);
+  --weave-selected-background: rgba(56, 171, 223, 0.15);
+  --weave-selected-border: rgba(56, 171, 223, 0.5);
+
+  --weave-slider-rail: rgba(188, 211, 238, 0.2);
+  --weave-slider-fill: #bcd3ee;
+
+  --weave-success: #87b340;
+  --weave-warning: #fbb549;
+  --weave-error: #eb5555;
+  --weave-success-background: rgba(135, 179, 64, 0.2);
+  --weave-warning-background: rgba(251, 181, 73, 0.2);
+  --weave-error-background: rgba(235, 85, 85, 0.2);
+
+  --weave-menu-hover: rgba(34, 41, 51, 0.3);
+  --weave-overlay: rgba(0, 0, 0, 0.5);
+  --weave-shadow-dialog: 0 4px 16px rgba(26, 31, 38, 0.5);
+  --weave-shadow-menu: 0 2px 4px rgba(26, 31, 38, 0.5);
+
+  --weave-space-xxs: 2px;
+  --weave-space-xs: 4px;
+  --weave-space-s: 8px;
+  --weave-space-m: 12px;
+  --weave-space-l: 16px;
+  --weave-space-xl: 24px;
+
+  --weave-radius-control: 2px;      /* Buttons, chips */
+  --weave-radius-container: 4px;    /* Dialogs */
+  --weave-control-height: 24px;     /* Buttons, inputs, dropdowns */
+
+  /* ==================== FIELD SIZE ===================== */
+  /* Number and X/Y/Z fields are one size on every node, narrow or wide.
+     Wide nodes give the extra room to dropdowns. */
+  --noodle-field-width: 76px;
+
+  /* ==================== PORT TIPS (Fusion's light tooltip) ===================== */
+  --noodle-tip-background: #e1ebf6;
+  --noodle-tip-border: #1f2329;
+  --noodle-tip-text: #2b2f36;
+  --noodle-tip-error: #c4271e;
+  --noodle-tip-divider: rgba(43, 47, 54, 0.15);
+
+  /* ==================== DYNAMIC CONNECTION LINE COLOR ===================== */
+  --rf-connection-line-color: #8babdc;
+}
+
+html, body, #root {
+  font-family: 'Open Sans', system-ui, sans-serif;
+  font-size: 12px;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background: var(--adsk-surface-darkBlue-200);
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* ===================== UI STYLES ===================== */
+/* Global app-wide styles: buttons, dropdowns, dialogs, palette, layout, etc. */
+
+/* ===== TOOLBAR =====
+   Laid out like Fusion's quick access toolbar, on the Weave tokens (theme.css):
+   a text menu, borderless icon buttons, and Generate, which shows where the
+   design stands. */
+.noodle-toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-s);
+  padding: var(--weave-space-xs) var(--weave-space-m);
+  background: var(--weave-surface-250);
+  border-bottom: 1px solid var(--weave-divider);
+  font-family: var(--weave-font);
+  font-size: var(--weave-font-size);
+}
+
+.noodle-toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+/* ===== BUTTONS (Global) ===== */
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--adsk-primary-autodeskBlue-500);
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:active {
+  background: var(--adsk-primary-autodeskBlue-600);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* An icon from an SVG file, drawn in the current text colour */
+.noodle-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: var(--icon) no-repeat center / contain;
+  mask: var(--icon) no-repeat center / contain;
+}
+
+/* Borderless buttons, as in Fusion's quick access toolbar */
+.noodle-qat {
+  display: flex;
+  gap: var(--weave-space-xxs);
+}
+
+.noodle-toolbar .noodle-qat-button,
+.noodle-toolbar .noodle-qat-menu {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-text-secondary);
+  font: inherit;
+  transition: none;
+}
+
+.noodle-toolbar .noodle-qat-button {
+  width: 28px;
+  padding: 0;
+}
+
+.noodle-toolbar .noodle-qat-button:hover:not(:disabled),
+.noodle-toolbar .noodle-qat-menu:hover {
+  background: var(--weave-surface-100);
+  color: var(--weave-text);
+}
+
+.noodle-toolbar .noodle-qat-button:active:not(:disabled),
+.noodle-toolbar .noodle-qat-menu:active,
+.noodle-toolbar .noodle-qat-menu[aria-expanded="true"] {
+  background: var(--weave-surface-100);
+  box-shadow: var(--weave-ring-pressed);
+  color: var(--weave-text);
+}
+
+.noodle-toolbar .noodle-qat-button:disabled {
+  opacity: var(--weave-disabled-opacity);
+  cursor: default;
+}
+
+/* Add Node: a text menu with a caret, no box */
+.noodle-toolbar .noodle-qat-menu {
+  gap: var(--weave-space-s);
+  padding: 0 var(--weave-space-s);
+  color: var(--weave-text);
+}
+
+.noodle-qat-caret {
+  width: 8px;
+  height: 8px;
+  background: var(--weave-text-secondary);
+  -webkit-mask: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='7'%20height='4'%20viewBox='0%200%207%204'%20fill='currentColor'%3e%3cpath%20d='M0%200h7L3.5%204%200%200z'/%3e%3c/svg%3e") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='7'%20height='4'%20viewBox='0%200%207%204'%20fill='currentColor'%3e%3cpath%20d='M0%200h7L3.5%204%200%200z'/%3e%3c/svg%3e") no-repeat center / contain;
+}
+
+/* ===== GENERATE =====
+   One button that says where the design stands: out of date (primary), up to
+   date (outline, green tick), generating, invalid or failed. Its tip says why. */
+.noodle-toolbar .noodle-generate {
+  height: var(--weave-control-height);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 var(--weave-space-m);
+  border: 1px solid var(--weave-border);
+  border-radius: var(--weave-radius-control);
+  background: transparent;
+  color: var(--weave-text);
+  font: inherit;
+  font-weight: var(--weave-weight-strong);
+  transition: none;
+}
+
+.noodle-toolbar .noodle-generate:hover:not(:disabled) {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.noodle-toolbar .noodle-generate:active:not(:disabled) {
+  box-shadow: var(--weave-ring-pressed);
+}
+
+.noodle-toolbar .noodle-generate:focus-visible {
+  outline: none;
+  box-shadow: var(--weave-ring-focus);
+}
+
+.noodle-toolbar .noodle-generate:disabled {
+  cursor: default;
+}
+
+.noodle-generate-icon {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+/* Out of date, or the last Generate failed: the call to action */
+.noodle-toolbar .noodle-generate-stale,
+.noodle-toolbar .noodle-generate-stale:active:not(:disabled),
+.noodle-toolbar .noodle-generate-failed,
+.noodle-toolbar .noodle-generate-failed:active:not(:disabled) {
+  background: var(--weave-primary);
+  border-color: var(--weave-primary);
+  color: var(--weave-on-primary);
+}
+
+.noodle-generate-failed .noodle-generate-icon { color: var(--weave-on-primary); }
+.noodle-generate-current .noodle-generate-icon { color: var(--weave-success); }
+.noodle-generate-invalid .noodle-generate-icon { color: var(--weave-warning); }
+
+.noodle-toolbar .noodle-generate-empty,
+.noodle-toolbar .noodle-generate-invalid {
+  opacity: var(--weave-disabled-opacity);
+}
+
+.noodle-toolbar .noodle-generate-invalid {
+  opacity: 1;
+  color: var(--weave-text-secondary);
+}
+
+.noodle-generate-generating .noodle-generate-icon {
+  animation: noodle-spin 0.9s linear infinite;
+}
+
+@keyframes noodle-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== STATUS LINE =====
+   One-off results only (file opened, generate failed...). Generate's own state is
+   on its button. */
+.noodle-status-panel {
+  position: absolute;
+  top: 48px;
+  right: var(--weave-space-m);
+  z-index: 25;
+  max-width: 60%;
+  padding: var(--weave-space-xs) var(--weave-space-s);
+  font-family: var(--weave-font);
+  font-size: var(--weave-font-size);
+  line-height: var(--weave-line-height);
+  text-align: right;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.noodle-status-info { color: var(--weave-text-secondary); }
+.noodle-status-success { color: var(--weave-success); }
+.noodle-status-warning { color: var(--weave-warning); }
+.noodle-status-error { color: var(--weave-error); }
+
+/* ===== ADD NODE MENU =====
+   Weave menus: surface-100, 24 px rows, sentence case. */
+.cascading-menu-container {
+  position: relative;
+}
+
+.cascading-menu,
+.cascading-submenu {
+  position: absolute;
+  min-width: 168px;
+  padding: var(--weave-space-xs) 0;
+  background: var(--weave-surface-100);
+  box-shadow: var(--weave-shadow-menu);
+  font-family: var(--weave-font);
+  font-size: var(--weave-font-size);
+  color: var(--weave-text);
+}
+
+.cascading-menu {
+  top: calc(100% + var(--weave-space-xs));
+  left: 0;
+  z-index: 100;
+}
+
+.cascading-submenu {
+  top: calc(-1 * var(--weave-space-xs));
+  left: 100%;
+  z-index: 101;
+}
+
+.cascading-category {
+  position: relative;
+}
+
+.cascading-category-label,
+.cascading-submenu-item {
+  height: var(--weave-control-height);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--weave-space-m);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cascading-category-label {
+  justify-content: space-between;
+  gap: var(--weave-space-l);
+}
+
+.cascading-category-label::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  background: var(--weave-text-secondary);
+  -webkit-mask: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='4'%20height='7'%20viewBox='0%200%204%207'%20fill='currentColor'%3e%3cpath%20d='M0%207V0l4%203.5L0%207z'/%3e%3c/svg%3e") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='4'%20height='7'%20viewBox='0%200%204%207'%20fill='currentColor'%3e%3cpath%20d='M0%207V0l4%203.5L0%207z'/%3e%3c/svg%3e") no-repeat center / contain;
+}
+
+.cascading-category:hover > .cascading-category-label,
+.cascading-submenu-item:hover {
+  background: var(--weave-menu-hover);
+}
+
+.cascading-menu-version {
+  margin-top: var(--weave-space-xs);
+  padding: var(--weave-space-xs) var(--weave-space-m) 0;
+  border-top: 1px solid var(--weave-divider-strong);
+  color: var(--weave-text-placeholder);
+  font-size: var(--weave-font-size-caption);
+}
+
+select optgroup {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+select option {
+  text-transform: capitalize;
+  color: var(--adsk-text-primary);
+  font-size: 12px;
+}
+
+/* ===== LOADING SCREEN ===== */
+.loading-screen {
+  width: 100vw;
+  height: 100vh;
+  background: var(--adsk-surface-darkBlue-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-content {
+  text-align: center;
+  color: var(--adsk-text-primary);
+}
+
+.loading-content h2 {
+  margin: 0;
+  font-family: 'artifakt-element', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--adsk-primary-autodeskBlue-400);
+}
+
+.loading-status-container {
+  margin-top: 0;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.loading-status-main {
+  color: var(--adsk-text-primary);
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.loading-status-sub {
+  color: var(--adsk-text-secondary);
+  font-weight: 300;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--adsk-surface-darkBlue-100);
+  border-top: 3px solid var(--adsk-primary-autodeskBlue-400);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== SCROLLBAR STYLES ===== */
+::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--adsk-surface-darkBlue-100, rgba(0, 0, 0, 0.2));
+    -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* ===== END UI STYLES ===== */
+
+/* ===== PORT TIPS =====
+   Fusion-style tip for a node input: label, description, allowed range (PortTip.jsx).
+   Floats above the canvas so it never changes a node's layout. */
+.noodle-port-tip {
+  position: fixed;
+  z-index: 2000;
+  max-width: 280px;
+  padding: 8px 12px 10px;
+  background: var(--noodle-tip-background);
+  color: var(--noodle-tip-text);
+  border: 1px solid var(--noodle-tip-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  font-size: 12px;
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.noodle-port-tip-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.noodle-port-tip-body {
+  font-weight: 600;
+}
+
+.noodle-port-tip-range {
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.noodle-port-tip-body + .noodle-port-tip-range {
+  margin-top: 6px;
+}
+
+.noodle-port-tip-section + .noodle-port-tip-section,
+.noodle-port-tip-body + .noodle-port-tip-section {
+  margin-top: var(--weave-space-s);
+  padding-top: var(--weave-space-s);
+  border-top: 1px solid var(--noodle-tip-divider);
+}
+
+.noodle-port-tip-range.error {
+  color: var(--noodle-tip-error);
+}
+/* ===================== REACT FLOW STYLES ===================== */
+/* Styles for React Flow viewport, grid, minimap, controls, and base node/edge layout. */
+
+.react-flow__node,
+.custom-node {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.react-flow__attribution {
+  background: transparent !important;
+}
+
+.react-flow__attribution a {
+  color: var(--adsk-primary-autodeskBlue-400) !important;
+}
+
+.react-flow__controls {
+    background: var(--adsk-surface-darkBlue-250) !important;
+    opacity: 0.4 !important;
+    border: none !important;
+}
+
+.react-flow__controls:hover {
+    opacity: 0.8 !important;
+}
+
+.react-flow__controls-button {
+    background: var(--adsk-surface-darkBlue-250) !important;
+    color: var(--tertiary-slate-400) !important;
+    border-bottom: none !important;
+}
+
+/* Suppress React Flow tooltips */
+.react-flow__controls-button[title] {
+    pointer-events: auto !important;
+}
+
+.react-flow__controls-button[title]:hover::before,
+.react-flow__controls-button[title]:hover::after {
+    display: none !important;
+}
+
+/* Remove title attributes to prevent browser tooltips */
+.react-flow__controls-button {
+    position: relative;
+}
+
+.react-flow__controls-button:hover {
+    /* Remove any tooltip behavior */
+    cursor: pointer;
+}
+
+.react-flow__edges {
+  position: absolute;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0;
+  left: 0;
+  /* Remove manual z-index - let ReactFlow handle this automatically */
+  overflow: visible;
+}
+/* ===== FALLOFF CURVE EDITOR =====
+   The curve on a Falloff node's face (a node visual, unchanged), and the
+   fixed-size modal that edits it, styled as a native Fusion dialog with the
+   Weave tokens in theme.css. Side-panel layout: curve and profile on the left,
+   controls on the right. 720 × 480, or 920 × 600 when the palette has room. */
+
+.falloff-curve-preview {
+  display: block;
+  width: 100%;
+  margin: 12px 0 4px;  /* Room above, so the curve isn't pressed against the fields */
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.falloff-curve-preview-canvas {
+  display: block;
+  width: 100%;
+  height: 40px;
+  border-radius: 2px;
+  background: var(--adsk-surface-darkBlue-350);
+  outline: 1px solid transparent;
+  transition: outline-color 0.15s;
+}
+
+.falloff-curve-preview:hover .falloff-curve-preview-canvas,
+.falloff-curve-preview:focus-visible .falloff-curve-preview-canvas {
+  outline-color: var(--noodle-color-curve);
+}
+
+.falloff-curve-preview-label {
+  display: block;
+  font-size: 10px;
+  color: var(--adsk-text-secondary);
+  text-align: center;
+  margin-top: 3px;
+}
+
+/* ---------- Dialog ---------- */
+.falloff-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--weave-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.falloff-modal {
+  /* Canvas colours for the modal; the node's preview keeps its own */
+  --falloff-canvas-grid: var(--weave-divider-strong);
+  --falloff-canvas-label: var(--weave-text-secondary);
+  --falloff-canvas-font: 11px "Artifakt Element", ArtifaktElement, "Open Sans", sans-serif;
+  --falloff-canvas-outline: var(--weave-surface-350);
+  --falloff-canvas-selected: var(--weave-text);
+
+  width: 720px;
+  height: 480px;
+  max-width: calc(100vw - 16px);
+  max-height: calc(100vh - 16px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: var(--weave-surface-200);  /* As Fusion's palettes and dialog bodies */
+  border-radius: var(--weave-radius-container);
+  box-shadow: var(--weave-shadow-dialog);
+  overflow: hidden;
+  color: var(--weave-text);
+  font-family: var(--weave-font);
+  font-size: var(--weave-font-size);
+  line-height: var(--weave-line-height);
+}
+
+.falloff-modal.large {
+  width: 920px;
+  height: 600px;
+}
+
+/* ---------- Header ---------- */
+.falloff-modal-head {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-m);
+  min-height: 40px;
+  padding: 0 var(--weave-space-s) 0 var(--weave-space-l);
+  border-bottom: 1px solid var(--weave-divider-strong);
+}
+
+.falloff-modal-title {
+  margin-right: auto;
+  font-size: var(--weave-font-size-title);
+  font-weight: var(--weave-weight-strong);
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.falloff-modal-title span {
+  color: var(--weave-text-secondary);
+  font-size: var(--weave-font-size);
+  font-weight: 400;
+}
+
+.falloff-modal-field {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-s);
+  color: var(--weave-text-secondary);
+}
+
+.falloff-modal-field b {
+  color: var(--weave-text);
+  font-weight: var(--weave-weight-strong);
+}
+
+/* ---------- Inputs and dropdowns: Weave underline fields ---------- */
+.falloff-modal select,
+.falloff-modal-number {
+  height: var(--weave-control-height);
+  box-sizing: border-box;
+  padding: 0 var(--weave-space-s);
+  background: var(--weave-input-background);
+  border: 0;
+  border-bottom: 1px solid var(--weave-input-line);
+  border-radius: 0;
+  color: var(--weave-text);
+  font: inherit;
+  font-weight: var(--weave-weight-strong);
+  outline: none;
+}
+
+.falloff-modal select {
+  appearance: none;
+  min-width: 120px;
+  padding-right: var(--weave-space-xl);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23bcd3ee' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--weave-space-s) center;
+  cursor: pointer;
+}
+
+.falloff-modal select:hover,
+.falloff-modal-number:hover {
+  border-bottom-color: var(--weave-input-line-hover);
+}
+
+.falloff-modal select:focus,
+.falloff-modal-number:focus {
+  border-bottom-color: var(--weave-accent);
+}
+
+.falloff-modal select option {
+  background: var(--weave-surface-100);
+  color: var(--weave-text);
+}
+
+.falloff-modal-number {
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+}
+
+.falloff-modal-readout {
+  font-weight: var(--weave-weight-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.falloff-modal-connected {
+  color: var(--weave-text-secondary);
+  font-style: italic;
+}
+
+/* ---------- Buttons ---------- */
+.falloff-modal button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Close: a quiet icon button */
+.falloff-modal .falloff-modal-x {
+  width: var(--weave-control-height);
+  height: var(--weave-control-height);
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-text-secondary);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.falloff-modal .falloff-modal-x:hover {
+  color: var(--weave-text);
+  box-shadow: var(--weave-ring-hover);
+}
+
+.falloff-modal .falloff-modal-x:active {
+  background: none;
+  box-shadow: var(--weave-ring-pressed);
+}
+
+/* Secondary (outline) buttons, and toggles: pressed shows the selected tint */
+.falloff-modal button[aria-pressed] {
+  height: var(--weave-control-height);
+  min-width: 40px;
+  padding: 0 var(--weave-space-m);
+  background: transparent;
+  border: 1px solid var(--weave-border);
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-text);
+  font-weight: var(--weave-weight-strong);
+}
+
+.falloff-modal button[aria-pressed]:hover {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.falloff-modal button[aria-pressed]:active {
+  background: transparent;
+  box-shadow: var(--weave-ring-pressed);
+}
+
+.falloff-modal button[aria-pressed="true"]:active {
+  background: var(--weave-selected-background);
+}
+
+.falloff-modal button[aria-pressed="true"] {
+  background: var(--weave-selected-background);
+  border-color: var(--weave-selected-border);
+}
+
+/* Segmented: buttons joined edge to edge */
+.falloff-seg {
+  display: flex;
+}
+
+.falloff-seg button[aria-pressed] {
+  flex: 1;
+  border-radius: 0;
+}
+
+.falloff-seg button[aria-pressed] + button[aria-pressed] {
+  margin-left: -1px;
+}
+
+.falloff-seg button[aria-pressed="true"] {
+  position: relative;  /* Its blue border sits over its neighbour's */
+}
+
+.falloff-seg button:first-child { border-radius: var(--weave-radius-control) 0 0 var(--weave-radius-control); }
+.falloff-seg button:last-child { border-radius: 0 var(--weave-radius-control) var(--weave-radius-control) 0; }
+
+/* Primary */
+.falloff-modal .falloff-modal-done {
+  height: var(--weave-control-height);
+  min-width: 72px;
+  padding: 0 var(--weave-space-m);
+  background: var(--weave-primary);
+  border: 1px solid var(--weave-primary);
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-on-primary);
+  font-weight: var(--weave-weight-strong);
+}
+
+.falloff-modal .falloff-modal-done:hover {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.falloff-modal .falloff-modal-done:active {
+  background: var(--weave-primary);
+  box-shadow: var(--weave-ring-pressed);
+}
+
+.falloff-modal button:focus-visible,
+.falloff-modal select:focus-visible,
+.falloff-modal input:focus-visible {
+  outline: none;
+  box-shadow: var(--weave-ring-focus);
+}
+
+/* ---------- Body: the curve well and the controls column ---------- */
+.falloff-modal-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 232px;
+  min-height: 0;
+}
+
+.falloff-modal-view {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);  /* Never wider than its share, whatever the strip holds */
+  grid-template-rows: minmax(0, 1fr) auto 76px;
+  min-width: 0;
+  min-height: 0;
+  background: var(--weave-surface-350);
+}
+
+.falloff-modal.large .falloff-modal-view {
+  grid-template-rows: minmax(0, 1fr) auto 96px;
+}
+
+.falloff-modal-editor,
+.falloff-modal-profile {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.falloff-modal-editor {
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.falloff-modal-profile {
+  border-top: 1px solid var(--weave-divider);
+}
+
+/* Strip under the curve: continuity badges, degree, comb. One fixed-height line,
+   so the curve above never changes size while it's being edited. A badge shows
+   only its grade; its tip names the join and says why. */
+.falloff-modal-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-m);
+  min-width: 0;
+  overflow: hidden;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 var(--weave-space-m);
+  white-space: nowrap;
+  border-top: 1px solid var(--weave-divider);
+  background: var(--weave-surface-300);
+  color: var(--weave-text-secondary);
+}
+
+.falloff-modal-chips {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-xs);
+  min-width: 0;
+}
+
+.falloff-chip {
+  padding: 0 var(--weave-space-xs);
+  border-radius: var(--weave-radius-control);
+  font-size: var(--weave-font-size-caption);
+  font-weight: var(--weave-weight-strong);
+  line-height: 16px;
+  cursor: default;
+}
+
+.falloff-chip.grade-g2 { background: var(--weave-success-background); color: var(--weave-success); }
+.falloff-chip.grade-g1 { background: var(--weave-warning-background); color: var(--weave-warning); }
+.falloff-chip.grade-g0,
+.falloff-chip.grade-gx { background: var(--weave-error-background); color: var(--weave-error); }
+
+.falloff-modal-tools {
+  margin-left: auto;
+  display: flex;
+  gap: var(--weave-space-s);
+  flex-shrink: 0;
+}
+
+/* ---------- Controls column ---------- */
+.falloff-modal-controls {
+  min-height: 0;
+  overflow-y: auto;
+  border-left: 1px solid var(--weave-divider-strong);
+}
+
+.falloff-group {
+  display: grid;
+  gap: var(--weave-space-s);
+  padding: var(--weave-space-s) var(--weave-space-l) var(--weave-space-m);
+  border-bottom: 1px solid var(--weave-divider);
+}
+
+.falloff-group h4 {
+  margin: var(--weave-space-xs) 0;
+  font-size: var(--weave-font-size);
+  font-weight: var(--weave-weight-strong);
+  color: var(--weave-text);
+}
+
+.falloff-row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: var(--weave-space-s);
+  min-height: var(--weave-control-height);
+}
+
+.falloff-row.numeric {
+  grid-template-columns: 72px minmax(0, 1fr);
+}
+
+.falloff-row output {
+  text-align: right;
+  font-weight: var(--weave-weight-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.falloff-unit {
+  color: var(--weave-text-secondary);
+}
+
+/* Slider: a thin rail, filled to the value (--fill, set by the component), and a
+   slim 4 × 16 thumb, as Fusion draws them */
+.falloff-row input[type="range"] {
+  appearance: none;
+  width: 100%;
+  height: 16px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.falloff-row input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: linear-gradient(to right,
+    var(--weave-slider-fill) 0 var(--fill, 0%),
+    var(--weave-slider-rail) var(--fill, 0%) 100%);
+}
+
+.falloff-row input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 4px;
+  height: 16px;
+  margin-top: -7px;
+  background: var(--weave-slider-fill);
+  border: 0;
+  border-radius: 1px;
+}
+
+.falloff-row input[type="range"]:hover::-webkit-slider-thumb {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.falloff-row input[type="range"]:focus-visible {
+  box-shadow: none;
+}
+
+.falloff-row input[type="range"]:focus-visible::-webkit-slider-thumb {
+  box-shadow: var(--weave-ring-focus);
+}
+
+/* Checkbox: 12 px square; checked is a white fill with a dark tick */
+.falloff-check {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-s);
+  min-height: var(--weave-control-height);
+  cursor: pointer;
+}
+
+.falloff-check input[type="checkbox"] {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  background: var(--weave-surface-200);
+  border: 1px solid var(--weave-border);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.falloff-check input[type="checkbox"]:hover {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.falloff-check input[type="checkbox"]:checked {
+  background: var(--weave-text) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M2 5.2l2 2 4-4.4' fill='none' stroke='%233b4453' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat center;
+  border-color: var(--weave-text);
+}
+
+/* ---------- Footer ----------
+   An ⓘ whose tip says how to edit the curve, as Fusion's own dialogs do, and Done. */
+.falloff-modal-foot {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-s);
+  padding: var(--weave-space-s) var(--weave-space-s) var(--weave-space-s) var(--weave-space-m);
+  border-top: 1px solid var(--weave-divider-strong);
+}
+
+.falloff-modal-foot-gap {
+  flex: 1;
+}
+
+.falloff-modal-info {
+  width: 16px;
+  height: 16px;
+  margin-right: var(--weave-space-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--weave-text-secondary);
+  color: var(--weave-surface-200);
+  font-size: var(--weave-font-size-caption);
+  font-weight: 700;
+  font-style: italic;
+  cursor: default;
+}
+
+.falloff-modal-info:focus-visible {
+  outline: none;
+  box-shadow: var(--weave-ring-focus);
+}
+/* ===== WEAVE DIALOGS AND BUTTONS =====
+   Shared by every dialog that isn't the curve editor: a dialog like Fusion's own
+   "Unsaved changes", and Weave's outline and primary buttons. Tokens in theme.css.
+   Selectors are scoped to the dialog so the global `button` rules don't leak in. */
+
+.weave-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--weave-overlay);
+}
+
+.weave-dialog {
+  width: 440px;
+  max-width: calc(100vw - 32px);
+  background: var(--weave-surface-100);
+  border-radius: var(--weave-radius-container);
+  box-shadow: var(--weave-shadow-dialog);
+  overflow: hidden;
+  color: var(--weave-text);
+  font-family: var(--weave-font);
+  font-size: var(--weave-font-size);
+  line-height: var(--weave-line-height);
+}
+
+/* Warning: the amber bar down the left edge */
+.weave-dialog-warning {
+  border-left: 4px solid var(--weave-warning);
+}
+
+.weave-dialog-head {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-s);
+  min-height: 46px;
+  padding: 0 var(--weave-space-s) 0 var(--weave-space-l);
+  border-bottom: 1px solid var(--weave-divider-strong);
+}
+
+.weave-dialog-head h2 {
+  flex: 1;
+  margin: 0;
+  font-size: var(--weave-font-size-title);
+  font-weight: var(--weave-weight-strong);
+  line-height: 22px;
+}
+
+.weave-dialog-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+.weave-dialog-icon-fill {
+  fill: var(--weave-warning);
+}
+
+.weave-dialog-icon-mark {
+  stroke: var(--weave-surface-300);
+  stroke-width: 2;
+}
+
+.weave-dialog .weave-dialog-close,
+.weave-dialog .weave-dialog-close:active {
+  width: var(--weave-control-height);
+  height: var(--weave-control-height);
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-text-secondary);
+  font: inherit;
+  font-size: 20px;
+  line-height: 1;
+  transition: none;
+}
+
+.weave-dialog .weave-dialog-close:hover {
+  color: var(--weave-text);
+}
+
+.weave-dialog-body {
+  padding: var(--weave-space-l);
+}
+
+.weave-dialog-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--weave-space-s);
+  padding: 0 var(--weave-space-l) var(--weave-space-l);
+}
+
+/* Outline button */
+.weave-dialog .weave-button,
+.weave-dialog .weave-button:active {
+  height: var(--weave-control-height);
+  min-width: 72px;
+  padding: 0 var(--weave-space-m);
+  background: transparent;
+  border: 1px solid var(--weave-border);
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-text);
+  font: inherit;
+  font-weight: var(--weave-weight-strong);
+  transition: none;
+}
+
+/* Primary */
+.weave-dialog .weave-button-primary,
+.weave-dialog .weave-button-primary:active {
+  background: var(--weave-primary);
+  border-color: var(--weave-primary);
+  color: var(--weave-on-primary);
+}
+
+.weave-dialog .weave-button:hover {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.weave-dialog .weave-button:active {
+  box-shadow: var(--weave-ring-pressed);
+}
+
+.weave-dialog .weave-button:focus-visible,
+.weave-dialog .weave-dialog-close:focus-visible {
+  outline: none;
+  box-shadow: var(--weave-ring-focus);
+}
+/* ===================== BASE NODE STYLES ===================== */
+/* Node-type agnostic styles: layout, font, background, header/body, input/dropdown/button, entity select, etc. */
+
+.custom-node {
+  background: var(--adsk-surface-darkBlue-300);
+  border: 1px solid var(--adsk-surface-darkBlue-100);
+  border-radius: 2px;
+  min-width: 180px;
+  width: 180px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  margin: 12px; /* Add spacing between nodes and canvas edges */
+  padding: 0; /* Top/bottom padding for content separation */
+  position: relative;
+}
+
+/* Wide node modifier: only for nodes with icon dropdowns or special layout */
+.custom-node.wide-node {
+  min-width: 240px;
+  width: 240px;
+}
+
+/* ==================== NODE HEADER ===================== */
+.custom-node .node-header {
+  background: var(--adsk-surface-darkBlue-250);
+  padding: 4px 12px;
+  border-radius: 2px 2px 0 0;
+  border-bottom: 2px solid var(--adsk-surface-darkBlue-100);
+  margin: 0px;
+  height: 34px;
+}
+
+.custom-node .node-title {
+  color: var(--adsk-text-primary);
+  font-family: "Artifakt Element", -apple-system, "Segoe UI", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+/* Visibility toggle in header - icon only, no background, aligned right */
+.custom-node .node-header {
+  display: flex;
+  align-items: center;
+}
+.custom-node .node-header .node-visibility-toggle {
+  margin-left: auto; /* push to right */
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+.custom-node .node-header .node-visibility-toggle .visibility-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  opacity: 0.95;
+}
+.custom-node .node-header .node-visibility-toggle:hover .visibility-icon {
+  opacity: 1;
+}
+
+/* Pending state for visibility toggle during backend sync */
+.custom-node .node-header .node-visibility-toggle.pending {
+  opacity: 0.6;
+}
+
+/* ==================== NODE BODY ===================== */
+.custom-node .node-body {
+  padding: 6px 12px; /* Increased padding for content separation */
+  position: relative;
+}
+
+.custom-node .port {
+  margin: 0;
+  position: relative;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==================== SELECTION PORT STYLING ===================== */
+/* Position selection handle near the label instead of centered */
+.selection-port .react-flow__handle {
+  transform: translateX(-4px) translateY(-22px) !important;
+}
+
+/* Selection ports need vertical layout */
+.custom-node .port.selection-port {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.custom-node .input-port {
+  justify-content: flex-start;
+  padding-left: 0px;
+  margin-left: 0px;
+  margin-bottom: 3px;
+}
+
+.custom-node .output-port {
+  justify-content: flex-end;
+  padding-right: 0px;
+  margin-right: 0px;
+  margin-bottom: 3px;
+}
+
+/* ==================== PORT HANDLES (DOTS) ===================== */
+.react-flow__handle {
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--adsk-primary-autodeskBlue-400);
+  background: var(--adsk-primary-autodeskBlue-400); /* Solid when unconnected */
+  border-radius: 50%;
+}
+
+.react-flow__handle-left {
+  left: -12.5px !important;
+}
+
+.react-flow__handle-right {
+  right: -12.5px !important;
+}
+
+.react-flow__handle:hover {
+  background: var(--adsk-primary-autodeskBlue-400);
+}
+
+/* Connected handles appear as dark blue dots */
+.react-flow__handle.connected {
+  background: var(--adsk-surface-darkBlue-350);
+}
+
+/* ==================== PORT LABELS ===================== */
+.custom-node .port-label {
+  color: var(--adsk-text-primary);
+  font-size: 12px;
+  font-family: "Artifakt Element", -apple-system, "Segoe UI", sans-serif;
+  font-weight: 600;
+  padding: 0;
+}
+
+/* Input ports: fixed-width label column for consistent two-column alignment */
+.custom-node .input-port .port-label,
+.custom-node .port-content .port-label {
+  flex-shrink: 0;
+  width: 90px;
+  min-width: 90px;
+}
+
+.custom-node .required {
+  color: var(--adsk-status-error);
+  font-size: 8px;
+  vertical-align: super;
+  margin-left: 2px;
+}
+
+/* ==================== CONNECTED READ-ONLY VALUE TEXT ===================== */
+.custom-node .node-input {
+  background: var(--adsk-surface-darkBlue-350);
+  border: none;
+  color: var(--adsk-text-primary);
+  border-radius: 0px;
+  padding: 4px 4px;
+  font-size: 12px;
+  height: 28px;
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+  width: auto;
+}
+
+.custom-node .node-input:focus {
+  border-bottom: 1px solid var(--adsk-primary-autodeskBlue-400);
+}
+
+/* Connected value display - base style for read-only connected inputs */
+.custom-node .connected-value {
+  font-size: 12px;
+  font-weight: 700;
+  background: transparent;
+  padding: 1px 4px;
+  margin-left: auto;
+  min-width: 50px;
+  text-align: right;
+  /* TODO: fix the per data-type color overrides in .custom-node .connected-value */
+  color: var(--noodle-color-numbers); /* Default fallback color - overridden by data-type specific CSS */
+}
+
+/* Computed output display styling (mirrors connected-value for alignment) */
+.custom-node .computed-output-value {
+  font-size: 12px;
+  font-weight: 700;
+  background: transparent;
+  padding: 1px 4px;
+  margin-left: auto;
+  min-width: 50px;
+  text-align: right;
+  color: var(--noodle-color-numbers);
+}
+
+/* ==================== ERROR STATE STYLING ===================== */
+/* Invalid input styling - for values that fail validation (e.g., negative dimensions) */
+.custom-node .node-input.error,
+.custom-node .connected-value.error {
+  /* background: var(--noodle-error-background) !important; */
+  color: var(--noodle-error-text) !important;
+  border-bottom: 1px solid var(--noodle-error-border) !important;
+}
+
+/* Error state for Vector3 inputs */
+.custom-node .vector3-input.error {
+  background: var(--noodle-error-background) !important;
+  color: var(--noodle-error-text) !important;
+  border-bottom: 2px solid var(--noodle-error-border) !important;
+}
+
+/* Error indicator for the entire port when validation fails */
+.custom-node .port.error {
+  border-left: 3px solid var(--noodle-error-border);
+  background: rgba(236, 74, 65, 0.05);
+}
+
+/* Error state for connected values showing invalid data */
+.custom-node .connected-value.error {
+  font-weight: 700;
+  animation: pulse-error 2s infinite;
+}
+
+@keyframes pulse-error {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.custom-node .number-input {
+  text-align: right;
+  /* Never wider than the shared field width; narrower when a narrow node needs it */
+  flex: 0 1 var(--noodle-field-width);
+  width: var(--noodle-field-width);
+  min-width: 0;
+  margin-left: auto;
+}
+
+.custom-node .number-input::-webkit-outer-spin-button,
+.custom-node .number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-node .number-input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* Custom checkbox — 14 × 14, vertically centered in the 28px row */
+.custom-node .custom-checkbox {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #232b38;
+  border: 1px solid #4a5568;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 0;
+  color: var(--adsk-text-primary);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.custom-node .custom-checkbox:hover {
+  border-color: var(--adsk-text-secondary, #8a95a3);
+}
+
+.custom-node .custom-checkbox.checked {
+  background: #232b38;
+  border-color: var(--adsk-text-secondary, #8a95a3);
+}
+
+.custom-node .custom-checkbox.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ==================== PORT CONTENT TWO-COLUMN LAYOUT ===================== */
+/* Mirrors the native Fusion dialog: fixed-width label column, flex value column */
+.custom-node .port-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+/* ==================== ICON ENUM DROPDOWN ===================== */
+.custom-node .icon-enum-dropdown {
+  position: relative;
+  flex: 1;
+}
+
+.custom-node .icon-enum-trigger {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  height: 28px;
+  padding: 5px 4px 5px 6px;
+  box-sizing: border-box;
+  background: var(--adsk-surface-darkBlue-350);
+  border: 1px solid transparent;
+  border-bottom-color: transparent;
+  color: var(--adsk-text-primary);
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.custom-node .icon-enum-trigger:hover {
+  border-bottom-color: var(--tertiary-slate-400);
+}
+
+.custom-node .icon-enum-trigger span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-node .icon-enum-trigger .enum-option-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.custom-node .icon-enum-trigger .enum-caret {
+  width: 7px;
+  height: 4px;
+  flex-shrink: 0;
+  color: #a2a6b0;
+}
+
+.custom-node .icon-enum-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin: 0;
+  padding: 2px 0;
+  list-style: none;
+  background: var(--adsk-surface-darkBlue-300, #1e2738);
+  border: 1px solid #3a4558;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  min-width: 140px;
+}
+
+.custom-node .icon-enum-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: var(--adsk-text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.custom-node .icon-enum-item:hover {
+  background: var(--adsk-surface-darkBlue-200, #2a3445);
+}
+
+.custom-node .icon-enum-item.selected {
+  color: var(--adsk-text-primary, #ffffff);
+}
+
+.custom-node .icon-enum-item .enum-option-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.custom-node .icon-enum-item span {
+  flex: 1;
+}
+
+/* ==================== ENTITY BUTTON ===================== */
+.custom-node .entity-select-button {
+  width: 100%;
+  min-width: 90px;
+  height: 28px; /* Fixed height */
+  padding: 5px 6px;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid var(--adsk-fusion-highlight);
+  position: relative;
+  box-sizing: border-box; /* Include padding in height */
+}
+
+.custom-node .entity-select-button:disabled {
+  opacity: 0.5;
+  border: none;
+  cursor: not-allowed;
+}
+
+.custom-node .entity-select-button:not(:active):hover {
+  opacity: 0.5;
+  border: none;
+  cursor: not-allowed;
+  background: var(--adsk-primary-autodeskBlue-500);
+}
+
+/* 3-part button layout container - 24px divided structure */
+.custom-node .select-button-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%; /* Use full button height */
+  gap: 0; /* No gap - seamless divisions */
+}
+
+/* Arrow box - 24px square minus padding */
+.custom-node .select-arrow-box {
+  width: 18px;
+  height: 100%; /* Use full height for better centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Text area - flexible width with padding */
+.custom-node .select-text-area {
+  flex: 1;
+  padding: 0 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Use full height for better centering */
+  overflow: hidden;
+}
+
+/* Icons sizing and positioning */
+.custom-node .entity-select-button .select-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.custom-node .entity-select-button .select-text {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-left: 6px;
+  text-overflow: ellipsis;
+}
+
+/* Clear button - 16x16 icon in 18x18 box */
+.custom-node .entity-clear-button {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Clear icon styling */
+.custom-node .clear-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.custom-node .entity-select-button.empty,
+ .empty {
+  background: var(--adsk-surface-darkBlue-200);
+  color: var(--adsk-text-secondary);
+}
+
+.custom-node .entity-select-button.empty:hover,
+ .empty:hover {
+  background: rgba(0, 174, 228, 0.3);
+  border-color: var(--adsk-fusion-highlight);
+  color: var(--adsk-text-primary);
+}
+
+/* Armed state - stays highlighted while picking (higher priority than hover) */
+.custom-node .entity-select-button.armed,
+.custom-node .entity-select-button.armed:hover,
+ .armed,
+ .armed:hover {
+  background: rgba(0, 174, 228, 0.6) !important;
+  color: white !important;
+  border-color: var(--adsk-fusion-highlight) !important;
+  box-shadow: 0 0 0 1px var(--adsk-fusion-highlight) !important;
+}
+
+.custom-node .entity-select-button.selecting,
+.custom-node .entity-select-button.selecting:hover,
+.entity-select-button.selecting,
+.entity-select-button.selecting:hover {
+  background: rgba(255, 165, 0, 0.6) !important;
+  color: white !important;
+  border-color: orange !important;
+  box-shadow: 0 0 0 1px orange !important;
+  cursor: wait;
+}
+
+.custom-node .entity-select-button.loaded,
+ .loaded {
+  background: rgba(135, 179, 64, 0.6);
+  border-color: var(--adsk-status-success);
+  color: var(--adsk-text-primary);
+}
+
+.custom-node .entity-select-button.loaded:hover,
+ .loaded:hover {
+  background: rgba(135, 179, 64, 1.0);
+  border-color: var(--adsk-status-success);
+  color: var(--adsk-text-primary);
+}
+
+/* Clear button hover - red on hover */
+.custom-node .entity-clear-button:hover:not(:disabled) {
+  background: none;
+}
+
+.custom-node .entity-clear-button .clear-icon {
+  filter: invert(100%);
+}
+
+.custom-node .entity-clear-button:focus {
+  outline: none;
+}
+
+/* ==================== ENTITY SELECTION (V1 Style) ===================== */
+/* V1-style entity selection containers */
+.entity-inputs {
+  margin-top: 4px;
+  width: 100%;
+  display: block;  /* Force block layout */
+  clear: both;     /* Clear any floats */
+}
+
+.entity-control-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+/* Inline status for port labels */
+.entity-status-inline {
+  color: var(--adsk-text-primary);
+  font-family: "Artifakt Element", -apple-system, "Segoe UI", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.entity-select-button {
+  background: var(--adsk-surface-darkBlue-200);
+  border: 1px solid var(--adsk-surface-darkBlue-100);
+  border-radius: 2px;
+  color: var(--adsk-text-primary);
+  font-family: "Artifakt Element", -apple-system, "Segoe UI", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 24px;
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entity-select-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.entity-clear-button {
+  background: transparent;
+  border: none;
+  color: var(--adsk-text-primary);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 2px 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-width: 24px;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+/* ==================== VECTOR3 INPUTS ===================== */
+/* Force vertical layout for Vector3 ports */
+.vector3-port.vector3-vertical {
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+/* Position Vector3 handle near the label instead of centered */
+.vector3-port .react-flow__handle {
+  transform: translateX(-4px) translateY(-51px) !important;
+}
+
+.vector3-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.vector3-label-row {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.vector3-label-row .port-label {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--noodle-color-vector3);
+}
+
+.vector3-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+}
+
+.vector3-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  justify-content: space-between;
+}
+
+.vector3-row label {
+  color: var(--noodle-color-vector3);
+  font-family: "Artifakt Element", -apple-system, "Segoe UI", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  min-width: 90px;
+  max-width: 90px;
+  width: 90px;
+  text-align: left;
+  display: inline-block;
+}
+
+.vector3-input {
+  text-align: right;
+  width: var(--noodle-field-width);
+  min-width: var(--noodle-field-width);
+  max-width: var(--noodle-field-width);
+  font-family: "Artifakt Element", -apple-system, "Segoe UI", sans-serif;
+  font-size: 12px;
+}
+
+.vector3-input.connected-value {
+  background: transparent !important;
+  color: var(--noodle-color-vector3) !important;
+  cursor: default !important;
+  user-select: none !important;
+}
+
+/* ===================== SPACER PORT STYLES ===================== */
+.spacer-port {
+  height: var(--spacer-height, 9px);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== UNIT SUFFIX (cm, °) =====
+   Shown after the label of inputs whose port declares a unit. Display only; values are not converted. */
+.custom-node .port-unit {
+  margin-left: 4px;
+  color: var(--adsk-text-tertiary);
+  font-weight: 400;
+}
+/* Port/handle styling shared across node types. */
+/* ==================== DATA-TYPE PORT HANDLE COLORS ===================== */
+/* Unconnected port handles: solid color fill and border per type */
+.port-type-number .react-flow__handle,
+.port-type-float .react-flow__handle,
+.port-type-integer .react-flow__handle,
+.handle-number,
+.handle-float,
+.handle-integer,
+.custom-node .port-type-number .react-flow__handle,
+.custom-node .port-type-float .react-flow__handle,
+.custom-node .port-type-integer .react-flow__handle {
+	border-color: var(--noodle-color-numbers) !important;
+	background: var(--noodle-color-numbers) !important;
+}
+
+.port-type-geometry .react-flow__handle,
+.port-type-brep .react-flow__handle,
+.handle-geometry,
+.handle-brep,
+.custom-node .port-type-geometry .react-flow__handle,
+.custom-node .port-type-brep .react-flow__handle {
+	border-color: var(--noodle-color-geometry) !important;
+	background: var(--noodle-color-geometry) !important;
+}
+
+.port-type-collection .react-flow__handle,
+.handle-collection,
+.custom-node .port-type-collection .react-flow__handle {
+	border-color: var(--noodle-color-collection) !important;
+	background: var(--noodle-color-collection) !important;
+}
+
+.port-type-array .react-flow__handle,
+.handle-array {
+	border-color: var(--noodle-color-array);
+	background: var(--noodle-color-array);
+}
+
+.port-type-vector3 .react-flow__handle,
+.handle-vector3,
+.custom-node .port-type-vector3 .react-flow__handle {
+	border-color: var(--noodle-color-vector3) !important;
+	background: var(--noodle-color-vector3) !important;
+}
+
+.port-type-point .react-flow__handle,
+.handle-point,
+.custom-node .port-type-point .react-flow__handle {
+	border-color: var(--noodle-color-vector3) !important;
+	background: var(--noodle-color-vector3) !important;
+}
+
+.port-type-transform .react-flow__handle,
+.handle-transform,
+.custom-node .port-type-transform .react-flow__handle {
+	border-color: var(--noodle-color-transform) !important;
+	background: var(--noodle-color-transform) !important;
+}
+
+.port-type-surface .react-flow__handle,
+.handle-surface,
+.custom-node .port-type-surface .react-flow__handle {
+	border-color: var(--noodle-color-geometry) !important;
+	background: var(--noodle-color-geometry) !important;
+}
+
+.port-type-curve .react-flow__handle,
+.handle-curve,
+.custom-node .port-type-curve .react-flow__handle {
+	border-color: var(--noodle-color-curve) !important;
+	background: var(--noodle-color-curve) !important;
+}
+
+.port-type-string .react-flow__handle,
+.port-type-boolean .react-flow__handle,
+.handle-string,
+.handle-boolean {
+	border-color: var(--adsk-text-secondary);
+	background: var(--adsk-text-secondary);
+}
+
+/* Connected port handles: hollow, colored border per type */
+.port-type-number .react-flow__handle.connected,
+.port-type-float .react-flow__handle.connected,
+.port-type-integer .react-flow__handle.connected,
+.handle-number.connected,
+.handle-float.connected,
+.handle-integer.connected {
+	background: transparent !important;
+	border-color: var(--noodle-color-numbers) !important;
+}
+
+.port-type-geometry .react-flow__handle.connected,
+.port-type-brep .react-flow__handle.connected,
+.handle-geometry.connected,
+.handle-brep.connected {
+	background: transparent !important;
+	border-color: var(--noodle-color-geometry) !important;
+}
+
+.port-type-collection .react-flow__handle.connected,
+.handle-collection.connected,
+.custom-node .port-type-collection .react-flow__handle.connected {
+  background: transparent !important;
+  border-color: var(--noodle-color-collection) !important;
+}
+
+.port-type-array .react-flow__handle.connected,
+.handle-array.connected {
+	background: transparent !important;
+	border-color: var(--noodle-color-array) !important;
+}
+
+.port-type-vector3 .react-flow__handle.connected,
+.handle-vector3.connected,
+.custom-node .port-type-vector3 .react-flow__handle.connected {
+  background: transparent !important;
+  border-color: var(--noodle-color-vector3) !important;
+}
+
+.port-type-transform .react-flow__handle.connected,
+.handle-transform.connected,
+.custom-node .port-type-transform .react-flow__handle.connected {
+  background: transparent !important;
+  border-color: var(--noodle-color-transform) !important;
+}
+
+.port-type-curve .react-flow__handle.connected,
+.handle-curve.connected,
+.custom-node .port-type-curve .react-flow__handle.connected {
+	background: transparent !important;
+	border-color: var(--noodle-color-curve) !important;
+}
+
+.port-type-string .react-flow__handle.connected,
+.port-type-boolean .react-flow__handle.connected,
+.handle-string.connected,
+.handle-boolean.connected {
+	background: transparent !important;
+	border-color: var(--adsk-text-secondary) !important;
+}
+
+/* ==================== DATA-TYPE CONNECTED VALUE COLORS ===================== */
+/* Connected read-only values should match the data type color, not the receiving node color */
+
+.port-type-number .connected-value,
+.port-type-float .connected-value,
+.port-type-integer .connected-value,
+.custom-node .port-type-number .connected-value,
+.custom-node .port-type-float .connected-value,
+.custom-node .port-type-integer .connected-value {
+  color: var(--noodle-color-numbers) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-geometry .connected-value,
+.port-type-brep .connected-value,
+.custom-node .port-type-geometry .connected-value,
+.custom-node .port-type-brep .connected-value {
+  color: var(--noodle-color-geometry) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-collection .connected-value,
+.custom-node .port-type-collection .connected-value {
+  color: var(--noodle-color-collection) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-array .connected-value,
+.custom-node .port-type-array .connected-value {
+  color: var(--noodle-color-array) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-vector3 .connected-value,
+.custom-node .port-type-vector3 .connected-value {
+  color: var(--noodle-color-vector3) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-transform .connected-value,
+.port-type-boolean .connected-value,
+.custom-node .port-type-transform .connected-value,
+.custom-node .port-type-boolean .connected-value {
+  color: var(--noodle-color-transform) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-curve .connected-value,
+.custom-node .port-type-curve .connected-value {
+  color: var(--noodle-color-curve) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-string .connected-value,
+.custom-node .port-type-string .connected-value {
+  color: var(--adsk-text-secondary) !important;
+  font-weight: 500 !important;
+}
+
+/* ==================== HIDDEN HANDLE STYLING ===================== */
+/* Hide handles for entity selection and explicitly hidden ports */
+.hidden-handle,
+.react-flow__handle.hidden-handle {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Hide the entire port container when handle is hidden */
+[data-hide-handle="true"] {
+  position: relative;
+}
+
+[data-hide-handle="true"] .react-flow__handle {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+/* Edge/connector styling for React Flow and Noodle nodes. */
+
+/* ==================== EDGE/CONNECTOR STYLING ===================== */
+
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke-width: 3px !important;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke-width: 4px !important;
+  filter: drop-shadow(0 0 2px white) !important;
+}
+/* ===== MATH NODE STYLING ===== */
+/* Uses --node-category-math (#faa21b) from theme.css */
+
+/* ===== FRESH NODE HIGHLIGHTING (newly created nodes) ===== */
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-math {
+  border: 1px solid var(--node-category-math) !important;
+  box-shadow: 0 1px 12px rgba(250, 162, 27, 0.6) !important;
+  animation: fresh-pulse-math 2s ease-in-out infinite;
+}
+
+/* Fresh node animation - customize timing/easing as needed */
+@keyframes fresh-pulse-math {
+  0%, 100% { 
+    box-shadow: 0 1px 12px rgba(250, 162, 27, 0.6);
+  }
+  50% { 
+    box-shadow: 0 6px 16px rgba(250, 162, 27, 0.8);
+  }
+}
+
+/* ===== FADING NODE STATE (smooth transition out of fresh highlighting) ===== */
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-math {
+  border: 1px solid var(--node-category-math) !important;
+  box-shadow: 0 1px 12px rgba(250, 162, 27, 0.6) !important;
+  animation: none !important; /* Stop the pulsing animation */
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE SELECTION HIGHLIGHTING ===== */
+.react-flow__node.selected .custom-node.node-category-math {
+  border-color: var(--node-category-math) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-math) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE HOVER STATE ===== */
+.react-flow__node:hover .custom-node.node-category-math {
+  border-color: var(--node-category-math) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+/* ===== NODE HEADER ACCENT STRIPE ===== */
+.node-category-math .node-header {
+  border-bottom: 2px solid var(--node-category-math);
+}
+
+/* ===== ULTRA HIGH SPECIFICITY DIAGNOSTIC RULES ===== */
+/* Force math node styling - use only if standard rules don't work */
+.react-flow__node .custom-node.node-category-math .node-header,
+.custom-node.node-category-math .node-header,
+.node-category-math .node-header {
+  border-bottom: 2px solid var(--node-category-math) !important;
+}
+
+/* ===== ULTRA HIGH SPECIFICITY OVERRIDES (use sparingly) ===== */
+/* These rules force styling when CSS cascade conflicts occur */
+.react-flow__node.selected .custom-node.node-category-math {
+  border-color: var(--node-category-math) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(250, 162, 27, 0.8) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-math {
+  border-color: var(--node-category-math) !important;
+  transition: border-color 0.2s ease-out;
+}
+/* ===== GEOMETRY NODE STYLING ===== */
+/* Uses --node-category-geometry (#6a9728) from theme.css */
+
+/* ===== FRESH NODE HIGHLIGHTING (newly created nodes) ===== */
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-geometry {
+  border: 1px solid var(--node-category-geometry) !important;
+  box-shadow: 0 1px 12px rgba(106, 151, 40, 0.6) !important;
+  animation: fresh-pulse-geometry 2s ease-in-out infinite;
+}
+
+/* Fresh node animation - customize timing/easing as needed */
+@keyframes fresh-pulse-geometry {
+  0%, 100% { 
+    box-shadow: 0 1px 12px rgba(106, 151, 40, 0.6);
+  }
+  50% { 
+    box-shadow: 0 6px 16px rgba(106, 151, 40, 0.8);
+  }
+}
+
+/* ===== FADING NODE STATE (smooth transition out of fresh highlighting) ===== */
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-geometry {
+  border: 1px solid var(--node-category-geometry) !important;
+  box-shadow: 0 1px 12px rgba(106, 151, 40, 0.6) !important;
+  animation: none !important; /* Stop the pulsing animation */
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE SELECTION HIGHLIGHTING ===== */
+.react-flow__node.selected .custom-node.node-category-geometry {
+  border-color: var(--node-category-geometry) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-geometry) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE HOVER STATE ===== */
+.react-flow__node:hover .custom-node.node-category-geometry {
+  border-color: var(--node-category-geometry) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+/* ===== NODE HEADER ACCENT STRIPE ===== */
+.node-category-geometry .node-header {
+  border-bottom: 2px solid var(--node-category-geometry);
+}
+
+/* ===== ULTRA HIGH SPECIFICITY DIAGNOSTIC RULES ===== */
+/* Force geometry node styling - use only if standard rules don't work */
+.react-flow__node .custom-node.node-category-geometry .node-header,
+.custom-node.node-category-geometry .node-header,
+.node-category-geometry .node-header {
+  border-bottom: 2px solid var(--node-category-geometry) !important;
+}
+
+/* ===== ULTRA HIGH SPECIFICITY OVERRIDES (use sparingly) ===== */
+/* These rules force styling when CSS cascade conflicts occur */
+.react-flow__node.selected .custom-node.node-category-geometry {
+  border-color: var(--node-category-geometry) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(106, 151, 40, 0.8) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-geometry {
+  border-color: var(--node-category-geometry) !important;
+  transition: border-color 0.2s ease-out;
+}
+/* ===== TRANSFORM NODE STYLING ===== */
+/* Uses --node-category-transform (#8558c5) from theme.css */
+
+/* ===== FRESH NODE HIGHLIGHTING (newly created nodes) ===== */
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-transform {
+  border: 1px solid var(--node-category-transform) !important;
+  box-shadow: 0 1px 12px rgba(133, 88, 197, 0.6) !important;
+  animation: fresh-pulse-transform 2s ease-in-out infinite;
+}
+
+/* Fresh node animation - customize timing/easing as needed */
+@keyframes fresh-pulse-transform {
+  0%, 100% { 
+    box-shadow: 0 1px 12px rgba(133, 88, 197, 0.6);
+  }
+  50% { 
+    box-shadow: 0 6px 16px rgba(133, 88, 197, 0.8);
+  }
+}
+
+/* ===== FADING NODE STATE (smooth transition out of fresh highlighting) ===== */
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-transform {
+  border: 1px solid var(--node-category-transform) !important;
+  box-shadow: 0 1px 12px rgba(133, 88, 197, 0.6) !important;
+  animation: none !important; /* Stop the pulsing animation */
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE SELECTION HIGHLIGHTING ===== */
+.react-flow__node.selected .custom-node.node-category-transform {
+  border-color: var(--node-category-transform) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-transform) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE HOVER STATE ===== */
+.react-flow__node:hover .custom-node.node-category-transform {
+  border-color: var(--node-category-transform) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+/* ===== NODE HEADER ACCENT STRIPE ===== */
+.node-category-transform .node-header {
+  border-bottom: 2px solid var(--node-category-transform);
+}
+
+/* ===== ULTRA HIGH SPECIFICITY DIAGNOSTIC RULES ===== */
+/* Force transform node styling - use only if standard rules don't work */
+.react-flow__node .custom-node.node-category-transform .node-header,
+.custom-node.node-category-transform .node-header,
+.node-category-transform .node-header {
+  border-bottom: 2px solid var(--node-category-transform) !important;
+}
+
+/* ===== ULTRA HIGH SPECIFICITY OVERRIDES (use sparingly) ===== */
+/* These rules force styling when CSS cascade conflicts occur */
+.react-flow__node.selected .custom-node.node-category-transform {
+  border-color: var(--node-category-transform) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(133, 88, 197, 0.8) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-transform {
+  border-color: var(--node-category-transform) !important;
+  transition: border-color 0.2s ease-out;
+}
+/* ===== COLLECTION NODE STYLING ===== */
+/* Uses --node-category-collection (#3198eb) from theme.css */
+
+/* ===== FRESH NODE HIGHLIGHTING (newly created nodes) ===== */
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-Collection {
+  border: 1px solid var(--node-category-collection) !important;
+  box-shadow: 0 1px 12px rgba(49, 152, 235, 0.6) !important;
+  animation: fresh-pulse-collection 2s ease-in-out infinite;
+}
+
+/* Fresh node animation - customize timing/easing as needed */
+@keyframes fresh-pulse-collection {
+  0%, 100% { 
+    box-shadow: 0 1px 12px rgba(49, 152, 235, 0.6);
+  }
+  50% { 
+    box-shadow: 0 6px 16px rgba(49, 152, 235, 0.8);
+  }
+}
+
+/* ===== FADING NODE STATE (smooth transition out of fresh highlighting) ===== */
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-Collection {
+  border: 1px solid var(--node-category-collection) !important;
+  box-shadow: 0 1px 12px rgba(49, 152, 235, 0.6) !important;
+  animation: none !important; /* Stop the pulsing animation */
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE SELECTION HIGHLIGHTING ===== */
+.react-flow__node.selected .custom-node.node-category-Collection {
+  border-color: var(--node-category-collection) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-collection) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE HOVER STATE ===== */
+.react-flow__node:hover .custom-node.node-category-Collection {
+  border-color: var(--node-category-collection) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+/* ===== NODE HEADER ACCENT STRIPE ===== */
+.node-category-Collection .node-header {
+  border-bottom: 2px solid var(--node-category-collection);
+}
+
+/* ===== ULTRA HIGH SPECIFICITY DIAGNOSTIC RULES ===== */
+/* Force collection node styling - use only if standard rules don't work */
+.react-flow__node .custom-node.node-category-collection .node-header,
+.custom-node.node-category-collection .node-header,
+.node-category-collection .node-header {
+  border-bottom: 2px solid var(--node-category-collection) !important;
+}
+
+/* ===== ULTRA HIGH SPECIFICITY OVERRIDES (use sparingly) ===== */
+/* These rules force styling when CSS cascade conflicts occur */
+.react-flow__node.selected .custom-node.node-category-collection {
+  border-color: var(--node-category-collection) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(49, 152, 235, 0.8) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-collection {
+  border-color: var(--node-category-collection) !important;
+  transition: border-color 0.2s ease-out;
+}
+/* ===== ARRAY NODE STYLING ===== */
+/* Uses --node-category-array (#3198eb) from theme.css */
+
+/* ===== FRESH NODE HIGHLIGHTING (newly created nodes) ===== */
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-array {
+  border: 1px solid var(--node-category-array) !important;
+  box-shadow: 0 1px 12px rgba(49, 152, 235, 0.6) !important;
+  animation: fresh-pulse-array 2s ease-in-out infinite;
+}
+
+/* Fresh node animation - customize timing/easing as needed */
+@keyframes fresh-pulse-array {
+  0%, 100% { 
+    box-shadow: 0 1px 12px rgba(49, 152, 235, 0.6);
+  }
+  50% { 
+    box-shadow: 0 6px 16px rgba(49, 152, 235, 0.8);
+  }
+}
+
+/* ===== FADING NODE STATE (smooth transition out of fresh highlighting) ===== */
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-array {
+  border: 1px solid var(--node-category-array) !important;
+  box-shadow: 0 1px 12px rgba(49, 152, 235, 0.6) !important;
+  animation: none !important; /* Stop the pulsing animation */
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE SELECTION HIGHLIGHTING ===== */
+.react-flow__node.selected .custom-node.node-category-array {
+  border-color: var(--node-category-array) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-array) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE HOVER STATE ===== */
+.react-flow__node:hover .custom-node.node-category-array {
+  border-color: var(--node-category-array) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+/* ===== NODE HEADER ACCENT STRIPE ===== */
+.node-category-array .node-header {
+  border-bottom: 2px solid var(--node-category-array);
+}
+
+/* ===== ULTRA HIGH SPECIFICITY DIAGNOSTIC RULES ===== */
+/* Force array node styling - use only if standard rules don't work */
+.react-flow__node .custom-node.node-category-array .node-header,
+.custom-node.node-category-array .node-header,
+.node-category-array .node-header {
+  border-bottom: 2px solid var(--node-category-array) !important;
+}
+
+/* ===== ULTRA HIGH SPECIFICITY OVERRIDES (use sparingly) ===== */
+/* These rules force styling when CSS cascade conflicts occur */
+.react-flow__node.selected .custom-node.node-category-array {
+  border-color: var(--node-category-array) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(49, 152, 235, 0.8) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-array {
+  border-color: var(--node-category-array) !important;
+  transition: border-color 0.2s ease-out;
+}
+/* ===== EFFECTOR NODE STYLING ===== */
+/* Uses --node-category-effector (#5f3e8e) from theme.css */
+
+/* ===== FRESH NODE HIGHLIGHTING (newly created nodes) ===== */
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-effector {
+  border: 1px solid var(--node-category-effector) !important;
+  box-shadow: 0 1px 12px rgba(95, 62, 142, 0.6) !important;
+  animation: fresh-pulse-effector 2s ease-in-out infinite;
+}
+
+/* Fresh node animation - customize timing/easing as needed */
+@keyframes fresh-pulse-effector {
+  0%, 100% { 
+    box-shadow: 0 1px 12px rgba(95, 62, 142, 0.6);
+  }
+  50% { 
+    box-shadow: 0 6px 16px rgba(95, 62, 142, 0.8);
+  }
+}
+
+/* ===== FADING NODE STATE (smooth transition out of fresh highlighting) ===== */
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-effector {
+  border: 1px solid var(--node-category-effector) !important;
+  box-shadow: 0 1px 12px rgba(95, 62, 142, 0.6) !important;
+  animation: none !important; /* Stop the pulsing animation */
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE SELECTION HIGHLIGHTING ===== */
+.react-flow__node.selected .custom-node.node-category-effector {
+  border-color: var(--node-category-effector) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-effector) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE HOVER STATE ===== */
+.react-flow__node:hover .custom-node.node-category-effector {
+  border-color: var(--node-category-effector) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+/* ===== NODE HEADER ACCENT STRIPE ===== */
+.node-category-effector .node-header {
+  border-bottom: 2px solid var(--node-category-effector);
+}
+
+/* ===== ULTRA HIGH SPECIFICITY DIAGNOSTIC RULES ===== */
+/* Force effector node styling - use only if standard rules don't work */
+.react-flow__node .custom-node.node-category-effector .node-header,
+.custom-node.node-category-effector .node-header,
+.node-category-effector .node-header {
+  border-bottom: 2px solid var(--node-category-effector) !important;
+}
+
+/* ===== ULTRA HIGH SPECIFICITY OVERRIDES (use sparingly) ===== */
+/* These rules force styling when CSS cascade conflicts occur */
+.react-flow__node.selected .custom-node.node-category-effector {
+  border-color: var(--node-category-effector) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(95, 62, 142, 0.8) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-effector {
+  border-color: var(--node-category-effector) !important;
+  transition: border-color 0.2s ease-out;
+}
+/* ===== SOURCES NODE STYLING ===== */
+/* Uses --node-category-sources (#c97c20) from theme.css */
+
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-sources {
+  border: 1px solid var(--node-category-sources) !important;
+  box-shadow: 0 1px 12px rgba(201, 124, 32, 0.6) !important;
+  animation: fresh-pulse-sources 2s ease-in-out infinite;
+}
+
+@keyframes fresh-pulse-sources {
+  0%, 100% { box-shadow: 0 1px 12px rgba(201, 124, 32, 0.6); }
+  50%       { box-shadow: 0 6px 16px rgba(201, 124, 32, 0.8); }
+}
+
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-sources {
+  border: 1px solid var(--node-category-sources) !important;
+  box-shadow: 0 1px 12px rgba(201, 124, 32, 0.6) !important;
+  animation: none !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node.selected .custom-node.node-category-sources {
+  border-color: var(--node-category-sources) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-sources) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-sources {
+  border-color: var(--node-category-sources) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+.react-flow__node .custom-node.node-category-sources .node-header,
+.custom-node.node-category-sources .node-header,
+.node-category-sources .node-header {
+  border-bottom: 2px solid var(--node-category-sources) !important;
+}
+/* ===== CURVES NODE STYLING ===== */
+/* Uses --node-category-curves (#32bcad) from theme.css */
+/* Matches --noodle-color-curve so nodes and their edges share the same hue. */
+
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-curves {
+  border: 1px solid var(--node-category-curves) !important;
+  box-shadow: 0 1px 12px rgba(50, 188, 173, 0.6) !important;
+  animation: fresh-pulse-curves 2s ease-in-out infinite;
+}
+
+@keyframes fresh-pulse-curves {
+  0%, 100% { box-shadow: 0 1px 12px rgba(50, 188, 173, 0.6); }
+  50%       { box-shadow: 0 6px 16px rgba(50, 188, 173, 0.8); }
+}
+
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-curves {
+  border: 1px solid var(--node-category-curves) !important;
+  box-shadow: 0 1px 12px rgba(50, 188, 173, 0.6) !important;
+  animation: none !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node.selected .custom-node.node-category-curves {
+  border-color: var(--node-category-curves) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-curves) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-curves {
+  border-color: var(--node-category-curves) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+.react-flow__node .custom-node.node-category-curves .node-header,
+.custom-node.node-category-curves .node-header,
+.node-category-curves .node-header {
+  border-bottom: 2px solid var(--node-category-curves) !important;
+}
+/* ===== MODIFIERS NODE STYLING ===== */
+/* Uses --node-category-modifiers (#c084fc) from theme.css.
+   Light purple — visually related to the effector family (dark/mid purple)
+   but clearly distinct. Signals "I work alongside effectors, not as one." */
+
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-modifiers {
+  border: 1px solid var(--node-category-modifiers) !important;
+  box-shadow: 0 1px 12px rgba(192, 132, 252, 0.6) !important;
+  animation: fresh-pulse-modifiers 2s ease-in-out infinite;
+}
+
+@keyframes fresh-pulse-modifiers {
+  0%, 100% { box-shadow: 0 1px 12px rgba(192, 132, 252, 0.6); }
+  50%       { box-shadow: 0 6px 16px rgba(192, 132, 252, 0.8); }
+}
+
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-modifiers {
+  border: 1px solid var(--node-category-modifiers) !important;
+  box-shadow: 0 1px 12px rgba(192, 132, 252, 0.6) !important;
+  animation: none !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node.selected .custom-node.node-category-modifiers {
+  border-color: var(--node-category-modifiers) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-modifiers) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-modifiers {
+  border-color: var(--node-category-modifiers) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+.react-flow__node .custom-node.node-category-modifiers .node-header,
+.custom-node.node-category-modifiers .node-header,
+.node-category-modifiers .node-header {
+  border-bottom: 2px solid var(--node-category-modifiers) !important;
+}
+/* ===== GENERAL / FALLBACK NODE STYLING ===== */
+/* Uses --node-category-general (#bcd3ee) from theme.css.
+   Applied to any node whose category doesn't match a dedicated CSS file,
+   via the `nodeCategory || 'general'` fallback in BaseNode.jsx. */
+
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-general {
+  border: 1px solid var(--node-category-general) !important;
+  box-shadow: 0 1px 12px rgba(188, 211, 238, 0.6) !important;
+  animation: fresh-pulse-general 2s ease-in-out infinite;
+}
+
+@keyframes fresh-pulse-general {
+  0%, 100% { box-shadow: 0 1px 12px rgba(188, 211, 238, 0.6); }
+  50%       { box-shadow: 0 6px 16px rgba(188, 211, 238, 0.8); }
+}
+
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-general {
+  border: 1px solid var(--node-category-general) !important;
+  box-shadow: 0 1px 12px rgba(188, 211, 238, 0.6) !important;
+  animation: none !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node.selected .custom-node.node-category-general {
+  border-color: var(--node-category-general) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-general) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-general {
+  border-color: var(--node-category-general) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+.react-flow__node .custom-node.node-category-general .node-header,
+.custom-node.node-category-general .node-header,
+.node-category-general .node-header {
+  border-bottom: 2px solid var(--node-category-general) !important;
+}

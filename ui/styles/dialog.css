@@ -1,0 +1,131 @@
+/* ===== WEAVE DIALOGS AND BUTTONS =====
+   Shared by every dialog that isn't the curve editor: a dialog like Fusion's own
+   "Unsaved changes", and Weave's outline and primary buttons. Tokens in theme.css.
+   Selectors are scoped to the dialog so the global `button` rules don't leak in. */
+
+.weave-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--weave-overlay);
+}
+
+.weave-dialog {
+  width: 440px;
+  max-width: calc(100vw - 32px);
+  background: var(--weave-surface-100);
+  border-radius: var(--weave-radius-container);
+  box-shadow: var(--weave-shadow-dialog);
+  overflow: hidden;
+  color: var(--weave-text);
+  font-family: var(--weave-font);
+  font-size: var(--weave-font-size);
+  line-height: var(--weave-line-height);
+}
+
+/* Warning: the amber bar down the left edge */
+.weave-dialog-warning {
+  border-left: 4px solid var(--weave-warning);
+}
+
+.weave-dialog-head {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-s);
+  min-height: 46px;
+  padding: 0 var(--weave-space-s) 0 var(--weave-space-l);
+  border-bottom: 1px solid var(--weave-divider-strong);
+}
+
+.weave-dialog-head h2 {
+  flex: 1;
+  margin: 0;
+  font-size: var(--weave-font-size-title);
+  font-weight: var(--weave-weight-strong);
+  line-height: 22px;
+}
+
+.weave-dialog-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+.weave-dialog-icon-fill {
+  fill: var(--weave-warning);
+}
+
+.weave-dialog-icon-mark {
+  stroke: var(--weave-surface-300);
+  stroke-width: 2;
+}
+
+.weave-dialog .weave-dialog-close,
+.weave-dialog .weave-dialog-close:active {
+  width: var(--weave-control-height);
+  height: var(--weave-control-height);
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-text-secondary);
+  font: inherit;
+  font-size: 20px;
+  line-height: 1;
+  transition: none;
+}
+
+.weave-dialog .weave-dialog-close:hover {
+  color: var(--weave-text);
+}
+
+.weave-dialog-body {
+  padding: var(--weave-space-l);
+}
+
+.weave-dialog-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--weave-space-s);
+  padding: 0 var(--weave-space-l) var(--weave-space-l);
+}
+
+/* Outline button */
+.weave-dialog .weave-button,
+.weave-dialog .weave-button:active {
+  height: var(--weave-control-height);
+  min-width: 72px;
+  padding: 0 var(--weave-space-m);
+  background: transparent;
+  border: 1px solid var(--weave-border);
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-text);
+  font: inherit;
+  font-weight: var(--weave-weight-strong);
+  transition: none;
+}
+
+/* Primary */
+.weave-dialog .weave-button-primary,
+.weave-dialog .weave-button-primary:active {
+  background: var(--weave-primary);
+  border-color: var(--weave-primary);
+  color: var(--weave-on-primary);
+}
+
+.weave-dialog .weave-button:hover {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.weave-dialog .weave-button:active {
+  box-shadow: var(--weave-ring-pressed);
+}
+
+.weave-dialog .weave-button:focus-visible,
+.weave-dialog .weave-dialog-close:focus-visible {
+  outline: none;
+  box-shadow: var(--weave-ring-focus);
+}

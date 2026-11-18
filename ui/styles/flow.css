@@ -1,0 +1,63 @@
+/* ===================== REACT FLOW STYLES ===================== */
+/* Styles for React Flow viewport, grid, minimap, controls, and base node/edge layout. */
+
+.react-flow__node,
+.custom-node {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.react-flow__attribution {
+  background: transparent !important;
+}
+
+.react-flow__attribution a {
+  color: var(--adsk-primary-autodeskBlue-400) !important;
+}
+
+.react-flow__controls {
+    background: var(--adsk-surface-darkBlue-250) !important;
+    opacity: 0.4 !important;
+    border: none !important;
+}
+
+.react-flow__controls:hover {
+    opacity: 0.8 !important;
+}
+
+.react-flow__controls-button {
+    background: var(--adsk-surface-darkBlue-250) !important;
+    color: var(--tertiary-slate-400) !important;
+    border-bottom: none !important;
+}
+
+/* Suppress React Flow tooltips */
+.react-flow__controls-button[title] {
+    pointer-events: auto !important;
+}
+
+.react-flow__controls-button[title]:hover::before,
+.react-flow__controls-button[title]:hover::after {
+    display: none !important;
+}
+
+/* Remove title attributes to prevent browser tooltips */
+.react-flow__controls-button {
+    position: relative;
+}
+
+.react-flow__controls-button:hover {
+    /* Remove any tooltip behavior */
+    cursor: pointer;
+}
+
+.react-flow__edges {
+  position: absolute;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0;
+  left: 0;
+  /* Remove manual z-index - let ReactFlow handle this automatically */
+  overflow: visible;
+}

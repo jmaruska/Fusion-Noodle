@@ -1,0 +1,423 @@
+/* ===================== UI STYLES ===================== */
+/* Global app-wide styles: buttons, dropdowns, dialogs, palette, layout, etc. */
+
+/* ===== TOOLBAR =====
+   Laid out like Fusion's quick access toolbar, on the Weave tokens (theme.css):
+   a text menu, borderless icon buttons, and Generate, which shows where the
+   design stands. */
+.noodle-toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-s);
+  padding: var(--weave-space-xs) var(--weave-space-m);
+  background: var(--weave-surface-250);
+  border-bottom: 1px solid var(--weave-divider);
+  font-family: var(--weave-font);
+  font-size: var(--weave-font-size);
+}
+
+.noodle-toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+/* ===== BUTTONS (Global) ===== */
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--adsk-primary-autodeskBlue-500);
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:active {
+  background: var(--adsk-primary-autodeskBlue-600);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* An icon from an SVG file, drawn in the current text colour */
+.noodle-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: var(--icon) no-repeat center / contain;
+  mask: var(--icon) no-repeat center / contain;
+}
+
+/* Borderless buttons, as in Fusion's quick access toolbar */
+.noodle-qat {
+  display: flex;
+  gap: var(--weave-space-xxs);
+}
+
+.noodle-toolbar .noodle-qat-button,
+.noodle-toolbar .noodle-qat-menu {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-text-secondary);
+  font: inherit;
+  transition: none;
+}
+
+.noodle-toolbar .noodle-qat-button {
+  width: 28px;
+  padding: 0;
+}
+
+.noodle-toolbar .noodle-qat-button:hover:not(:disabled),
+.noodle-toolbar .noodle-qat-menu:hover {
+  background: var(--weave-surface-100);
+  color: var(--weave-text);
+}
+
+.noodle-toolbar .noodle-qat-button:active:not(:disabled),
+.noodle-toolbar .noodle-qat-menu:active,
+.noodle-toolbar .noodle-qat-menu[aria-expanded="true"] {
+  background: var(--weave-surface-100);
+  box-shadow: var(--weave-ring-pressed);
+  color: var(--weave-text);
+}
+
+.noodle-toolbar .noodle-qat-button:disabled {
+  opacity: var(--weave-disabled-opacity);
+  cursor: default;
+}
+
+/* Add Node: a text menu with a caret, no box */
+.noodle-toolbar .noodle-qat-menu {
+  gap: var(--weave-space-s);
+  padding: 0 var(--weave-space-s);
+  color: var(--weave-text);
+}
+
+.noodle-qat-caret {
+  width: 8px;
+  height: 8px;
+  background: var(--weave-text-secondary);
+  -webkit-mask: url('../icons/caret-down-s-ui.svg') no-repeat center / contain;
+  mask: url('../icons/caret-down-s-ui.svg') no-repeat center / contain;
+}
+
+/* ===== GENERATE =====
+   One button that says where the design stands: out of date (primary), up to
+   date (outline, green tick), generating, invalid or failed. Its tip says why. */
+.noodle-toolbar .noodle-generate {
+  height: var(--weave-control-height);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 var(--weave-space-m);
+  border: 1px solid var(--weave-border);
+  border-radius: var(--weave-radius-control);
+  background: transparent;
+  color: var(--weave-text);
+  font: inherit;
+  font-weight: var(--weave-weight-strong);
+  transition: none;
+}
+
+.noodle-toolbar .noodle-generate:hover:not(:disabled) {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.noodle-toolbar .noodle-generate:active:not(:disabled) {
+  box-shadow: var(--weave-ring-pressed);
+}
+
+.noodle-toolbar .noodle-generate:focus-visible {
+  outline: none;
+  box-shadow: var(--weave-ring-focus);
+}
+
+.noodle-toolbar .noodle-generate:disabled {
+  cursor: default;
+}
+
+.noodle-generate-icon {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+/* Out of date, or the last Generate failed: the call to action */
+.noodle-toolbar .noodle-generate-stale,
+.noodle-toolbar .noodle-generate-stale:active:not(:disabled),
+.noodle-toolbar .noodle-generate-failed,
+.noodle-toolbar .noodle-generate-failed:active:not(:disabled) {
+  background: var(--weave-primary);
+  border-color: var(--weave-primary);
+  color: var(--weave-on-primary);
+}
+
+.noodle-generate-failed .noodle-generate-icon { color: var(--weave-on-primary); }
+.noodle-generate-current .noodle-generate-icon { color: var(--weave-success); }
+.noodle-generate-invalid .noodle-generate-icon { color: var(--weave-warning); }
+
+.noodle-toolbar .noodle-generate-empty,
+.noodle-toolbar .noodle-generate-invalid {
+  opacity: var(--weave-disabled-opacity);
+}
+
+.noodle-toolbar .noodle-generate-invalid {
+  opacity: 1;
+  color: var(--weave-text-secondary);
+}
+
+.noodle-generate-generating .noodle-generate-icon {
+  animation: noodle-spin 0.9s linear infinite;
+}
+
+@keyframes noodle-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== STATUS LINE =====
+   One-off results only (file opened, generate failed...). Generate's own state is
+   on its button. */
+.noodle-status-panel {
+  position: absolute;
+  top: 48px;
+  right: var(--weave-space-m);
+  z-index: 25;
+  max-width: 60%;
+  padding: var(--weave-space-xs) var(--weave-space-s);
+  font-family: var(--weave-font);
+  font-size: var(--weave-font-size);
+  line-height: var(--weave-line-height);
+  text-align: right;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.noodle-status-info { color: var(--weave-text-secondary); }
+.noodle-status-success { color: var(--weave-success); }
+.noodle-status-warning { color: var(--weave-warning); }
+.noodle-status-error { color: var(--weave-error); }
+
+/* ===== ADD NODE MENU =====
+   Weave menus: surface-100, 24 px rows, sentence case. */
+.cascading-menu-container {
+  position: relative;
+}
+
+.cascading-menu,
+.cascading-submenu {
+  position: absolute;
+  min-width: 168px;
+  padding: var(--weave-space-xs) 0;
+  background: var(--weave-surface-100);
+  box-shadow: var(--weave-shadow-menu);
+  font-family: var(--weave-font);
+  font-size: var(--weave-font-size);
+  color: var(--weave-text);
+}
+
+.cascading-menu {
+  top: calc(100% + var(--weave-space-xs));
+  left: 0;
+  z-index: 100;
+}
+
+.cascading-submenu {
+  top: calc(-1 * var(--weave-space-xs));
+  left: 100%;
+  z-index: 101;
+}
+
+.cascading-category {
+  position: relative;
+}
+
+.cascading-category-label,
+.cascading-submenu-item {
+  height: var(--weave-control-height);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--weave-space-m);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cascading-category-label {
+  justify-content: space-between;
+  gap: var(--weave-space-l);
+}
+
+.cascading-category-label::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  background: var(--weave-text-secondary);
+  -webkit-mask: url('../icons/caret-right-s-ui.svg') no-repeat center / contain;
+  mask: url('../icons/caret-right-s-ui.svg') no-repeat center / contain;
+}
+
+.cascading-category:hover > .cascading-category-label,
+.cascading-submenu-item:hover {
+  background: var(--weave-menu-hover);
+}
+
+.cascading-menu-version {
+  margin-top: var(--weave-space-xs);
+  padding: var(--weave-space-xs) var(--weave-space-m) 0;
+  border-top: 1px solid var(--weave-divider-strong);
+  color: var(--weave-text-placeholder);
+  font-size: var(--weave-font-size-caption);
+}
+
+select optgroup {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+select option {
+  text-transform: capitalize;
+  color: var(--adsk-text-primary);
+  font-size: 12px;
+}
+
+/* ===== LOADING SCREEN ===== */
+.loading-screen {
+  width: 100vw;
+  height: 100vh;
+  background: var(--adsk-surface-darkBlue-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-content {
+  text-align: center;
+  color: var(--adsk-text-primary);
+}
+
+.loading-content h2 {
+  margin: 0;
+  font-family: 'artifakt-element', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--adsk-primary-autodeskBlue-400);
+}
+
+.loading-status-container {
+  margin-top: 0;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.loading-status-main {
+  color: var(--adsk-text-primary);
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.loading-status-sub {
+  color: var(--adsk-text-secondary);
+  font-weight: 300;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--adsk-surface-darkBlue-100);
+  border-top: 3px solid var(--adsk-primary-autodeskBlue-400);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== SCROLLBAR STYLES ===== */
+::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--adsk-surface-darkBlue-100, rgba(0, 0, 0, 0.2));
+    -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* ===== END UI STYLES ===== */
+
+/* ===== PORT TIPS =====
+   Fusion-style tip for a node input: label, description, allowed range (PortTip.jsx).
+   Floats above the canvas so it never changes a node's layout. */
+.noodle-port-tip {
+  position: fixed;
+  z-index: 2000;
+  max-width: 280px;
+  padding: 8px 12px 10px;
+  background: var(--noodle-tip-background);
+  color: var(--noodle-tip-text);
+  border: 1px solid var(--noodle-tip-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  font-size: 12px;
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.noodle-port-tip-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.noodle-port-tip-body {
+  font-weight: 600;
+}
+
+.noodle-port-tip-range {
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.noodle-port-tip-body + .noodle-port-tip-range {
+  margin-top: 6px;
+}
+
+.noodle-port-tip-section + .noodle-port-tip-section,
+.noodle-port-tip-body + .noodle-port-tip-section {
+  margin-top: var(--weave-space-s);
+  padding-top: var(--weave-space-s);
+  border-top: 1px solid var(--noodle-tip-divider);
+}
+
+.noodle-port-tip-range.error {
+  color: var(--noodle-tip-error);
+}

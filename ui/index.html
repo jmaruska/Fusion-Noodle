@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Noodle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist/bundle.css">
+</head>
+<body>
+    <div id="root">
+        <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; background-color: var(--adsk-surface-darkBlue-300, #222933); color: var(--adsk-text-primary, white); font-size: 12px; font-family: "Artifakt Element", -apple-system, "Segoe UI", sans-serif; z-index: 9999; opacity: 0.5;">
+            <div>Loading</div>
+        </div>
+    </div>
+    
+    <script>
+        // Bridge the palette uses to call the add-in: window.returnData(json) returns a Promise.
+        window.returnData = function (data) {
+            return new Promise((resolve, reject) => {
+                let action;
+                try {
+                    action = JSON.parse(data).action;
+                } catch (error) {
+                    reject(error);
+                    return;
+                }
+
+                const send = () => {
+                    try {
+                        const result = window.adsk.fusionSendData(action, data);
+                        if (result !== undefined) {
+                            resolve(result);
+                        } else if (typeof window.returnValue !== 'undefined') {
+                            resolve(window.returnValue);
+                        } else if (typeof external !== 'undefined' && typeof external.returnValue !== 'undefined') {
+                            resolve(external.returnValue);
+                        } else {
+                            resolve(undefined);
+                        }
+                    } catch (error) {
+                        reject(error);
+                    }
+                };
+
+                if (window.adsk && window.adsk.fusionSendData) {
+                    send();
+                    return;
+                }
+
+                // Fusion adds its API shortly after the page loads. Wait up to 5 seconds for it.
+                let attempts = 0;
+                const timer = setInterval(() => {
+                    attempts++;
+                    if (window.adsk && window.adsk.fusionSendData) {
+                        clearInterval(timer);
+                        send();
+                    } else if (attempts >= 50) {
+                        clearInterval(timer);
+                        reject(new Error('Fusion API not available after timeout'));
+                    }
+                }, 100);
+            });
+        };
+    </script>
+    
+    <script type="module" src="dist/bundle.js"></script>
+</body>
+</html>

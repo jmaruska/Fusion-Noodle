@@ -1,0 +1,156 @@
+/* Theme variables: colors, gradients, shadows. */
+:root {
+  /* Autodesk Dark Blue Theme Variables */
+  --adsk-surface-darkBlue-100: #454f61;
+  --adsk-surface-darkBlue-200: #3b4453;
+  --adsk-surface-darkBlue-250: #2e3440;
+  --adsk-surface-darkBlue-300: #222933;
+  --adsk-surface-darkBlue-350: #1a1f25;
+
+  /* Autodesk Blue Primary */
+  --adsk-primary-autodeskBlue-400: #3198eb;
+  --adsk-primary-autodeskBlue-500: #0696d7;
+  --adsk-primary-autodeskBlue-600: #1858a8;
+
+  /* Autodesk Status Colors */
+  --adsk-status-error: #ec4a41;
+  --adsk-status-success: #87b340;
+
+  /* Error State Colors - for invalid inputs */
+  --noodle-error-border: #ec4a41;
+  --noodle-error-background: rgba(236, 74, 65, 0.1); /* Transparent red */
+  --noodle-error-text: rgba(236, 74, 65, 0.8); /* Faded red text */
+
+  /* Autodesk Typography */
+  --adsk-text-primary: #ffffff;
+  --adsk-text-secondary: #bcd3ee;
+  --adsk-text-tertiary: #8babdc;
+
+  --tertiary-slate-400: #a7bacf;
+  --adsk-fusion-highlight: #00aee4;
+
+  /* Noodle Node Colors */
+  /* ==================== DATA-TYPE COLORS ===================== */
+  --noodle-color-numbers: #faa21b;
+  --noodle-color-vector3: #ed8d16;
+  --noodle-color-geometry: #6a9728;
+  --noodle-color-transform: #8558c5;
+  --noodle-color-collection: #3198eb;
+  --noodle-color-array: #3198eb;
+  --noodle-color-curve: #32bcad;  /* Autodesk --secondary-turquoise-500 */
+
+  /* ==================== NODE CATEGORY COLORS ===================== */
+  --node-category-geometry: #6a9728;
+  --node-category-math: #faa21b;
+  --node-category-transform: #8558c5;
+  --node-category-effector: #5f3e8e;
+  --node-category-collection: #3198eb;
+  --node-category-array: #3198eb;
+  --node-category-sources: #c97c20;
+  --node-category-curves: #32bcad;
+  --node-category-modifiers: #c084fc;
+  --node-category-general: #bcd3ee;
+
+  /* ==================== WEAVE (Dark Blue, high density) =====================
+     Autodesk's Weave design system as Fusion ships it, for everything that isn't a
+     node: dialogs, menus, toolbar, status. Values come from Fusion's own
+     WeaveDarkBlueHighDensityTheme stylesheet and the open-source HIG theme data
+     (@weave-design/theme-data, darkBlueHighDensityTheme). Values only; no Autodesk
+     files are shipped. Nodes keep their own --adsk-* / --noodle-* tokens above. */
+  --weave-font: "Artifakt Element", ArtifaktElement, "Open Sans", system-ui, sans-serif;
+  --weave-font-size: 12px;          /* Body, labels, buttons, inputs */
+  --weave-font-size-caption: 11px;  /* Notes, hints */
+  --weave-font-size-title: 16px;    /* Dialog titles */
+  --weave-line-height: 16px;
+  --weave-weight-strong: 600;       /* Buttons, input values, titles (falls back to bold) */
+
+  --weave-surface-100: #454f61;     /* Dialogs, menus */
+  --weave-surface-200: #3b4453;     /* Panels */
+  --weave-surface-250: #2e3440;     /* Window */
+  --weave-surface-300: #222933;
+  --weave-surface-350: #1a1f25;     /* Wells: viewports, canvases */
+
+  --weave-text: #f5f5f5;
+  --weave-text-secondary: rgba(245, 245, 245, 0.7);
+  --weave-text-placeholder: rgba(245, 245, 245, 0.4);
+  --weave-disabled-opacity: 0.4;
+
+  --weave-border: rgba(188, 211, 238, 0.5);         /* Control outlines */
+  --weave-divider: rgba(188, 211, 238, 0.1);
+  --weave-divider-strong: rgba(188, 211, 238, 0.25);
+
+  --weave-accent: #38abdf;          /* Focus, selection, active underline */
+  --weave-primary: #0696d7;         /* Primary button */
+  --weave-on-primary: #ffffff;
+
+  --weave-input-background: rgba(34, 41, 51, 0.6);
+  --weave-input-line: rgba(188, 211, 238, 0.35);
+  --weave-input-line-hover: #bcd3ee;
+
+  --weave-ring-hover: 0 0 0 2px rgba(188, 211, 238, 0.15);
+  --weave-ring-focus: 0 0 0 2px rgba(56, 171, 223, 0.35);
+  --weave-ring-pressed: 0 0 0 4px rgba(188, 211, 238, 0.25);
+  --weave-selected-background: rgba(56, 171, 223, 0.15);
+  --weave-selected-border: rgba(56, 171, 223, 0.5);
+
+  --weave-slider-rail: rgba(188, 211, 238, 0.2);
+  --weave-slider-fill: #bcd3ee;
+
+  --weave-success: #87b340;
+  --weave-warning: #fbb549;
+  --weave-error: #eb5555;
+  --weave-success-background: rgba(135, 179, 64, 0.2);
+  --weave-warning-background: rgba(251, 181, 73, 0.2);
+  --weave-error-background: rgba(235, 85, 85, 0.2);
+
+  --weave-menu-hover: rgba(34, 41, 51, 0.3);
+  --weave-overlay: rgba(0, 0, 0, 0.5);
+  --weave-shadow-dialog: 0 4px 16px rgba(26, 31, 38, 0.5);
+  --weave-shadow-menu: 0 2px 4px rgba(26, 31, 38, 0.5);
+
+  --weave-space-xxs: 2px;
+  --weave-space-xs: 4px;
+  --weave-space-s: 8px;
+  --weave-space-m: 12px;
+  --weave-space-l: 16px;
+  --weave-space-xl: 24px;
+
+  --weave-radius-control: 2px;      /* Buttons, chips */
+  --weave-radius-container: 4px;    /* Dialogs */
+  --weave-control-height: 24px;     /* Buttons, inputs, dropdowns */
+
+  /* ==================== FIELD SIZE ===================== */
+  /* Number and X/Y/Z fields are one size on every node, narrow or wide.
+     Wide nodes give the extra room to dropdowns. */
+  --noodle-field-width: 76px;
+
+  /* ==================== PORT TIPS (Fusion's light tooltip) ===================== */
+  --noodle-tip-background: #e1ebf6;
+  --noodle-tip-border: #1f2329;
+  --noodle-tip-text: #2b2f36;
+  --noodle-tip-error: #c4271e;
+  --noodle-tip-divider: rgba(43, 47, 54, 0.15);
+
+  /* ==================== DYNAMIC CONNECTION LINE COLOR ===================== */
+  --rf-connection-line-color: #8babdc;
+}
+
+html, body, #root {
+  font-family: 'Open Sans', system-ui, sans-serif;
+  font-size: 12px;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background: var(--adsk-surface-darkBlue-200);
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}

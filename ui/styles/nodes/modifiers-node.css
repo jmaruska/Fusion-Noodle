@@ -1,0 +1,40 @@
+/* ===== MODIFIERS NODE STYLING ===== */
+/* Uses --node-category-modifiers (#c084fc) from theme.css.
+   Light purple — visually related to the effector family (dark/mid purple)
+   but clearly distinct. Signals "I work alongside effectors, not as one." */
+
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-modifiers {
+  border: 1px solid var(--node-category-modifiers) !important;
+  box-shadow: 0 1px 12px rgba(192, 132, 252, 0.6) !important;
+  animation: fresh-pulse-modifiers 2s ease-in-out infinite;
+}
+
+@keyframes fresh-pulse-modifiers {
+  0%, 100% { box-shadow: 0 1px 12px rgba(192, 132, 252, 0.6); }
+  50%       { box-shadow: 0 6px 16px rgba(192, 132, 252, 0.8); }
+}
+
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-modifiers {
+  border: 1px solid var(--node-category-modifiers) !important;
+  box-shadow: 0 1px 12px rgba(192, 132, 252, 0.6) !important;
+  animation: none !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node.selected .custom-node.node-category-modifiers {
+  border-color: var(--node-category-modifiers) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-modifiers) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-modifiers {
+  border-color: var(--node-category-modifiers) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+.react-flow__node .custom-node.node-category-modifiers .node-header,
+.custom-node.node-category-modifiers .node-header,
+.node-category-modifiers .node-header {
+  border-bottom: 2px solid var(--node-category-modifiers) !important;
+}

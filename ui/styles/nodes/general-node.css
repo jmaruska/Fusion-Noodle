@@ -1,0 +1,40 @@
+/* ===== GENERAL / FALLBACK NODE STYLING ===== */
+/* Uses --node-category-general (#bcd3ee) from theme.css.
+   Applied to any node whose category doesn't match a dedicated CSS file,
+   via the `nodeCategory || 'general'` fallback in BaseNode.jsx. */
+
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-general {
+  border: 1px solid var(--node-category-general) !important;
+  box-shadow: 0 1px 12px rgba(188, 211, 238, 0.6) !important;
+  animation: fresh-pulse-general 2s ease-in-out infinite;
+}
+
+@keyframes fresh-pulse-general {
+  0%, 100% { box-shadow: 0 1px 12px rgba(188, 211, 238, 0.6); }
+  50%       { box-shadow: 0 6px 16px rgba(188, 211, 238, 0.8); }
+}
+
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-general {
+  border: 1px solid var(--node-category-general) !important;
+  box-shadow: 0 1px 12px rgba(188, 211, 238, 0.6) !important;
+  animation: none !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node.selected .custom-node.node-category-general {
+  border-color: var(--node-category-general) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-general) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-general {
+  border-color: var(--node-category-general) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+.react-flow__node .custom-node.node-category-general .node-header,
+.custom-node.node-category-general .node-header,
+.node-category-general .node-header {
+  border-bottom: 2px solid var(--node-category-general) !important;
+}

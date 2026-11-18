@@ -1,0 +1,68 @@
+/* ===== TRANSFORM NODE STYLING ===== */
+/* Uses --node-category-transform (#8558c5) from theme.css */
+
+/* ===== FRESH NODE HIGHLIGHTING (newly created nodes) ===== */
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-transform {
+  border: 1px solid var(--node-category-transform) !important;
+  box-shadow: 0 1px 12px rgba(133, 88, 197, 0.6) !important;
+  animation: fresh-pulse-transform 2s ease-in-out infinite;
+}
+
+/* Fresh node animation - customize timing/easing as needed */
+@keyframes fresh-pulse-transform {
+  0%, 100% { 
+    box-shadow: 0 1px 12px rgba(133, 88, 197, 0.6);
+  }
+  50% { 
+    box-shadow: 0 6px 16px rgba(133, 88, 197, 0.8);
+  }
+}
+
+/* ===== FADING NODE STATE (smooth transition out of fresh highlighting) ===== */
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-transform {
+  border: 1px solid var(--node-category-transform) !important;
+  box-shadow: 0 1px 12px rgba(133, 88, 197, 0.6) !important;
+  animation: none !important; /* Stop the pulsing animation */
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE SELECTION HIGHLIGHTING ===== */
+.react-flow__node.selected .custom-node.node-category-transform {
+  border-color: var(--node-category-transform) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-transform) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE HOVER STATE ===== */
+.react-flow__node:hover .custom-node.node-category-transform {
+  border-color: var(--node-category-transform) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+/* ===== NODE HEADER ACCENT STRIPE ===== */
+.node-category-transform .node-header {
+  border-bottom: 2px solid var(--node-category-transform);
+}
+
+/* ===== ULTRA HIGH SPECIFICITY DIAGNOSTIC RULES ===== */
+/* Force transform node styling - use only if standard rules don't work */
+.react-flow__node .custom-node.node-category-transform .node-header,
+.custom-node.node-category-transform .node-header,
+.node-category-transform .node-header {
+  border-bottom: 2px solid var(--node-category-transform) !important;
+}
+
+/* ===== ULTRA HIGH SPECIFICITY OVERRIDES (use sparingly) ===== */
+/* These rules force styling when CSS cascade conflicts occur */
+.react-flow__node.selected .custom-node.node-category-transform {
+  border-color: var(--node-category-transform) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(133, 88, 197, 0.8) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-transform {
+  border-color: var(--node-category-transform) !important;
+  transition: border-color 0.2s ease-out;
+}

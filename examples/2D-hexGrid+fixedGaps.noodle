@@ -1,0 +1,626 @@
+{
+  "nodes": [
+    {
+      "id": "node_polygon_generator_1794937917261_7056",
+      "type": "custom",
+      "position": {
+        "x": -338.3195772916032,
+        "y": 374.1518778971164
+      },
+      "data": {
+        "label": "Polygon",
+        "nodeType": "polygon_generator",
+        "nodeCategory": "geometry",
+        "nodeInfo": {
+          "type": "polygon_generator",
+          "name": "Polygon",
+          "category": "geometry",
+          "menu_category": "sources",
+          "description": "Create Polygon",
+          "wide": true,
+          "inputs": {
+            "sides": {
+              "name": "sides",
+              "type": "integer",
+              "required": false,
+              "defaultValue": 6,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Number of sides of the prism's cross-section.",
+              "label": "Sides",
+              "minValue": 3,
+              "default": 6
+            },
+            "size": {
+              "name": "size",
+              "type": "float",
+              "required": false,
+              "defaultValue": 2,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The polygon's width, measured as Measured says; on a grid, spacing = size + gap.",
+              "label": "Size",
+              "minValue": 0.001,
+              "unit": "length",
+              "default": 2
+            },
+            "measured": {
+              "name": "measured",
+              "type": "enum",
+              "required": false,
+              "defaultValue": "across_flats",
+              "showInputField": true,
+              "showInputHandle": false,
+              "description": "What Size measures: across the flats (as nuts are sized), across the corners, or one side.",
+              "label": "Measured",
+              "enumOptions": [
+                "across_flats",
+                "across_corners",
+                "side"
+              ],
+              "enumLabels": {
+                "across_flats": "Across flats",
+                "across_corners": "Across corners",
+                "side": "Side length"
+              },
+              "default": "across_flats"
+            },
+            "height": {
+              "name": "height",
+              "type": "float",
+              "required": false,
+              "defaultValue": 2,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Total thickness of the polygon, centered on the XY plane.",
+              "label": "Height",
+              "minValue": 0.001,
+              "unit": "length",
+              "default": 2
+            }
+          },
+          "outputs": {
+            "geometry": {
+              "name": "geometry",
+              "type": "geometry",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Geometry"
+            }
+          }
+        },
+        "wide": true,
+        "currentInputs": {
+          "sides": 6,
+          "height": 2,
+          "size": 1.7320508075688774,
+          "measured": "across_flats"
+        },
+        "computedInputs": {
+          "size": 5
+        },
+        "initiallyVisible": true
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_Atomizer_1794937924584_85685",
+      "type": "custom",
+      "position": {
+        "x": -31.011919185747985,
+        "y": 440.58930069289215
+      },
+      "data": {
+        "label": "Atomizer",
+        "nodeType": "Atomizer",
+        "nodeCategory": "collection",
+        "nodeInfo": {
+          "type": "Atomizer",
+          "name": "Atomizer",
+          "category": "collection",
+          "menu_category": "collection",
+          "description": "Convert geometry into virtual collection instances",
+          "wide": false,
+          "inputs": {
+            "geometry": {
+              "name": "geometry",
+              "type": "geometry",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The geometry to turn into a collection that arrays can repeat.",
+              "label": "Geometry"
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Collection",
+              "label": "Collection"
+            }
+          }
+        },
+        "wide": false,
+        "currentInputs": {},
+        "computedInputs": {},
+        "initiallyVisible": true
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_Array_2D_Grid_1794937924584_33641",
+      "type": "custom",
+      "position": {
+        "x": 202,
+        "y": 479
+      },
+      "data": {
+        "label": "Array 2D Grid",
+        "nodeType": "Array_2D_Grid",
+        "nodeCategory": "array",
+        "nodeInfo": {
+          "type": "Array_2D_Grid",
+          "name": "Array 2D Grid",
+          "category": "array",
+          "menu_category": "array",
+          "description": "Create 2D grid array",
+          "wide": true,
+          "inputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The instances to repeat at every grid point.",
+              "label": "Collection"
+            },
+            "spacer_0": {
+              "name": "spacer_0",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 0"
+            },
+            "array_type": {
+              "name": "array_type",
+              "type": "enum",
+              "required": false,
+              "defaultValue": "grid",
+              "showInputField": true,
+              "showInputHandle": false,
+              "description": "Grid lines rows up, Staggered shifts every other row by half, Hexagonal packs rows tighter.",
+              "label": "Type",
+              "enumOptions": [
+                "grid",
+                "stagger",
+                "hexagonal"
+              ],
+              "enumLabels": {
+                "grid": "Grid",
+                "stagger": "Staggered",
+                "hexagonal": "Hexagonal"
+              },
+              "default": "grid"
+            },
+            "spacer_1": {
+              "name": "spacer_1",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 1"
+            },
+            "count_x": {
+              "name": "count_x",
+              "type": "integer",
+              "required": false,
+              "defaultValue": 3,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Number of instances along the grid's first axis.",
+              "label": "Count X",
+              "minValue": 1,
+              "maxValue": 100,
+              "default": 3
+            },
+            "count_y": {
+              "name": "count_y",
+              "type": "integer",
+              "required": false,
+              "defaultValue": 3,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Number of rows along the grid's second axis.",
+              "label": "Count Y",
+              "minValue": 1,
+              "maxValue": 100,
+              "default": 3
+            },
+            "spacing_x": {
+              "name": "spacing_x",
+              "type": "float",
+              "required": false,
+              "defaultValue": 5,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Distance between instances along the first axis; in Hexagonal, the distance across a cell's flats.",
+              "label": "Spacing X",
+              "minValue": 0.001,
+              "unit": "length",
+              "default": 5
+            },
+            "spacing_y": {
+              "name": "spacing_y",
+              "type": "float",
+              "required": false,
+              "defaultValue": 5,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Distance between rows. In Hexagonal it is linked to Spacing X (rows are \u221a3/2 of it apart).",
+              "label": "Spacing Y",
+              "minValue": 0.001,
+              "unit": "length",
+              "default": 5
+            },
+            "spacer_2": {
+              "name": "spacer_2",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 2"
+            },
+            "normal": {
+              "name": "normal",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The direction the grid's plane faces.",
+              "label": "Normal",
+              "default": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+              }
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Collection",
+              "label": "Collection"
+            }
+          }
+        },
+        "wide": true,
+        "currentInputs": {
+          "array_type": "hexagonal",
+          "count_x": 10,
+          "count_y": 10,
+          "spacing_x": 5,
+          "spacing_y": 7,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          }
+        },
+        "computedInputs": {
+          "spacing_x": 6,
+          "spacing_y": 5.1962
+        },
+        "initiallyVisible": true
+      }
+    },
+    {
+      "id": "node_Materializer_1794937924584_40884",
+      "type": "custom",
+      "position": {
+        "x": 506.64303732970484,
+        "y": 884.1311300818096
+      },
+      "data": {
+        "label": "Materializer",
+        "nodeType": "Materializer",
+        "nodeCategory": "collection",
+        "nodeInfo": {
+          "type": "Materializer",
+          "name": "Materializer",
+          "category": "collection",
+          "menu_category": "collection",
+          "description": "Convert collection instances into real geometry",
+          "wide": false,
+          "inputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The instances to build as real bodies in the design.",
+              "label": "Collection"
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "geometry": {
+              "name": "geometry",
+              "type": "geometry",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Geometry",
+              "label": "Geometry"
+            }
+          }
+        },
+        "wide": false,
+        "currentInputs": {},
+        "computedInputs": {},
+        "initiallyVisible": true
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_number_1794959276098_39516",
+      "type": "custom",
+      "position": {
+        "x": -632.1788938831005,
+        "y": 506.8017980262107
+      },
+      "data": {
+        "label": "Number",
+        "nodeType": "number",
+        "nodeCategory": "math",
+        "nodeInfo": {
+          "type": "number",
+          "name": "Number",
+          "category": "math",
+          "menu_category": "math",
+          "description": "Output a number value",
+          "wide": false,
+          "inputs": {
+            "value": {
+              "name": "value",
+              "type": "float",
+              "required": false,
+              "defaultValue": 1,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The number this node outputs.",
+              "label": "Value",
+              "default": 1
+            }
+          },
+          "outputs": {
+            "number": {
+              "name": "number",
+              "type": "float",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Number"
+            }
+          }
+        },
+        "wide": false,
+        "currentInputs": {
+          "value": 5
+        },
+        "computedInputs": {},
+        "initiallyVisible": true
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_add_1794959296935_29075",
+      "type": "custom",
+      "position": {
+        "x": -177.81904300873398,
+        "y": 669.369316207323
+      },
+      "data": {
+        "label": "Add",
+        "nodeType": "add",
+        "nodeCategory": "math",
+        "nodeInfo": {
+          "type": "add",
+          "name": "Add",
+          "category": "math",
+          "menu_category": "math",
+          "description": "Add two numbers",
+          "wide": false,
+          "inputs": {
+            "a": {
+              "name": "a",
+              "type": "float",
+              "required": false,
+              "defaultValue": 0,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The first number to add.",
+              "label": "A",
+              "default": 0
+            },
+            "b": {
+              "name": "b",
+              "type": "float",
+              "required": false,
+              "defaultValue": 0,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "The second number to add.",
+              "label": "B",
+              "default": 0
+            }
+          },
+          "outputs": {
+            "result": {
+              "name": "result",
+              "type": "float",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Result"
+            }
+          }
+        },
+        "wide": false,
+        "currentInputs": {
+          "a": 8,
+          "b": 1
+        },
+        "computedInputs": {
+          "a": 5
+        },
+        "initiallyVisible": true
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_Atomizer_1794937924584_85685",
+      "sourceHandle": "output-collection",
+      "target": "node_Array_2D_Grid_1794937924584_33641",
+      "targetHandle": "input-collection",
+      "type": "default",
+      "style": {
+        "stroke": "var(--noodle-color-collection)",
+        "strokeWidth": 2
+      },
+      "id": "xy-edge__node_Atomizer_1794937924584_85685output-collection-node_Array_2D_Grid_1794937924584_33641input-collection"
+    },
+    {
+      "source": "node_Array_2D_Grid_1794937924584_33641",
+      "sourceHandle": "output-collection",
+      "target": "node_Materializer_1794937924584_40884",
+      "targetHandle": "input-collection",
+      "type": "default",
+      "style": {
+        "stroke": "var(--noodle-color-collection)",
+        "strokeWidth": 2
+      },
+      "id": "xy-edge__node_Array_2D_Grid_1794937924584_33641output-collection-node_Materializer_1794937924584_40884input-collection"
+    },
+    {
+      "type": "default",
+      "animated": false,
+      "style": {
+        "stroke": "var(--noodle-color-geometry)",
+        "strokeWidth": 2
+      },
+      "source": "node_polygon_generator_1794937917261_7056",
+      "sourceHandle": "output-geometry",
+      "target": "node_Atomizer_1794937924584_85685",
+      "targetHandle": "input-geometry",
+      "id": "xy-edge__node_polygon_generator_1794937917261_7056output-geometry-node_Atomizer_1794937924584_85685input-geometry"
+    },
+    {
+      "type": "default",
+      "animated": false,
+      "style": {
+        "stroke": "var(--noodle-color-numbers)",
+        "strokeWidth": 2
+      },
+      "source": "node_number_1794959276098_39516",
+      "sourceHandle": "output-number",
+      "target": "node_polygon_generator_1794937917261_7056",
+      "targetHandle": "input-size",
+      "id": "xy-edge__node_number_1794959276098_39516output-number-node_polygon_generator_1794937917261_7056input-radius"
+    },
+    {
+      "type": "default",
+      "animated": false,
+      "style": {
+        "stroke": "var(--noodle-color-numbers)",
+        "strokeWidth": 2
+      },
+      "source": "node_add_1794959296935_29075",
+      "sourceHandle": "output-result",
+      "target": "node_Array_2D_Grid_1794937924584_33641",
+      "targetHandle": "input-spacing_x",
+      "id": "xy-edge__node_add_1794959296935_29075output-result-node_Array_2D_Grid_1794937924584_33641input-spacing_x"
+    },
+    {
+      "type": "default",
+      "animated": false,
+      "style": {
+        "stroke": "var(--noodle-color-numbers)",
+        "strokeWidth": 2
+      },
+      "source": "node_number_1794959276098_39516",
+      "sourceHandle": "output-number",
+      "target": "node_add_1794959296935_29075",
+      "targetHandle": "input-a",
+      "id": "xy-edge__node_number_1794959276098_39516output-number-node_add_1794959296935_29075input-a"
+    }
+  ],
+  "viewport": {
+    "x": 330.0841283769418,
+    "y": 204.37078719862825,
+    "zoom": 0.4999999999999992
+  },
+  "noodle": {
+    "format": 8,
+    "version": "0.1.0"
+  }
+}

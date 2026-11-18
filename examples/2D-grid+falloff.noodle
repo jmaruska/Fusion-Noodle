@@ -1,0 +1,802 @@
+{
+  "nodes": [
+    {
+      "id": "box",
+      "type": "custom",
+      "position": {
+        "x": 65.36976193770465,
+        "y": -90.10426645467399
+      },
+      "data": {
+        "label": "Box",
+        "nodeType": "cube_generator",
+        "nodeCategory": "geometry",
+        "wide": false,
+        "currentInputs": {
+          "width": 2,
+          "height": 2,
+          "depth": 2
+        },
+        "computedInputs": {},
+        "initiallyVisible": true,
+        "refreshKey": 1794294053991.5332,
+        "reactFlowInstance": {
+          "viewportInitialized": true
+        },
+        "nodeInfo": {
+          "type": "cube_generator",
+          "name": "Box",
+          "category": "geometry",
+          "menu_category": "sources",
+          "description": "Create Box",
+          "wide": false,
+          "inputs": {
+            "width": {
+              "name": "width",
+              "type": "float",
+              "required": false,
+              "defaultValue": 2,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Width",
+              "unit": "length",
+              "default": 2
+            },
+            "height": {
+              "name": "height",
+              "type": "float",
+              "required": false,
+              "defaultValue": 2,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Height",
+              "unit": "length",
+              "default": 2
+            },
+            "depth": {
+              "name": "depth",
+              "type": "float",
+              "required": false,
+              "defaultValue": 2,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Depth",
+              "unit": "length",
+              "default": 2
+            }
+          },
+          "outputs": {
+            "geometry": {
+              "name": "geometry",
+              "type": "geometry",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Geometry"
+            }
+          }
+        }
+      },
+      "ref": {},
+      "dragging": false
+    },
+    {
+      "id": "atomizer",
+      "type": "custom",
+      "position": {
+        "x": 320,
+        "y": 60
+      },
+      "data": {
+        "label": "Atomizer",
+        "nodeType": "Atomizer",
+        "nodeCategory": "collection",
+        "wide": false,
+        "currentInputs": {},
+        "computedInputs": {
+          "geometry": {
+            "kind": "cube_generator",
+            "geometry_name": "Box",
+            "dimensions": {
+              "width": 2,
+              "height": 2,
+              "depth": 2
+            }
+          }
+        },
+        "initiallyVisible": true,
+        "refreshKey": 1794294053992.0686,
+        "reactFlowInstance": {
+          "viewportInitialized": true
+        },
+        "nodeInfo": {
+          "type": "Atomizer",
+          "name": "Atomizer",
+          "category": "collection",
+          "menu_category": "collection",
+          "description": "Convert geometry into virtual collection instances",
+          "wide": false,
+          "inputs": {
+            "geometry": {
+              "name": "geometry",
+              "type": "geometry",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Geometry",
+              "label": "Geometry"
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Collection",
+              "label": "Collection"
+            }
+          }
+        }
+      },
+      "ref": {}
+    },
+    {
+      "id": "grid",
+      "type": "custom",
+      "position": {
+        "x": 580,
+        "y": 0
+      },
+      "data": {
+        "label": "Array 2D Grid",
+        "nodeType": "Array_2D_Grid",
+        "nodeCategory": "array",
+        "wide": true,
+        "currentInputs": {
+          "array_type": "grid",
+          "count_x": 7,
+          "count_y": 7,
+          "spacing_x": 3,
+          "spacing_y": 3,
+          "normal": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          }
+        },
+        "computedInputs": {},
+        "initiallyVisible": true,
+        "refreshKey": 1794294053992.7395,
+        "reactFlowInstance": {
+          "viewportInitialized": true
+        },
+        "nodeInfo": {
+          "type": "Array_2D_Grid",
+          "name": "Array 2D Grid",
+          "category": "array",
+          "menu_category": "array",
+          "description": "Create 2D grid array",
+          "wide": true,
+          "inputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Collection",
+              "label": "Collection"
+            },
+            "spacer_0": {
+              "name": "spacer_0",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 0"
+            },
+            "array_type": {
+              "name": "array_type",
+              "type": "enum",
+              "required": false,
+              "defaultValue": "grid",
+              "showInputField": true,
+              "showInputHandle": false,
+              "description": "Array Pattern",
+              "label": "Type",
+              "enumOptions": [
+                "grid",
+                "stagger",
+                "hexagonal"
+              ],
+              "enumLabels": {
+                "grid": "Grid",
+                "stagger": "Staggered",
+                "hexagonal": "Hexagonal"
+              },
+              "default": "grid"
+            },
+            "spacer_1": {
+              "name": "spacer_1",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 1"
+            },
+            "count_x": {
+              "name": "count_x",
+              "type": "integer",
+              "required": false,
+              "defaultValue": 3,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Count U (First Axis)",
+              "label": "Count X",
+              "default": 3
+            },
+            "count_y": {
+              "name": "count_y",
+              "type": "integer",
+              "required": false,
+              "defaultValue": 3,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Count V (Second Axis)",
+              "label": "Count Y",
+              "default": 3
+            },
+            "spacing_x": {
+              "name": "spacing_x",
+              "type": "float",
+              "required": false,
+              "defaultValue": 5,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Spacing U (First Axis)",
+              "label": "Spacing X",
+              "unit": "length",
+              "default": 5
+            },
+            "spacing_y": {
+              "name": "spacing_y",
+              "type": "float",
+              "required": false,
+              "defaultValue": 5,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Spacing V (Second Axis)",
+              "label": "Spacing Y",
+              "unit": "length",
+              "default": 5
+            },
+            "spacer_2": {
+              "name": "spacer_2",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 2"
+            },
+            "normal": {
+              "name": "normal",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Normal Vector (Array Plane Facing Direction)",
+              "label": "Normal",
+              "default": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+              }
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Collection",
+              "label": "Collection"
+            }
+          }
+        }
+      },
+      "ref": {}
+    },
+    {
+      "id": "scale",
+      "type": "custom",
+      "position": {
+        "x": 581.7667503226406,
+        "y": 466.99749032078
+      },
+      "data": {
+        "label": "Scale",
+        "nodeType": "Scale_Transform",
+        "nodeCategory": "transform",
+        "wide": false,
+        "currentInputs": {
+          "scale": 0.25
+        },
+        "computedInputs": {},
+        "initiallyVisible": true,
+        "refreshKey": 1794294053992.2627,
+        "reactFlowInstance": {
+          "viewportInitialized": true
+        },
+        "nodeInfo": {
+          "type": "Scale_Transform",
+          "name": "Scale",
+          "category": "transform",
+          "menu_category": "transform",
+          "description": "Create scale transform",
+          "wide": false,
+          "inputs": {
+            "scale": {
+              "name": "scale",
+              "type": "float",
+              "required": true,
+              "defaultValue": 1,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Scale Factor",
+              "default": 1
+            },
+            "input_transform": {
+              "name": "input_transform",
+              "type": "transform",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Input Transform"
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "transform": {
+              "name": "transform",
+              "type": "transform",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Transform"
+            }
+          }
+        }
+      },
+      "ref": {},
+      "dragging": false
+    },
+    {
+      "id": "falloff",
+      "type": "custom",
+      "position": {
+        "x": 914.4420195529917,
+        "y": 370.50532393305093
+      },
+      "data": {
+        "label": "Falloff Effector",
+        "nodeType": "Falloff_Effector",
+        "nodeCategory": "effector",
+        "wide": false,
+        "currentInputs": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "radius": 20,
+          "inner_radius": 0,
+          "strength": 1,
+          "curve": "{\"degree\":3,\"points\":[[0.0,1.0],[0.3333333333333333,0.6666666666666666],[0.6666666666666666,0.3333333333333333],[1.0,0.0]],\"repeat\":1,\"repeat_style\":\"mirror\",\"decay\":0.0,\"invert\":false,\"lead\":\"start\",\"output\":{\"start\":1.0,\"end\":0.0}}"
+        },
+        "computedInputs": {
+          "transform": {
+            "transform_type": "matrix_chained",
+            "transform_matrix": [
+              [
+                0.25,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0.25,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0.25,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ]
+            ],
+            "scale_factor": 0.25,
+            "reference_point": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "chained": false,
+            "last_operation": "scale",
+            "operation_chain": [
+              "scale"
+            ]
+          }
+        },
+        "initiallyVisible": true,
+        "refreshKey": 1794294053992.3389,
+        "reactFlowInstance": {
+          "viewportInitialized": true
+        },
+        "nodeInfo": {
+          "type": "Falloff_Effector",
+          "name": "Falloff Effector",
+          "category": "effector",
+          "menu_category": "effector",
+          "description": "Apply spatial falloff effects to collections",
+          "wide": false,
+          "inputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Collection"
+            },
+            "transform": {
+              "name": "transform",
+              "type": "transform",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Transform"
+            },
+            "spacer_1": {
+              "name": "spacer_1",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 1"
+            },
+            "position": {
+              "name": "position",
+              "type": "vector3",
+              "required": false,
+              "defaultValue": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Position",
+              "unit": "length",
+              "default": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "radius": {
+              "name": "radius",
+              "type": "float",
+              "required": false,
+              "defaultValue": 10,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Radius",
+              "unit": "length",
+              "default": 10
+            },
+            "spacer_2": {
+              "name": "spacer_2",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 2"
+            },
+            "inner_radius": {
+              "name": "inner_radius",
+              "type": "float",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Inner Radius",
+              "unit": "length"
+            },
+            "range_start": {
+              "name": "range_start",
+              "type": "float",
+              "required": false,
+              "defaultValue": 100,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Range Start %",
+              "default": 100
+            },
+            "range_end": {
+              "name": "range_end",
+              "type": "float",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Range End %"
+            },
+            "repeat_count": {
+              "name": "repeat_count",
+              "type": "integer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Repeat Count"
+            },
+            "fade_repeats": {
+              "name": "fade_repeats",
+              "type": "boolean",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Fade Repeats"
+            },
+            "edge_smooth": {
+              "name": "edge_smooth",
+              "type": "float",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Edge Smooth"
+            },
+            "spacer_3": {
+              "name": "spacer_3",
+              "type": "spacer",
+              "required": false,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Spacer 3"
+            },
+            "strength": {
+              "name": "strength",
+              "type": "float",
+              "required": false,
+              "defaultValue": 1,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Strength",
+              "default": 1
+            }
+          },
+          "outputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Collection"
+            }
+          }
+        }
+      },
+      "ref": {},
+      "dragging": false
+    },
+    {
+      "id": "materializer",
+      "type": "custom",
+      "position": {
+        "x": 1188.7642406434204,
+        "y": 969.5983722808124
+      },
+      "data": {
+        "label": "Materializer",
+        "nodeType": "Materializer",
+        "nodeCategory": "collection",
+        "wide": false,
+        "currentInputs": {},
+        "computedInputs": {},
+        "initiallyVisible": true,
+        "refreshKey": 1794294053992.875,
+        "reactFlowInstance": {
+          "viewportInitialized": true
+        },
+        "nodeInfo": {
+          "type": "Materializer",
+          "name": "Materializer",
+          "category": "collection",
+          "menu_category": "collection",
+          "description": "Convert collection instances into real geometry",
+          "wide": false,
+          "inputs": {
+            "collection": {
+              "name": "collection",
+              "type": "collection",
+              "required": true,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Collection",
+              "label": "Collection"
+            }
+          },
+          "outputs": {
+            "output_spacer": {
+              "name": "output_spacer",
+              "type": "spacer",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "",
+              "label": "Output Spacer"
+            },
+            "geometry": {
+              "name": "geometry",
+              "type": "geometry",
+              "required": false,
+              "defaultValue": null,
+              "showInputField": true,
+              "showInputHandle": true,
+              "description": "Geometry",
+              "label": "Geometry"
+            }
+          }
+        }
+      },
+      "ref": {},
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "box-geometry-atomizer-geometry",
+      "source": "box",
+      "target": "atomizer",
+      "sourceHandle": "output-geometry",
+      "targetHandle": "input-geometry",
+      "type": "default",
+      "style": {
+        "stroke": "#6a9728",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "atomizer-collection-grid-collection",
+      "source": "atomizer",
+      "target": "grid",
+      "sourceHandle": "output-collection",
+      "targetHandle": "input-collection",
+      "type": "default",
+      "style": {
+        "stroke": "#3198eb",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "grid-collection-falloff-collection",
+      "source": "grid",
+      "target": "falloff",
+      "sourceHandle": "output-collection",
+      "targetHandle": "input-collection",
+      "type": "default",
+      "style": {
+        "stroke": "#3198eb",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "scale-transform-falloff-transform",
+      "source": "scale",
+      "target": "falloff",
+      "sourceHandle": "output-transform",
+      "targetHandle": "input-transform",
+      "type": "default",
+      "style": {
+        "stroke": "#8558c5",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "falloff-collection-materializer-collection",
+      "source": "falloff",
+      "target": "materializer",
+      "sourceHandle": "output-collection",
+      "targetHandle": "input-collection",
+      "type": "default",
+      "style": {
+        "stroke": "#3198eb",
+        "strokeWidth": 2
+      }
+    }
+  ],
+  "viewport": {
+    "x": -173.83729438511386,
+    "y": 154.47656775697845,
+    "zoom": 0.5660109338513402
+  },
+  "noodle": {
+    "format": 8,
+    "version": "0.1.0"
+  }
+}

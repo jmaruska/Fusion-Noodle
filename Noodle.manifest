@@ -1,0 +1,12 @@
+{
+    "autodeskProduct": "Fusion360",
+    "type": "addin",
+    "author": "Joshua Maruska",
+    "description": {
+        "": "Node-based Algorithmic Modeling Tool"
+    },
+    "version": "0.1.0",
+    "runOnStartup": false,
+    "supportedOS": "windows|mac",
+	"iconFilename":	"ui/icons/app-icon.svg"
+}

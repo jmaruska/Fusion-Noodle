@@ -1,0 +1,223 @@
+/* Port/handle styling shared across node types. */
+/* ==================== DATA-TYPE PORT HANDLE COLORS ===================== */
+/* Unconnected port handles: solid color fill and border per type */
+.port-type-number .react-flow__handle,
+.port-type-float .react-flow__handle,
+.port-type-integer .react-flow__handle,
+.handle-number,
+.handle-float,
+.handle-integer,
+.custom-node .port-type-number .react-flow__handle,
+.custom-node .port-type-float .react-flow__handle,
+.custom-node .port-type-integer .react-flow__handle {
+	border-color: var(--noodle-color-numbers) !important;
+	background: var(--noodle-color-numbers) !important;
+}
+
+.port-type-geometry .react-flow__handle,
+.port-type-brep .react-flow__handle,
+.handle-geometry,
+.handle-brep,
+.custom-node .port-type-geometry .react-flow__handle,
+.custom-node .port-type-brep .react-flow__handle {
+	border-color: var(--noodle-color-geometry) !important;
+	background: var(--noodle-color-geometry) !important;
+}
+
+.port-type-collection .react-flow__handle,
+.handle-collection,
+.custom-node .port-type-collection .react-flow__handle {
+	border-color: var(--noodle-color-collection) !important;
+	background: var(--noodle-color-collection) !important;
+}
+
+.port-type-array .react-flow__handle,
+.handle-array {
+	border-color: var(--noodle-color-array);
+	background: var(--noodle-color-array);
+}
+
+.port-type-vector3 .react-flow__handle,
+.handle-vector3,
+.custom-node .port-type-vector3 .react-flow__handle {
+	border-color: var(--noodle-color-vector3) !important;
+	background: var(--noodle-color-vector3) !important;
+}
+
+.port-type-point .react-flow__handle,
+.handle-point,
+.custom-node .port-type-point .react-flow__handle {
+	border-color: var(--noodle-color-vector3) !important;
+	background: var(--noodle-color-vector3) !important;
+}
+
+.port-type-transform .react-flow__handle,
+.handle-transform,
+.custom-node .port-type-transform .react-flow__handle {
+	border-color: var(--noodle-color-transform) !important;
+	background: var(--noodle-color-transform) !important;
+}
+
+.port-type-surface .react-flow__handle,
+.handle-surface,
+.custom-node .port-type-surface .react-flow__handle {
+	border-color: var(--noodle-color-geometry) !important;
+	background: var(--noodle-color-geometry) !important;
+}
+
+.port-type-curve .react-flow__handle,
+.handle-curve,
+.custom-node .port-type-curve .react-flow__handle {
+	border-color: var(--noodle-color-curve) !important;
+	background: var(--noodle-color-curve) !important;
+}
+
+.port-type-string .react-flow__handle,
+.port-type-boolean .react-flow__handle,
+.handle-string,
+.handle-boolean {
+	border-color: var(--adsk-text-secondary);
+	background: var(--adsk-text-secondary);
+}
+
+/* Connected port handles: hollow, colored border per type */
+.port-type-number .react-flow__handle.connected,
+.port-type-float .react-flow__handle.connected,
+.port-type-integer .react-flow__handle.connected,
+.handle-number.connected,
+.handle-float.connected,
+.handle-integer.connected {
+	background: transparent !important;
+	border-color: var(--noodle-color-numbers) !important;
+}
+
+.port-type-geometry .react-flow__handle.connected,
+.port-type-brep .react-flow__handle.connected,
+.handle-geometry.connected,
+.handle-brep.connected {
+	background: transparent !important;
+	border-color: var(--noodle-color-geometry) !important;
+}
+
+.port-type-collection .react-flow__handle.connected,
+.handle-collection.connected,
+.custom-node .port-type-collection .react-flow__handle.connected {
+  background: transparent !important;
+  border-color: var(--noodle-color-collection) !important;
+}
+
+.port-type-array .react-flow__handle.connected,
+.handle-array.connected {
+	background: transparent !important;
+	border-color: var(--noodle-color-array) !important;
+}
+
+.port-type-vector3 .react-flow__handle.connected,
+.handle-vector3.connected,
+.custom-node .port-type-vector3 .react-flow__handle.connected {
+  background: transparent !important;
+  border-color: var(--noodle-color-vector3) !important;
+}
+
+.port-type-transform .react-flow__handle.connected,
+.handle-transform.connected,
+.custom-node .port-type-transform .react-flow__handle.connected {
+  background: transparent !important;
+  border-color: var(--noodle-color-transform) !important;
+}
+
+.port-type-curve .react-flow__handle.connected,
+.handle-curve.connected,
+.custom-node .port-type-curve .react-flow__handle.connected {
+	background: transparent !important;
+	border-color: var(--noodle-color-curve) !important;
+}
+
+.port-type-string .react-flow__handle.connected,
+.port-type-boolean .react-flow__handle.connected,
+.handle-string.connected,
+.handle-boolean.connected {
+	background: transparent !important;
+	border-color: var(--adsk-text-secondary) !important;
+}
+
+/* ==================== DATA-TYPE CONNECTED VALUE COLORS ===================== */
+/* Connected read-only values should match the data type color, not the receiving node color */
+
+.port-type-number .connected-value,
+.port-type-float .connected-value,
+.port-type-integer .connected-value,
+.custom-node .port-type-number .connected-value,
+.custom-node .port-type-float .connected-value,
+.custom-node .port-type-integer .connected-value {
+  color: var(--noodle-color-numbers) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-geometry .connected-value,
+.port-type-brep .connected-value,
+.custom-node .port-type-geometry .connected-value,
+.custom-node .port-type-brep .connected-value {
+  color: var(--noodle-color-geometry) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-collection .connected-value,
+.custom-node .port-type-collection .connected-value {
+  color: var(--noodle-color-collection) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-array .connected-value,
+.custom-node .port-type-array .connected-value {
+  color: var(--noodle-color-array) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-vector3 .connected-value,
+.custom-node .port-type-vector3 .connected-value {
+  color: var(--noodle-color-vector3) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-transform .connected-value,
+.port-type-boolean .connected-value,
+.custom-node .port-type-transform .connected-value,
+.custom-node .port-type-boolean .connected-value {
+  color: var(--noodle-color-transform) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-curve .connected-value,
+.custom-node .port-type-curve .connected-value {
+  color: var(--noodle-color-curve) !important;
+  font-weight: 500 !important;
+}
+
+.port-type-string .connected-value,
+.custom-node .port-type-string .connected-value {
+  color: var(--adsk-text-secondary) !important;
+  font-weight: 500 !important;
+}
+
+/* ==================== HIDDEN HANDLE STYLING ===================== */
+/* Hide handles for entity selection and explicitly hidden ports */
+.hidden-handle,
+.react-flow__handle.hidden-handle {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Hide the entire port container when handle is hidden */
+[data-hide-handle="true"] {
+  position: relative;
+}
+
+[data-hide-handle="true"] .react-flow__handle {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

@@ -1,0 +1,509 @@
+/* ===== FALLOFF CURVE EDITOR =====
+   The curve on a Falloff node's face (a node visual, unchanged), and the
+   fixed-size modal that edits it, styled as a native Fusion dialog with the
+   Weave tokens in theme.css. Side-panel layout: curve and profile on the left,
+   controls on the right. 720 × 480, or 920 × 600 when the palette has room. */
+
+.falloff-curve-preview {
+  display: block;
+  width: 100%;
+  margin: 12px 0 4px;  /* Room above, so the curve isn't pressed against the fields */
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.falloff-curve-preview-canvas {
+  display: block;
+  width: 100%;
+  height: 40px;
+  border-radius: 2px;
+  background: var(--adsk-surface-darkBlue-350);
+  outline: 1px solid transparent;
+  transition: outline-color 0.15s;
+}
+
+.falloff-curve-preview:hover .falloff-curve-preview-canvas,
+.falloff-curve-preview:focus-visible .falloff-curve-preview-canvas {
+  outline-color: var(--noodle-color-curve);
+}
+
+.falloff-curve-preview-label {
+  display: block;
+  font-size: 10px;
+  color: var(--adsk-text-secondary);
+  text-align: center;
+  margin-top: 3px;
+}
+
+/* ---------- Dialog ---------- */
+.falloff-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--weave-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.falloff-modal {
+  /* Canvas colours for the modal; the node's preview keeps its own */
+  --falloff-canvas-grid: var(--weave-divider-strong);
+  --falloff-canvas-label: var(--weave-text-secondary);
+  --falloff-canvas-font: 11px "Artifakt Element", ArtifaktElement, "Open Sans", sans-serif;
+  --falloff-canvas-outline: var(--weave-surface-350);
+  --falloff-canvas-selected: var(--weave-text);
+
+  width: 720px;
+  height: 480px;
+  max-width: calc(100vw - 16px);
+  max-height: calc(100vh - 16px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: var(--weave-surface-200);  /* As Fusion's palettes and dialog bodies */
+  border-radius: var(--weave-radius-container);
+  box-shadow: var(--weave-shadow-dialog);
+  overflow: hidden;
+  color: var(--weave-text);
+  font-family: var(--weave-font);
+  font-size: var(--weave-font-size);
+  line-height: var(--weave-line-height);
+}
+
+.falloff-modal.large {
+  width: 920px;
+  height: 600px;
+}
+
+/* ---------- Header ---------- */
+.falloff-modal-head {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-m);
+  min-height: 40px;
+  padding: 0 var(--weave-space-s) 0 var(--weave-space-l);
+  border-bottom: 1px solid var(--weave-divider-strong);
+}
+
+.falloff-modal-title {
+  margin-right: auto;
+  font-size: var(--weave-font-size-title);
+  font-weight: var(--weave-weight-strong);
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.falloff-modal-title span {
+  color: var(--weave-text-secondary);
+  font-size: var(--weave-font-size);
+  font-weight: 400;
+}
+
+.falloff-modal-field {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-s);
+  color: var(--weave-text-secondary);
+}
+
+.falloff-modal-field b {
+  color: var(--weave-text);
+  font-weight: var(--weave-weight-strong);
+}
+
+/* ---------- Inputs and dropdowns: Weave underline fields ---------- */
+.falloff-modal select,
+.falloff-modal-number {
+  height: var(--weave-control-height);
+  box-sizing: border-box;
+  padding: 0 var(--weave-space-s);
+  background: var(--weave-input-background);
+  border: 0;
+  border-bottom: 1px solid var(--weave-input-line);
+  border-radius: 0;
+  color: var(--weave-text);
+  font: inherit;
+  font-weight: var(--weave-weight-strong);
+  outline: none;
+}
+
+.falloff-modal select {
+  appearance: none;
+  min-width: 120px;
+  padding-right: var(--weave-space-xl);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23bcd3ee' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--weave-space-s) center;
+  cursor: pointer;
+}
+
+.falloff-modal select:hover,
+.falloff-modal-number:hover {
+  border-bottom-color: var(--weave-input-line-hover);
+}
+
+.falloff-modal select:focus,
+.falloff-modal-number:focus {
+  border-bottom-color: var(--weave-accent);
+}
+
+.falloff-modal select option {
+  background: var(--weave-surface-100);
+  color: var(--weave-text);
+}
+
+.falloff-modal-number {
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+}
+
+.falloff-modal-readout {
+  font-weight: var(--weave-weight-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.falloff-modal-connected {
+  color: var(--weave-text-secondary);
+  font-style: italic;
+}
+
+/* ---------- Buttons ---------- */
+.falloff-modal button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Close: a quiet icon button */
+.falloff-modal .falloff-modal-x {
+  width: var(--weave-control-height);
+  height: var(--weave-control-height);
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-text-secondary);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.falloff-modal .falloff-modal-x:hover {
+  color: var(--weave-text);
+  box-shadow: var(--weave-ring-hover);
+}
+
+.falloff-modal .falloff-modal-x:active {
+  background: none;
+  box-shadow: var(--weave-ring-pressed);
+}
+
+/* Secondary (outline) buttons, and toggles: pressed shows the selected tint */
+.falloff-modal button[aria-pressed] {
+  height: var(--weave-control-height);
+  min-width: 40px;
+  padding: 0 var(--weave-space-m);
+  background: transparent;
+  border: 1px solid var(--weave-border);
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-text);
+  font-weight: var(--weave-weight-strong);
+}
+
+.falloff-modal button[aria-pressed]:hover {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.falloff-modal button[aria-pressed]:active {
+  background: transparent;
+  box-shadow: var(--weave-ring-pressed);
+}
+
+.falloff-modal button[aria-pressed="true"]:active {
+  background: var(--weave-selected-background);
+}
+
+.falloff-modal button[aria-pressed="true"] {
+  background: var(--weave-selected-background);
+  border-color: var(--weave-selected-border);
+}
+
+/* Segmented: buttons joined edge to edge */
+.falloff-seg {
+  display: flex;
+}
+
+.falloff-seg button[aria-pressed] {
+  flex: 1;
+  border-radius: 0;
+}
+
+.falloff-seg button[aria-pressed] + button[aria-pressed] {
+  margin-left: -1px;
+}
+
+.falloff-seg button[aria-pressed="true"] {
+  position: relative;  /* Its blue border sits over its neighbour's */
+}
+
+.falloff-seg button:first-child { border-radius: var(--weave-radius-control) 0 0 var(--weave-radius-control); }
+.falloff-seg button:last-child { border-radius: 0 var(--weave-radius-control) var(--weave-radius-control) 0; }
+
+/* Primary */
+.falloff-modal .falloff-modal-done {
+  height: var(--weave-control-height);
+  min-width: 72px;
+  padding: 0 var(--weave-space-m);
+  background: var(--weave-primary);
+  border: 1px solid var(--weave-primary);
+  border-radius: var(--weave-radius-control);
+  color: var(--weave-on-primary);
+  font-weight: var(--weave-weight-strong);
+}
+
+.falloff-modal .falloff-modal-done:hover {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.falloff-modal .falloff-modal-done:active {
+  background: var(--weave-primary);
+  box-shadow: var(--weave-ring-pressed);
+}
+
+.falloff-modal button:focus-visible,
+.falloff-modal select:focus-visible,
+.falloff-modal input:focus-visible {
+  outline: none;
+  box-shadow: var(--weave-ring-focus);
+}
+
+/* ---------- Body: the curve well and the controls column ---------- */
+.falloff-modal-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 232px;
+  min-height: 0;
+}
+
+.falloff-modal-view {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);  /* Never wider than its share, whatever the strip holds */
+  grid-template-rows: minmax(0, 1fr) auto 76px;
+  min-width: 0;
+  min-height: 0;
+  background: var(--weave-surface-350);
+}
+
+.falloff-modal.large .falloff-modal-view {
+  grid-template-rows: minmax(0, 1fr) auto 96px;
+}
+
+.falloff-modal-editor,
+.falloff-modal-profile {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.falloff-modal-editor {
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.falloff-modal-profile {
+  border-top: 1px solid var(--weave-divider);
+}
+
+/* Strip under the curve: continuity badges, degree, comb. One fixed-height line,
+   so the curve above never changes size while it's being edited. A badge shows
+   only its grade; its tip names the join and says why. */
+.falloff-modal-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-m);
+  min-width: 0;
+  overflow: hidden;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 var(--weave-space-m);
+  white-space: nowrap;
+  border-top: 1px solid var(--weave-divider);
+  background: var(--weave-surface-300);
+  color: var(--weave-text-secondary);
+}
+
+.falloff-modal-chips {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-xs);
+  min-width: 0;
+}
+
+.falloff-chip {
+  padding: 0 var(--weave-space-xs);
+  border-radius: var(--weave-radius-control);
+  font-size: var(--weave-font-size-caption);
+  font-weight: var(--weave-weight-strong);
+  line-height: 16px;
+  cursor: default;
+}
+
+.falloff-chip.grade-g2 { background: var(--weave-success-background); color: var(--weave-success); }
+.falloff-chip.grade-g1 { background: var(--weave-warning-background); color: var(--weave-warning); }
+.falloff-chip.grade-g0,
+.falloff-chip.grade-gx { background: var(--weave-error-background); color: var(--weave-error); }
+
+.falloff-modal-tools {
+  margin-left: auto;
+  display: flex;
+  gap: var(--weave-space-s);
+  flex-shrink: 0;
+}
+
+/* ---------- Controls column ---------- */
+.falloff-modal-controls {
+  min-height: 0;
+  overflow-y: auto;
+  border-left: 1px solid var(--weave-divider-strong);
+}
+
+.falloff-group {
+  display: grid;
+  gap: var(--weave-space-s);
+  padding: var(--weave-space-s) var(--weave-space-l) var(--weave-space-m);
+  border-bottom: 1px solid var(--weave-divider);
+}
+
+.falloff-group h4 {
+  margin: var(--weave-space-xs) 0;
+  font-size: var(--weave-font-size);
+  font-weight: var(--weave-weight-strong);
+  color: var(--weave-text);
+}
+
+.falloff-row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: var(--weave-space-s);
+  min-height: var(--weave-control-height);
+}
+
+.falloff-row.numeric {
+  grid-template-columns: 72px minmax(0, 1fr);
+}
+
+.falloff-row output {
+  text-align: right;
+  font-weight: var(--weave-weight-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.falloff-unit {
+  color: var(--weave-text-secondary);
+}
+
+/* Slider: a thin rail, filled to the value (--fill, set by the component), and a
+   slim 4 × 16 thumb, as Fusion draws them */
+.falloff-row input[type="range"] {
+  appearance: none;
+  width: 100%;
+  height: 16px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.falloff-row input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: linear-gradient(to right,
+    var(--weave-slider-fill) 0 var(--fill, 0%),
+    var(--weave-slider-rail) var(--fill, 0%) 100%);
+}
+
+.falloff-row input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 4px;
+  height: 16px;
+  margin-top: -7px;
+  background: var(--weave-slider-fill);
+  border: 0;
+  border-radius: 1px;
+}
+
+.falloff-row input[type="range"]:hover::-webkit-slider-thumb {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.falloff-row input[type="range"]:focus-visible {
+  box-shadow: none;
+}
+
+.falloff-row input[type="range"]:focus-visible::-webkit-slider-thumb {
+  box-shadow: var(--weave-ring-focus);
+}
+
+/* Checkbox: 12 px square; checked is a white fill with a dark tick */
+.falloff-check {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-s);
+  min-height: var(--weave-control-height);
+  cursor: pointer;
+}
+
+.falloff-check input[type="checkbox"] {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  background: var(--weave-surface-200);
+  border: 1px solid var(--weave-border);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.falloff-check input[type="checkbox"]:hover {
+  box-shadow: var(--weave-ring-hover);
+}
+
+.falloff-check input[type="checkbox"]:checked {
+  background: var(--weave-text) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M2 5.2l2 2 4-4.4' fill='none' stroke='%233b4453' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat center;
+  border-color: var(--weave-text);
+}
+
+/* ---------- Footer ----------
+   An ⓘ whose tip says how to edit the curve, as Fusion's own dialogs do, and Done. */
+.falloff-modal-foot {
+  display: flex;
+  align-items: center;
+  gap: var(--weave-space-s);
+  padding: var(--weave-space-s) var(--weave-space-s) var(--weave-space-s) var(--weave-space-m);
+  border-top: 1px solid var(--weave-divider-strong);
+}
+
+.falloff-modal-foot-gap {
+  flex: 1;
+}
+
+.falloff-modal-info {
+  width: 16px;
+  height: 16px;
+  margin-right: var(--weave-space-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--weave-text-secondary);
+  color: var(--weave-surface-200);
+  font-size: var(--weave-font-size-caption);
+  font-weight: 700;
+  font-style: italic;
+  cursor: default;
+}
+
+.falloff-modal-info:focus-visible {
+  outline: none;
+  box-shadow: var(--weave-ring-focus);
+}

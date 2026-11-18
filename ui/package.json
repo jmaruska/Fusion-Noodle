@@ -1,0 +1,22 @@
+{
+  "name": "noodle-ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Palette UI for the Noodle add-in for Autodesk Fusion",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/*.test.js"
+  },
+  "devDependencies": {
+    "vite": "^7.1.4"
+  },
+  "dependencies": {
+    "@xyflow/react": "^12.8.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}

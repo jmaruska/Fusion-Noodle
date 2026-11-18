@@ -1,0 +1,68 @@
+/* ===== ARRAY NODE STYLING ===== */
+/* Uses --node-category-array (#3198eb) from theme.css */
+
+/* ===== FRESH NODE HIGHLIGHTING (newly created nodes) ===== */
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-array {
+  border: 1px solid var(--node-category-array) !important;
+  box-shadow: 0 1px 12px rgba(49, 152, 235, 0.6) !important;
+  animation: fresh-pulse-array 2s ease-in-out infinite;
+}
+
+/* Fresh node animation - customize timing/easing as needed */
+@keyframes fresh-pulse-array {
+  0%, 100% { 
+    box-shadow: 0 1px 12px rgba(49, 152, 235, 0.6);
+  }
+  50% { 
+    box-shadow: 0 6px 16px rgba(49, 152, 235, 0.8);
+  }
+}
+
+/* ===== FADING NODE STATE (smooth transition out of fresh highlighting) ===== */
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-array {
+  border: 1px solid var(--node-category-array) !important;
+  box-shadow: 0 1px 12px rgba(49, 152, 235, 0.6) !important;
+  animation: none !important; /* Stop the pulsing animation */
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE SELECTION HIGHLIGHTING ===== */
+.react-flow__node.selected .custom-node.node-category-array {
+  border-color: var(--node-category-array) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-array) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+/* ===== NODE HOVER STATE ===== */
+.react-flow__node:hover .custom-node.node-category-array {
+  border-color: var(--node-category-array) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+/* ===== NODE HEADER ACCENT STRIPE ===== */
+.node-category-array .node-header {
+  border-bottom: 2px solid var(--node-category-array);
+}
+
+/* ===== ULTRA HIGH SPECIFICITY DIAGNOSTIC RULES ===== */
+/* Force array node styling - use only if standard rules don't work */
+.react-flow__node .custom-node.node-category-array .node-header,
+.custom-node.node-category-array .node-header,
+.node-category-array .node-header {
+  border-bottom: 2px solid var(--node-category-array) !important;
+}
+
+/* ===== ULTRA HIGH SPECIFICITY OVERRIDES (use sparingly) ===== */
+/* These rules force styling when CSS cascade conflicts occur */
+.react-flow__node.selected .custom-node.node-category-array {
+  border-color: var(--node-category-array) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(49, 152, 235, 0.8) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-array {
+  border-color: var(--node-category-array) !important;
+  transition: border-color 0.2s ease-out;
+}

@@ -1,0 +1,38 @@
+/* ===== SOURCES NODE STYLING ===== */
+/* Uses --node-category-sources (#c97c20) from theme.css */
+
+.react-flow__node .custom-node-wrapper.fresh-node .custom-node.node-category-sources {
+  border: 1px solid var(--node-category-sources) !important;
+  box-shadow: 0 1px 12px rgba(201, 124, 32, 0.6) !important;
+  animation: fresh-pulse-sources 2s ease-in-out infinite;
+}
+
+@keyframes fresh-pulse-sources {
+  0%, 100% { box-shadow: 0 1px 12px rgba(201, 124, 32, 0.6); }
+  50%       { box-shadow: 0 6px 16px rgba(201, 124, 32, 0.8); }
+}
+
+.react-flow__node .custom-node-wrapper.fading-node .custom-node.node-category-sources {
+  border: 1px solid var(--node-category-sources) !important;
+  box-shadow: 0 1px 12px rgba(201, 124, 32, 0.6) !important;
+  animation: none !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node.selected .custom-node.node-category-sources {
+  border-color: var(--node-category-sources) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.4),
+              0 0 0 1px var(--node-category-sources) !important;
+  transition: border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.react-flow__node:hover .custom-node.node-category-sources {
+  border-color: var(--node-category-sources) !important;
+  transition: border-color 0.2s ease-out;
+}
+
+.react-flow__node .custom-node.node-category-sources .node-header,
+.custom-node.node-category-sources .node-header,
+.node-category-sources .node-header {
+  border-bottom: 2px solid var(--node-category-sources) !important;
+}
