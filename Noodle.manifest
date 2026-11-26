@@ -1,6 +1,7 @@
 {
     "autodeskProduct": "Fusion360",
     "type": "addin",
+    "id": "ed77ff93-c0ef-48df-9463-a31e3eddf270",
     "author": "Joshua Maruska",
     "description": {
         "": "Node-based Algorithmic Modeling Tool"

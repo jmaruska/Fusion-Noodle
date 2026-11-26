@@ -80,3 +80,13 @@ For the full walkthrough, see [Getting started](docs/getting-started.md).
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Packaging a Fusion add-in release
+
+From the repository root, check out the release commit and run this command with Git (Bash or Git Bash). It packages the tracked runtime files under the folder name Fusion expects.
+
+```sh
+git archive --format=zip --prefix=Noodle/ --output=Noodle-universal.zip HEAD -- Noodle.manifest Noodle.py __init__.py config.py backend resources examples ui/index.html ui/dist ui/icons ui/styles LICENSE
+```
+
+Upload `Noodle-universal.zip` as an asset of a stable GitHub Release. Use a numeric tag such as `v0.1.1` matching the version in `Noodle.manifest`.
